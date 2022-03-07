@@ -1,0 +1,1008 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mynotes}
+
+\title{Honours Algebra - Week 6 - The Determinant of a Matrix}
+\author{Antonio León Villares}
+\date{February 2022}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\textit{Based on the notes by Iain Gordon, Sections 4.1 - 4.4}
+
+\section{The Sign of a Permutation}
+
+\subsection{The Symmetric Group}
+
+\begin{itemize}
+    \item \textbf{What is the nth symmetric group?}
+    \begin{itemize}
+        \item the group of \textbf{permutations} of $n$ elements $S_n$
+        \item group under \textbf{composition}
+        \item has $n!$ elements
+    \end{itemize}
+    \item \textbf{What is a transposition?}
+    \begin{itemize}
+        \item a \textbf{permutation} which \textbf{only} swaps to elements:
+        \item for example, $(3 \ 4) \in S_5$ represents the permutation which swaps 3 and 4, and leaves 1,2,5 unchanged
+    \end{itemize}
+\end{itemize}
+
+\subsection{Theorem: Permutations as Products of Tranpositions}
+
+\textbox{
+Any permutation:
+\[
+(a_1 \ a_2 \ \ldots \ a_n)
+\]
+can be written as a \textbf{product of transpositions}.
+\\
+In particular, 2 methods are:
+\[
+(a_1 \ a_2 \ \ldots \ a_n) = \prod_{i = 2}^n (a_1 \ a_i)
+\]
+\[
+(a_1 \ a_2 \ \ldots \ a_n) = \prod_{i = 1}^{n-1} (a_i \ a_{i+1})
+\]
+}
+
+\begin{proof}
+
+We prove by induction. 
+
+\bigskip
+
+\circled{1} \textbf{Base Case} 
+
+Trivial for $(a_1 \ a_2)$
+
+\bigskip
+
+\circled{2} \textbf{Inductive Hypothesis}
+
+Assume true for $n = k$. In other words, any permutation of $k$ elements can be written as a product of transpositions.
+
+\bigskip
+
+\circled{3} \textbf{Inductive Step}
+
+Consider a permutation of $n = k+1$ elements. We can use a single transposition to ``place" $a_{k+1}$. Then, we have $k$ elements left to place in the permutation, but by the inductive hypothesis, these can be written as a product of transpositions. Hence, a permutation of $k+1$ elements can be written as a product of transpositions.
+
+\bigskip
+
+Hence, by induction, any permutation can be expressed as a product of transpositions.
+
+\bigskip
+
+The specific examples provided can be easily proven by using an inductive argument.
+
+\end{proof}
+
+\subsection{The Sign of a Permutation: Original Definition}
+
+\begin{itemize}
+    \item \textbf{What is the sign of a permutation?}
+    \begin{itemize}
+        \item the \textbf{parity} of the number of transpositions required to express a permutation
+        \item symbolically, if $n(\sigma)$ is the number of transpositions used to build $\sigma$:
+        \[
+        sgn(\sigma) = (-1)^{n(\sigma)}
+        \]
+    \end{itemize}
+    \item \textbf{What is an even permutation?}
+    \begin{itemize}
+        \item a \textbf{permutation} with $sgn(\sigma) = 1$
+        \item in other words, a permutation which can be expressed as a product of \textbf{evenly} many transpositions
+    \end{itemize}
+    \item \textbf{What is an odd permutation?}
+    \begin{itemize}
+        \item a \textbf{permutation} with $sgn(\sigma) = -1$
+    \end{itemize}
+\end{itemize}
+
+\subsection{The Sign of a Permutation: HAlg Definition}
+
+\begin{itemize}
+    \item \textbf{What is an inversion of a permutation?}
+    \begin{itemize}
+        \item say $\sigma \in S_n$
+        \item an \textbf{inversion} is a tuple:
+        \[
+        (i,j) 
+        \]
+        such that:
+        \begin{enumerate}
+            \item $1 \leq 1 < j \leq n$
+            \item $\sigma(i) > \sigma(j)$
+        \end{enumerate}
+        \piccaption{inversion.png}{0.4}{We can visualise the number of inversions by drawing the mappings. In particular, the number of inversions is given by the \textbf{number of crossings}. Intuitively this makes sense: if there is a cross, we have an arrow going from left to right (so $i < \sigma(i)$) and from right to left (so $\sigma(j) < j$) such that also $i < j$ and $\sigma(i) > \sigma(j)$, which is precisely the condition for an inversion.
+        \\
+        In this diagram, we have that for example $(1,3)$ is an inversion, since $1 \to 2$ and $3 \to 1$.}
+    \end{itemize}
+    \item \textbf{How do we define the length of a permutation?}
+    \begin{itemize}
+        \item the length of a permutation is the \textbf{number of inversions} of the permutation:
+        \[
+        l(\sigma) = |\{(i,j) \ | \ i < j \ \wedge \ \sigma(i) > \sigma(j)\}|
+        \]
+    \end{itemize}
+    \item \textbf{What is an alternative way of defining the sign of a permutation?}
+    \begin{itemize}
+        \item the sign can be defined as the \textbf{parity} of the number of inversions (\textbf{length of a permutation}):
+        \[
+        sgn(\sigma) = (-1)^{l(\sigma)}
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item the \textbf{identity} is the only permutation with length 0
+    \item a transposition swapping $i,j$ has length:
+    \[
+    2|i-j| - 1
+    \]
+    This is because $i$ forms an inversion with each of $i+1,i+2, \ldots, j$. Similarly, $j$ forms an inversion with each of $j-1, j-2, \ldots, i$. If we remove the duplicate inversion $(i,j)$, we get the desired figure. This can be easily seen diagrammatically:
+    \pic{transversion.png}{0.5}
+    Notice, this says that \textbf{transpositions} are \textbf{odd} permutations, which coincides with the original idea of sign.
+\end{itemize}
+
+\subsection{Lemma: Multiplicativity of the Sign of a Permutation}
+
+\textbox{
+For each $n \in \mathbb{N}$, the \textbf{sign} of a \textbf{permutation} produces a \textbf{group homomophism}:
+\[
+sgn : S_n \to \{1,-1\}
+\]
+In particular, it follows that:
+\[
+sgn(\sigma \tau) = sgn(\sigma)sgn(\tau), \qquad \forall \sigma, \tau \in S_n
+\]
+}
+
+\begin{proof}
+
+The proof in the notes is not nice or intuitive. I much prfer this one. We can decompose $\sigma, \tau$ into transpositions. Then, it is clear that $\sigma \tau$ can be decomposed into $n(\sigma) + n(\tau)$ transpositions, so:
+\[
+sgn(\sigma \tau) = -1^{n(\sigma) + n(\tau)} = (-1)^{n(\sigma)}(-1)^{n(\tau)} = sgn(\sigma)sgn(\tau)
+\]
+as required.
+
+\end{proof}
+
+\subsection{The Alternating Group}
+
+\begin{itemize}
+    \item \textbf{What is the alternating group?}
+    \begin{itemize}
+        \item a \textbf{subgroup} of $S_n$
+        \item contains all \textbf{even} permutations of $S_n$, and is denoted $A_n$
+        \item its a \textbf{subgroup}, since $A_n$ is the \textbf{kernel} of the \textbf{group homomorphism}:
+        \[
+        sgn : S_n \to \{1,-1\}
+        \]
+        (since 1 is the identity of $\{1,-1\}$, and only even permutations get mapped there)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\label{ex69}
+\question \textbf{Show that the permutation mapping $a_i$ to $a_1$, and with $a_j \to a_{j+1}, j \in [1,i-1]$ has $i-1$ inversions:}
+\pic{exercise69.png}{0.5}
+\end{questions}
+
+\section{Defining the Determinant}
+
+\subsection{Leibniz Formula}
+
+\begin{itemize}
+    \item \textbf{What is the Leibniz formula for the determinant of a matrix?}
+    \begin{itemize}
+        \item the \textbf{determinant} is a mapping:
+        \[
+        det : Mat(n;R) \to R
+        \]
+        where $R$ is a \textbf{ring}
+        \item the \textbf{determinant} is computed using the \textbf{Leibniz Formula}:
+        \[
+        \sum_{\sigma \in S_n} sgn(\sigma)\prod_{i = 1}^n a_{1\sigma(i)}
+        \]
+        In other words, it sums over all possible products of permutations of the diagonal elements of the matrix
+        \item for an ``empty matrix" ($n = 0$), the determinant is 0
+    \end{itemize}
+    \item \textbf{What does the determinant tell us about its corresponding linear transformation?}
+    \begin{itemize}
+        \item if we have a region $L$ which gets mapped to $U$ under a linear transformation $A$, then:
+        \[
+        area(U) = det(A)area(L)
+        \]
+        That is, the \textbf{determinant} is an \textbf{area scaling factor}
+        \item the \textbf{sign} of the \textbf{determinant} indicates whether the linear transformation \textbf{preserves} or \textbf{inverts} orientation
+        \item you can better understand this by playing with \href{http://halg.s3-website-eu-west-1.amazonaws.com}{this applet}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item if $n = 1$:
+    \[
+    A = \begin{pmatrix}
+    a
+    \end{pmatrix}
+    \ \implies \ 
+    det(A) = a
+    \]
+    \item if $n = 2$:
+    \[
+    A = \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix}
+    \ \implies \ 
+    det(A) = ab - cd
+    \]
+    (there are only 2 permutations: the identity and a transposition)
+    \item for $n = 3$ there are 6 terms: 3 positive and 3 negative, corresponding to the 3 even and 3 odd permutations of $S_3$. 
+    \piccaption{det3.png}{0.4}{We can use this ``trick" to compute the determinant: we multiply along the lines, and add the products; bold lines are positive, dashed lines are negative}
+    \item the determinant of \textbf{diagonal}, \textbf{upper triangular} and \textbf{bottom triangular} matrices is the product of the diagonal entries. 
+    \begin{itemize}
+        \item for upper triangular matrices, notice that:
+        \[
+        a_{ij} = \begin{cases}
+        0, \qquad i > j \\
+        *, \qquad j \geq i
+        \end{cases}
+        \]
+        \item notice, for the determinant, each summand considers:
+        \[
+        \prod_{i = 1}a_{i\sigma(i)} 
+        \]
+        \item this is non-zero \textbf{if and only if}:
+        \[
+        \sigma(i) \geq i, \qquad \forall i \in [1,n]
+        \]
+        \item the only permutation which ensures this is the identity permutation; otherwise, we will always have at least one term which leads to $\sigma(i) < i$, in which case the product becomes 0
+        \item hence,
+        \[
+        det(A) = \prod_{i = 1}^n a_{ii}
+        \]
+        as required
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Show that the determinant of a block-upper triangular matrix with square blocks along the diagonal is the product of the determinants of the blocks along the diagonal:}
+\pic{exercise71.png}{0.6}
+
+A proof can be found \href{https://proofwiki.org/wiki/Determinant_of_Block_Diagonal_Matrix}{here}. It employs induction to prove a simple case, and then shows the general case.
+
+\end{questions}
+
+\section{Determinants as Multilinear Forms}
+
+We now discuss multilinear forms. They are rather abstract, and seem unrelated to determinants, but they provide an alternative way of \textbf{characterising} determinants and their properties, beyond the standard definitions.
+
+\subsection{Bilinear Forms}
+
+\begin{itemize}
+    \item \textbf{What is a bilinear form?}
+    \begin{itemize}
+        \item a \textbf{mapping}:
+        \[
+        H : U \times V \to W
+        \]
+        where $U,V,W$ are \textbf{F-Vector Spaces} (formally, a \textbf{bilinear form on $U \times V$ with values in $W$})
+        \item it is \textbf{bilinear} because it is a \textbf{linear mapping} in both entries:
+        \[
+        H(u_1 + u_2, v) = H(u_1,v) + H(u_2,v)
+        \]
+        \[
+        H(\lambda u, v) = \lambda H(u,v)
+        \]
+        \[
+        H(u, v_1 + 1_2) = H(u,v_1) + H(u,v_2)
+        \]
+        \[
+        H(u, \lambda v) = \lambda H(u,v)
+        \]
+    \end{itemize}
+    \item \textbf{When is a bilinear form symmetric?}
+    \begin{itemize}
+        \item when $U = V$ and:
+        \[
+        H(u,v) = H(v,u), \qquad \forall u,v \in U
+        \]
+    \end{itemize}
+    \item \textbf{When is a bilinear form antisymmetric/alternating?}
+    \begin{itemize}
+        \item when $U = V$ and:
+        \[
+        H(u,u) = 0
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsection{Remark: Alternating Bilinear Forms}
+
+\textbox{
+If $H$ is an \textbf{alternating bilinear form}, then:
+\[
+H(u,v) = -H(v,u)
+\]
+If $H$ is a \textbf{bilinear form} and
+\[
+H(u,v) = -H(v,u)
+\]
+then:
+\[
+H(u,u) = 0 \ \iff \ 1_F + 1_F \neq 0_F
+\]
+In other words, such a \textbf{bilinear form} is \textbf{alternating} if and only if $1_F + 1_F \neq 0_F$.
+[Remark 4.3.2]
+}
+
+\begin{proof}
+
+The first part is clear. If $H$ is \textbf{alternating}:
+\begin{align*}
+    &H(u+v,u+v) = 0 \\
+    \implies &H(u,u+v) + H(v,u+v) = 0 \\
+    \implies &H(u,v) + H(u,u) + H(v,u) + H(v,v) = 0 \\
+    \implies &H(u,v) + H(v,u) = 0 \\
+    \implies &H(u,v) = -H(v,u) \\
+\end{align*}
+
+If $H$ is a \textbf{bilinear form} and $H(u,v) = -H(v,u)$, in particular:
+\[
+H(u,u) = -H(u,u) \ \implies \ H(u,u) + H(u,u) = 0
+\]
+We will have $H(u,u) = 0$ if and only if $1_F + 1_F \neq 0$. This can happen, for example, with $\F = \F_2 = \mathbb{Z}_2$
+
+\end{proof}
+
+\subsection{Multilinear Forms}
+
+\begin{itemize}
+    \item \textbf{How are multilinear forms defined?}
+    \begin{itemize}
+        \item \textbf{multilinear forms} generalise \textbf{bilinear forms}
+        \item given \textbf{F-vector spaces} $V_1,\ldots,V_n,W$, a \textbf{multilinear form} is a mapping:
+        \[
+        H : V_1 \times \ldots \times V_n \to W
+        \]
+        \item it is a \textbf{linear mapping} in each entry; in other words:
+        \[
+        V_j \to W
+        \]
+        \[
+        v_j \to H(v_1, \ldots, v_j, \ldots, v_n)
+        \]
+        is a linear mapping (here the $v_i, i\neq j$ are fixed)
+    \end{itemize}
+    \item \textbf{When is a multilinear form alternating?}
+    \begin{itemize}
+        \item whenever we have $v_i = v_j, \qquad i \neq j$ and:
+        \[
+        H(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) = 0
+        \]
+        \item in other words, the mapping \textbf{vanishes} if it has (at least) 2 equal entries
+    \end{itemize}
+\end{itemize}
+
+\subsection{Remark: Alternating Multilinear Forms}
+
+\textbox{
+If $H$ is an \textbf{alternating multilinear form}, then:
+\[
+H(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) = -H(v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n) 
+\]
+In other words, if we swap 2 entries in an \textbf{alternating multilinear form}, we \textbf{negate} the value of the mapping.
+\\
+Conversely it $H$ is a multilinear map, and
+\[
+H(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) = -H(v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n)
+\]
+then $H$ is \textbf{alternating} if and only if:
+\[
+1_F + 1_F \neq 0_F
+\]
+\\
+More generally, if $\sigma$ is a \textbf{permutation}:
+\[
+H(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = sgn(\sigma)H(v_1, \ldots, v_n) 
+\]
+[Remark 4.3.5]
+}
+
+\begin{proof}
+
+The first one is similar as in the case for bilinear forms.
+
+\bigskip
+
+The second one follows from the fact that every permutation can be written as a \textbf{product of transpositions}. Hence, applying $\sigma$ can be viewed as applying many consecutive transpositions ($n(\sigma)$ of them), from which we see the result.
+
+\end{proof}
+
+\subsection{Theorem: Characterisation of the Determinant}
+
+\textbox{
+Let $F$ be a \textbf{field}. The mapping:
+\[
+det : Mat(n;F) \to F
+\]
+is the \textbf{unique alternating multilinear form} on $n$-tuples of \textbf{column vectors} with values in $F$, and which takes value $1_F$ on the \textbf{identity matrix}.
+\\
+Notice, we treat elements in $Mat(n;F)$ as both \textbf{matrices} over $F$, and as an \textbf{ordered list} of \textbf{column vectors} (namely the \textbf{matrix columns)}, such that:
+\[
+det : F^n \times \times \ldots \times F^n \to F
+\]
+\[
+(\vec{v}_1, \ldots, \vec{v}_n) \to det(Mat(\vec{v}_1, \ldots, \vec{v}_n))
+\]
+[Theorem 4.3.6]
+}
+
+\begin{proof}
+
+\begin{enumerate}
+    \item \textbf{The Determinant is Multilinear}
+    This is pretty intuitive if we use the Leibniz formula, but \href{https://math.stackexchange.com/questions/1403735/why-is-determinant-a-multilinear-function}{here} is an example for the $2 \times 2$ case
+    \item \textbf{The Determinant Evaluates to $1_F$ on the Identity Matrix}
+    The identity matrix is a diagonal matrix with diagonal entries $1_F$, so its determinant is the product of these entreis, which is $1_F$.
+    \item \textbf{The Determinant is Alternating}
+    Assume $\vec{v}_i = \vec{v}_j$. In particular, we must have that:
+    \[
+    a_{ki} = a_{kj}
+    \]
+    for any row $k$.
+    
+    \bigskip
+    
+    Now, let $\tau \in S_n$ be the transposition which switches $\vec{v}_i$ and $\vec{v}_j$. Then:
+    \[
+    a_{ki} = a_{kj} \ \wedge \ a_{kj} = a_{k\tau(i)} \ \implies \ a_{ki} = a_{k\tau(i)}
+    \]
+    But then, for any $\sigma \in S_n$, we must have that:
+    \[
+    \prod_{i = 1}^n a_{i\sigma(i)} = \prod_{i = 1}^n a_{i\tau \sigma(i)}
+    \]
+    By multiplicity of the sign:
+    \[
+    sgn(\tau \sigma) = sgn(\tau)sgn(\sigma) = -sgn(\sigma)
+    \]
+    since $sgn(\tau)$ is a transposition, and so $sgn(\tau) = -1$.
+    
+    \bigskip
+    
+    Furthermore, the subgroup of $S_n$ generated by $\tau$ is:
+    \[
+    H = \{id_{S_n}, \tau\}
+    \]
+    and since cosets of subgroups partition a group (since they define equivalence classes; \href{https://groupprops.subwiki.org/wiki/Left_cosets_partition_a_group}{see here for more}), we must have that, if $X$ is the set of right coset representatives of $H$:
+    \[
+    \bigcup_{\sigma \in X} H\sigma = S_n
+    \]
+    where each $H\sigma$ is disjoint. In other words, each $x \in X$ generates 2 (unique) elements in $H$, namely $x$ and $\tau x$.
+    \bigskip
+    We can now put this together. By Leibniz:
+    \[
+    det(A) = \sum_{\sigma \in S_n} sgn(\sigma)\prod_{i = 1}^n a_{1\sigma(i)}
+    \]
+    Instead of iterating through $S_n$, we can iterate through the set of representatives $X$, and then include the elements in $S_n$ generated by each representative:
+    \[
+    det(A) = \sum_{x \in X} \left(sgn(x)\prod_{i = 1}^n a_{1x(i)} + sgn(\tau x) \prod_{i = 1}^n a_{1\tau x(i)}\right)
+    \]
+    But recall from above that $sgn(\tau x) = -sgn(x)$, and
+    \[
+    \prod_{i = 1}^n a_{ix(i)} = \prod_{i = 1}^n a_{i\tau x(i)}
+    \]
+    so it follows that:
+    \[
+    det(A) = \sum_{x \in X} \left(sgn(x)\prod_{i = 1}^n a_{1x(i)} - sgn(x) \prod_{i = 1}^n a_{1x(i)}\right) = 0
+    \]
+    Hence, $det$ is \textbf{alternating}.
+    
+    \bigskip
+    
+    Notice, this can be extended to show that a square matrix with coefficients in a \textbf{commutative ring} has $det(A) = 0$ whenever 2 columns are equal.
+    \item \textbf{The Determinant is a Unique Such Mapping}
+    As we have seen before (Lemma 1.7.8), linear mappings are completely determined by the values they take on a basis, so we only need to check the values of mappings on the basis elements.
+    
+    \bigskip
+    
+    Assume there exists some other mapping:
+    \[
+    d : Mat(n;F) \to F
+    \]
+    with the properties of the theorem (multilinear form, alternating, maps identity to $1_F$).
+    
+    \bigskip
+    
+    We consider the value of:
+    \[
+    d(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)}))
+    \]
+    where $\sigma : \{1,\ldots,n\} \to \{1, \ldots, n\}$ (since we don't care how each of the basis vectors are organised within the matrix).
+    
+    \bigskip
+    
+    If $\sigma(i) = \sigma(j)$, since $d$ is alternating, we must have that:
+    \[
+    d(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)})) = 0 = det(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)}))
+    \]
+    Thus, if $\sigma$ is \textbf{not} bijective (in other words, $\sigma \not\in S_n$), $d(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)})) = 0$. Otherwise, if $\sigma \in S_n$, then:
+    \[
+    d(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)})) = sgn(\sigma)d(Mat(e_{1}, \ldots, e_{n}))
+    \]
+    since $d$ is a multilinear form. Now notice, by assumption, we must have that:
+    \[
+    d(Mat(e_{1}, \ldots, e_{n})) = 1
+    \]
+    so if $\sigma \in S_n$, then:
+    \[
+    d(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)})) = sgn(\sigma)
+    \]
+    But notice, again if $\sigma \in S_n$ and using the multilinearity of the determinant:
+    \[
+    det(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)})) = sgn(\sigma)d(Mat(e_{1}, \ldots, e_{n})) = sgn(\sigma)
+    \]
+    So it follows that:
+    \[
+    d(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)})) = det(Mat(e_{\sigma(1)}, \ldots, e_{\sigma(n)}))
+    \]
+    as required.
+\end{enumerate}
+
+\end{proof}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Adapt the argument above to show that if:
+\[
+d : Mat(n;F) \to F
+\]
+is an alternating multilinear form on n-tuples of column vectors with values in $F$, then:
+\[
+d(A) = d(Mat(e_{1}, \ldots, e_{n}))det(A), \qquad \forall A \in Mat(n;F)
+\]
+}
+
+\end{questions}
+
+\section{Calculating With Determinants}
+
+\subsection{Theorem: Multiplicativity of the Determinant}
+
+\textbox{
+Let $R$ be a \textbf{commutative ring}, and let $A,B \in R$. Then:
+\[
+det(AB) = det(A)det(B)
+\]
+[Theorem 4.4.1]
+}
+
+\begin{proof}
+
+Recall, when multiplying 2 matrices together, entry $(AB)_{ik}$ is given by:
+\[
+(AB)_{ik} = \sum_{j = 1}^n a_{ij}b_{jk}
+\]
+Let $I_n$ be the set of all mappings from $\{1,\ldots,n\}$ to itself.
+
+\bigskip
+
+From definition:
+\begin{align*}
+    det(AB) &= \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i = 1}^n (AB)_{i \sigma(i)} \\
+    &= \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i = 1}^n \sum_{j = 1}^n a_{ij}b_{j\sigma(i)} \\
+    &= \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i = 1}^n (a_{i1}b_{1\sigma(i)} + a_{i2}b_{2\sigma(i)} + \ldots + a_{in}b_{n\sigma(i)}) \\
+\end{align*}
+
+Now, think about the expression above. For example, with $n = 2$:
+
+\begin{align*}
+    \prod_{i = 1}^2 \sum_{j = 1}^2 a_{ij}b_{j\sigma(i)} &= \prod_{i = 1}^n (a_{i1}b_{1\sigma(i)} + a_{i2}b_{2\sigma(i)}) \\
+    &= (a_{11}b_{1\sigma(1)} + a_{12}b_{2\sigma(1)}) \times (a_{21}b_{1\sigma(2)} + a_{22}b_{2\sigma(2)}) \\
+    &= a_{11}b_{1\sigma(1)}a_{21}b_{1\sigma(2)} + a_{11}b_{1\sigma(1)}a_{22}b_{2\sigma(2)} + a_{12}b_{2\sigma(1)}a_{21}b_{1\sigma(2)} + a_{12}b_{2\sigma(1)}a_{22}b_{2\sigma(2)}
+\end{align*}
+
+But notice, each term can be characterised by an element of $I_n$. For example:
+\[
+\kappa_1(x) = \begin{cases}
+1, \qquad x = 1 \\
+1, \qquad x = 2
+\end{cases}
+\ \implies \
+a_{11}b_{1\sigma(1)}a_{21}b_{1\sigma(2)} = a_{1\kappa_1(1)}b_{\kappa_1(1)\sigma(1)}a_{2\kappa_1(2)}b_{\kappa_1(2)\sigma(2)}
+\]
+\[
+\kappa_2(x) = \begin{cases}
+1, \qquad x = 1 \\
+2, \qquad x = 2
+\end{cases}
+\ \implies \
+a_{11}b_{1\sigma(1)}a_{22}b_{2\sigma(2)} = a_{1\kappa_2(1)}b_{\kappa_2(1)\sigma(1)}a_{2\kappa_2(2)}b_{\kappa_2(2)\sigma(2)}
+\]
+\[
+\kappa_3(x) = \begin{cases}
+2, \qquad x = 1 \\
+1, \qquad x = 2
+\end{cases}
+\ \implies \
+a_{12}b_{2\sigma(1)}a_{21}b_{1\sigma(2)} = a_{1\kappa_3(1)}b_{\kappa_3(1)\sigma(1)}a_{2\kappa_3(2)}b_{\kappa_3(2)\sigma(2)}
+\]
+\[
+\kappa_4(x) = \begin{cases}
+2, \qquad x = 1 \\
+2, \qquad x = 2
+\end{cases}
+\ \implies \
+a_{12}b_{2\sigma(1)}a_{22}b_{2\sigma(2)} = a_{1\kappa_4(1)}b_{\kappa_4(1)\sigma(1)}a_{2\kappa_4(2)}b_{\kappa_4(2)\sigma(2)}
+\]
+
+Hence, we can succintly write:
+\[
+\prod_{i = 1}^2 \sum_{j = 1}^2 a_{ij}b_{j\sigma(i)} = \sum_{\kappa \in I_2} \prod_{i = 1}^2 a_{i\kappa(i)}b_{\kappa(i)\sigma(i)}
+\]
+
+Thus, generalising in the above:
+
+\begin{align*}
+    det(AB) &= \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i = 1}^n (AB)_{i \sigma(i)} \\
+    &= \sum_{\sigma \in S_n} sgn(\sigma) \prod_{i = 1}^n \sum_{j = 1}^n a_{ij}b_{j\sigma(i)} \\
+    &= \sum_{\sigma \in S_n} sgn(\sigma) \sum_{\kappa \in I_n} \prod_{i = 1}^n a_{i\kappa(i)}b_{\kappa(i)\sigma(i)} \\
+    &= \sum_{\sigma \in S_n} sgn(\sigma) \sum_{\kappa \in I_n} \left(\prod_{i = 1}^n a_{i\kappa(i)}\right)\left(\prod_{i = 1}^nb_{\kappa(i)\sigma(i)}\right) \\
+    &= \sum_{\kappa \in I_n} \sum_{\sigma \in S_n} sgn(\sigma) \left(\prod_{i = 1}^n a_{i\kappa(i)}\right)\left(\prod_{i = 1}^nb_{\kappa(i)\sigma(i)}\right) \\
+    &= \sum_{\kappa \in I_n} \left(\prod_{i = 1}^n a_{i\kappa(i)}\right) \sum_{\sigma \in S_n} sgn(\sigma) \left(\prod_{i = 1}^nb_{\kappa(i)\sigma(i)}\right) \\
+\end{align*}
+
+Let $B_\kappa$ be the matrix obtained from shuffling its rows by using $\kappa$ (so $b_{\kappa(i)}$ is its $i$th row). Furthermore, notice that:
+\[
+det(B_\kappa) = \sum_{\sigma \in S_n} sgn(\sigma) \left(\prod_{i = 1}^nb_{\kappa(i)\sigma(i)}\right)
+\]
+If $\kappa \not\in S_n$, we will have the $det(B_\kappa) = 0$ (where $B_\kappa$ is the matrix resulting from applying $\kappa$ to each of the rows of $B$), since we will have at least 2 identical rows. Furthermore, if $\kappa \in S_n$, we know from the multilinearity of the determinant that:
+\[
+det(B_\kappa) = sgn(\kappa)det(B)
+\]
+Thus:
+\begin{align*}
+    det(AB) &= \sum_{\kappa \in I_n} \left(\prod_{i = 1}^n a_{i\kappa(i)}\right) \sum_{\sigma \in S_n} sgn(\sigma) \left(\prod_{i = 1}^nb_{\kappa(i)\sigma(i)}\right) \\
+    &= \sum_{\kappa \in I_n} \left(\prod_{i = 1}^n a_{i\kappa(i)}\right) det(B_k) \\
+    &= \sum_{\kappa \in S_n} \left(\prod_{i = 1}^n a_{i\kappa(i)}\right) sgn(\kappa)det(B), \qquad \text{\textit{(since if $\kappa \not\in S_n$ we have $det(B_k)$, so terms in sum vanish)}} \\
+    &= \left(\sum_{\kappa \in S_n} sgn(\kappa) \prod_{i = 1}^n a_{i\kappa(i)} \right)det(B) \\
+    &= det(A)det(B) \\
+\end{align*}
+
+as required.
+
+
+\end{proof}
+
+\subsection{Theorem: Determinantal Criterion for Invertibility}
+
+\textbox{
+The \textbf{determinant} of a \textbf{square matrix} with entries in a field $F$ is non-zero \textbf{if and only if} the matrix is \textbf{invertible}. 
+[Theorem 4.4.2]
+}
+
+\begin{proof}
+
+\begin{enumerate}
+    \item \textbf{Matrix is Invertible}
+    
+    If $A$ is invertible, then:
+    \[
+    \exists B : AB = I_n
+    \]
+    By multiplicativity of determinant:
+    \[
+    det(A)det(B) = 1
+    \]
+    Since $det(A),det(B) \in F$, this is only possible if $det(A) \neq 0$, since fields are \textbf{integral domains}
+    
+    \item \textbf{Matrix is not Invertible}
+    
+    A non-invertible matrix in particular won't have full rank, so, without loss of generality, we can write the first column vector of $A$ as a \textbf{linear combination} of the other column vectors. That is:
+    \[
+    a_{*1} = \sum_{i = 2}^n \lambda_ia_{*i}, \lambda_i \in F
+    \]
+    Then, we can exploit the multilinearity and alternating properties of the determinant:
+    \begin{align*}
+        det(A) &= det(Mat(\sum_{i = 2}^n \lambda_ia_{*i}, a_{*2}, \ldots, a_{*n}) \\
+        &= \sum_{i = 2}^n \lambda_i det(Mat(a_{*i}, a_{*2}, \ldots, a_{*n}) \\
+        &= \sum_{i = 2}^n \lambda_i 0 \\
+        &= 0 \\
+    \end{align*}
+    Where we use the fact that $det$ is alternating, and so 0 whenever there is a repeated entry.
+\end{enumerate}
+
+\end{proof}
+
+\subsection{Remark: Determinant and Similar Matrices}
+
+\textbox{
+From the Theorem above, it is clear that:
+\[
+det(A^{-1}) = det(A)^{-1}
+\]
+By multiplicativity of determinants, and since we are working over \textbf{commutative rings}, it thus follows that:
+\[
+det(A^{-1}BA) = det(A^{-1})det(B)det(A) = det(B)
+\]
+[Remark 4.4.3]
+}
+
+\subsection{Lemma: Determinant of the Transpose}
+
+\textbox{
+If $A \in Mat(n;R)$, and $R$ is a \textbf{commutative ring}, then:
+\[
+det(A^T) = det(A)
+\]
+[Lemma 4.4.4]
+}
+
+\begin{proof}
+
+From definition:
+\[
+det(A^T) = \sum_{\sigma \in S_n} sgn(\sigma)\prod_{i = 1}^n a_{\sigma(i)i}
+\]
+Now, if $\tau = \sigma^{-1}$, then:
+\[
+sgn(\tau) = sgn(\sigma)
+\]
+(the inverse of a transposition is itself, so the inverse of $\sigma$ will be composed of the same number of transpositions, just ``reflected" in their order)
+
+
+\bigskip
+
+Moreover, since we operate over a \textbf{commutative ring}, we must have that:
+\[
+\prod_{i = 1}^n a_{\sigma(i)i} = \prod_{i = 1}^n a_{i\tau(i)}
+\]
+Thus:
+\[
+det(A^T) = \sum_{\sigma \in S_n} sgn(\sigma)\prod_{i = 1}^n a_{\sigma(i)i} = \sum_{\tau \in S_n} sgn(\tau)\prod_{i = 1}^n a_{i\tau(i)} = det(A)
+\]
+
+\end{proof}
+
+\subsubsection{Exercises (TODO)}
+
+\pic{ex74.png}{1}
+
+\subsection{ILA Definition of Determinants: The Cofactor}
+
+\begin{itemize}
+    \item \textbf{What is the cofactor of a matrix?}
+    \begin{itemize}
+        \item let $A \in Mat(n;R)$, where $R$ is a \textbf{commutative ring}
+        \item the $(i,j)$ \textbf{cofactor} of $A$ is:
+        \[
+        C_{ij} = (-1)^{i+j}det(A\langle i,j \rangle
+        \]
+        where $A\langle i, j \rangle$ is the matrix obtained by removing row $i$ and column $j$ of $A$
+        \pic{cofactor.png}{0.7}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Theorem: Laplace's Expansion of the Determinant}
+
+\textbox{
+Let $A = (a_{ij}) \in Mat(n;R)$, where $R$ is a \textbf{commutative ring}.
+\\
+For a \textbf{fixed} $i$ the \textbf{$i$th row expansion of the determinant} is:
+\[
+det(A) = \sum_{j = 1}^n a_{ij}C_{ij}
+\]
+For a \textbf{fixed} $j$ the \textbf{$j$th column expansion of the determinant} is:
+\[
+det(A) = \sum_{i = 1}^n a_{ij}C_{ij}
+\]
+[Theorem 4.4.7]
+}
+
+\begin{proof}
+
+Since $det(A) = det(A^T)$, it is sufficient to only prove the column expansion. Moreover, moving the $j$th column to the first position (as in \eqref{ex69}) is the same as applying the permutation:
+\[
+\sigma = (1 \ j)(12)(23)\ldots (j-1 \ j)\footnote{When writing this I cam up with this permutation on the spot, and I'm pretty proud of that yeet}
+\]
+so it will change the determinant by a factor of $sgn(\sigma) = (-1)^{j-1}$.
+
+\bigskip
+
+Thus, it is sufficient to show that $det(A) = \sum_{i = 1}^n a_{ij}C_{ij}$ for expansion along the first column, $j = 1$.
+
+\bigskip
+
+Say we have:
+\[
+A = Mat(a_{*1}, \ldots, a_{*n})
+\]
+We write the first column as a linear combination of basis vectors:
+\[
+a_{*1} = \sum_{i = 1}^n a_{i1}e_i
+\]
+We can then apply multilinearity of the determinant:
+\[
+det(A) = det(Mat(a_{*1}, \ldots, a_{*n})) = \sum_{i = 1}^n a_{i1} det(Mat(e_i, \ldots, a_{*n}))
+\]
+Notice, if we move the $i$th row of $Mat(e_i, \ldots, a_{*n})$ to the first row, we will obtain the matrix:
+\pic{p447.png}{0.2}
+($Mat(a_{*1}, \ldots, a_{*n})$ is $A$ without the $j = 1$ column, and moving the $i$th row is equivalent to removing the $i$th row of $A$)
+In doing this, we will change the value of the determinant by a factor of $(-1)^{i-1}$
+
+\bigskip
+
+Now recall the exercise in which we show that the determinant of a block-upper triangular matrix is the product of the determinants of the matrices in the main diagonal. In other words:
+\[
+det(Mat(e_i, \ldots, a_{*n})) = (-1)^{i-1}det(A\langle i,j \rangle) = C_{i1}
+\]
+Thus, as required, if we expand along $j = 1$:
+\[
+det(A) = \sum_{i = 1}^n a_{i1}C_{i1}
+\]
+
+\sep 
+
+If we do this for an arbitrary $j$, we first need to move the $j$th column to the first column, so we would get:
+\begin{align*}
+    det(Mat(e_i, \ldots, a_{*n})) &= (-1)^{j-1}(-1)^{i-1}det(A\langle i,j \rangle) \\
+    &= (-1)^{i+j-2}det(A\langle i,j \rangle) \\
+    &= (-1)^{i+j}(-1)^{-2}det(A\langle i,j \rangle) \\
+    &= (-1)^{i+j}det(A\langle i,j \rangle) \\
+    &= (-1)^{i+j}C_{ij} \\
+\end{align*}
+
+\end{proof}
+
+\subsection{Defining the Adjugate Matrix}
+
+\begin{itemize}
+    \item \textbf{What is an adjugate matrix?}
+    \begin{itemize}
+        \item let $A \in Mat(n;R)$, where $R$ is a comuutative ring
+        \item the \textbf{adjugate matrix} is:
+        \[
+        adj(A) \in Mat(n;R) \qquad adj(A)_{ij} = C_{ji}
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsection{Theorem: Cramer's Rule}
+
+\textbox{
+Let $A \in Mat(n;R)$, where $R$ is a \textbf{commutative ring}.
+\\
+Then:
+\[
+A \cdot adj(A) = (det(A))I_n
+\]
+}
+
+\begin{proof}
+
+From the matrix product formula, the $ik$ entry of $A \cdot adj(A)$ is:
+\[
+\sum_{j = 1}^n a_{ij}adj(A)_{jk}
+\]
+Hence, we need to show that:
+\[
+\sum_{j = 1}^n a_{ij}adj(A)_{jk} = \delta_{ik}det(A)
+\]
+But $adj(A)_{jk} = C_{kj}$ so we require:
+\[
+\sum_{j = 1}^n a_{ij}C_{kj} = \delta_{ik}det(A)
+\]
+Thereare 2 cases to consider:
+
+\begin{enumerate}
+    \item $\boldsymbol{i = k}$
+    Then, $\delta_{ik} = 1$, so we require:
+    \[
+    \sum_{j = 1}^n a_{ij}C_{ij} = det(A)
+    \]
+    which is nothing but the \textbf{$i$th row expansion of the determinant}, so it is correct.
+    \item $\boldsymbol{i \neq k}$
+    Now define the matrix $\hat{A}$, which is identical to $A$, except for the fact that the $k$th row of $\hat{A}$ is the same as the $i$th row of $A$. In other words, each entry $\hat{a}_{kj}$ is given by $a_{ij}$.
+    
+    \bigskip
+    
+    Then, we can compute the determinant of $\hat{A}$ using the $k$th row expansion:
+    \[
+    det(\hat{A}) = \sum_{j = 1}^n \hat{a}_{kj}C_{kj} = \sum_{j = 1}^n a_{ij}C_{kj}
+    \]
+    But notice, $\sum_{j = 1}^n a_{ij}C_{kj} = \delta_{ik}det(A)$, so we need to show that:
+    \[
+    det(\hat{A}) = \delta_{ik}det(A) = 0
+    \]
+    since $\delta_{ik} = 0$, as $i \neq k$. But this is true, since $\hat{A}$ has rows $i$ and $k$ equal, so by the alternating property of the determinant, $det(\hat{A}) = 0$, as required.
+\end{enumerate}
+
+\end{proof}
+
+\subsection{Remark: Cramer's Rule to Solve Linear Equations}
+
+\textbox{
+\textbf{Cramer's Rule} can also be stated in the context of solving a linear system:
+\[
+A\vec{x} = \vec{b}
+\]
+where:
+\[
+x_i = \frac{det(Mat(a_{*1}, \ldots, \vec{b}, \ldots, a_{*n}))}{det(A)}
+\]
+}
+
+\subsection{Corollary: Cramer's Rule and the Invertibility of Matrices}
+
+\textbox{
+$A \in Mat(n;R)$, where $R$ is a \textbf{commutative ring} is invertible \textbf{if and only if}:
+\[
+det(A) \in R^\times
+\]
+That is, $det(A)$ must be a unit in $R$ (so it has a \textbf{multiplicative inverse} in $R$). For instance, matrices over $\mathbb{Z}$ will be invertible only when $det(A) = 1,-1$, whilst matrices over fields will be invertible whenever $det(A) \neq 0$ (since every element in a field has a multiplicative inverse except 0).
+[Corollary 4.4.11]
+}
+
+\begin{proof}
+
+\begin{enumerate}
+    \item \textbf{$A$ is Invertible}
+    Then, $\exists B \in Mat(n;R)$ such that:
+    \[
+    AB = I_n \ \implies \ det(A)det(B) = 1_R
+    \]
+    Hence, $det(A)$ must be a \textbf{unit} in $R$.
+    \item \textbf{$det(A)$ is a Unit in $R$}
+    Recall, we need to show the existence of 2 matrices $B,C \in Mat(n;R)$ such that:
+    \[
+    AB = CA = I_n
+    \]
+    In the first case, if we have $\hat{B} = adj(A)$, then \textbf{Cramer's Rule} says:
+    \[
+    A\hat{B} = (det(A))I_n
+    \]
+    Since $det(A)$ is a unit, it has an inverse, so:
+    \[
+    A(det(A)^{-1}\hat{B}) = I_n
+    \]
+    Thus, setting $B = det(A)^{-1}\hat{B}$ satisfies the first condition.
+    
+    \bigskip
+    
+    Since $det(A^T) = det(A)$, then $det(A^T)$ must also be a unit. Again applying Cramer's Rule with $\hat{C} = adj(A^T)$:
+    \[
+    A^T\hat{C} = (det(A^T))I_n \ \implies \ A^T(det(A)^{-1}\hat{C}) = I_n
+    \]
+    If we then take the transpose:
+    \[
+    (det(A)^{-1}\hat{C}^T)A = I_n
+    \]
+    Hence, setting $C = det(A)^{-1}\hat{C}^T$ satisfies the second condition.
+\end{enumerate}
+
+\end{proof}
+
+
+\end{document}

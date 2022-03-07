@@ -1,0 +1,170 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+
+\usepackage[bottom = 2cm, left = 1.5cm, right = 1.5cm]{geometry}
+
+\usepackage{mynotes}
+
+\title{Honours Algebra - Practicing Proof 1}
+\author{s1908368}
+\date{February 2022}
+
+\begin{document}
+
+\maketitle
+
+Let $V$ be a vector space, over a field $F$, of dimension $r$.
+
+\begin{questions}
+
+\question \textbf{Show that $W := Hom_F(V,F)$ is also a vector space over $F$.}
+
+\bigskip
+
+Define $W$ to be the vector space of homomorphisms of the form $p : V \to F$, where:
+\[
+(f+g)(x) = f(x) + g(x), \qquad f,g \in W, x \in V
+\]
+\[
+(\lambda f)(x) = \lambda (f(x)), \qquad f \in W, x \in V, \lambda \in F
+\]
+
+Notice, since $f(x), g(x) \in F$ then $f(x) + g(x) \in F$. Similarly, since $f(x), \lambda \in F$, then $\lambda(f(x)) \in F$ too. Thus, this definition for elements in $W$ satsifies the closure under addition and scalar multiplication.
+
+\bigskip
+
+For $W$ to be a vector space, it must satisfy the 2 distributive laws and the associative law. It must also contain an identity element.  Let $f,g \in W$, let $x \in V$, let $\lambda, \mu \in F$.
+
+\bigskip
+
+The first distributive law states that:
+\[
+(\lambda(f + g))(x) = (\lambda f + \lambda g)(x)
+\]
+Indeed:
+\begin{align*}
+    (\lambda(f + g))(x) &= \lambda (f + g)(x) \\
+                        &= \lambda (f(x) + g(x)) \\
+                        &= \lambda (f(x)) + \lambda(g(x)) \\
+                        &= (\lambda f)(x) + (\lambda g)(x) \\
+                        &= (\lambda f + \lambda g)(x) \\
+\end{align*}
+
+The second distributive law states that:
+\[
+((\lambda + \mu)f)(x) = (\lambda f + \mu f)(x)
+\]
+Indeed:
+\begin{align*}
+    ((\lambda + \mu)f)(x) &= (\lambda + \mu)f(x) \\
+                        &= \lambda (f(x)) + \mu (f(x)) \\
+                        &= (\lambda f)(x) + (\mu f)(x) \\
+                        &= (\lambda f + \mu f)(x) \\
+\end{align*}
+
+The associative law states that:
+\[
+(\lambda(\mu f))(x) = (\mu(\lambda f))(x)
+\]
+Indeed:
+\begin{align*}
+    (\lambda(\mu f))(x) &= \lambda (\mu f)(x) \\
+                        &= \lambda (\mu f)(x) \\
+                        &= (\lambda \mu) f(x) \\
+                        &= (\mu \lambda) f(x) \\
+                        &= \mu (\lambda f)(x) \\
+                        &= (\mu (\lambda f))(x) \\
+\end{align*}
+For the identity element, we can just pick $1_F$, since then:
+\[
+1_Ff(x) = f(x)
+\]
+
+\question \textbf{Show that the dimension of $W$ is $r$.}
+
+\bigskip
+
+For this\footnote{This theorem is similar to 1.7.7, but instead of using $F^n$, we employ generic vector spaces.}, we show that for vector spaces $G,H$ if there exists an isomorphism $\phi : G \to H$, then $dim G = dim H$. To do this, let $A = \{v_1, \ldots, v_n\}$ be a basis for $G$. We show that $B = \{\phi(v_1), \ldots, \phi(v_n)\}$ is a basis of $H$. If this is the case, then $|A| = |B|$ so $dim G = dim H$.
+
+\smallskip
+
+$B$ is linearly independent, since for $\alpha_i \in F, i \in [1,n]$:
+\[
+\sum_{i = 1}^n \alpha_i \phi(v_i) = 0 \ \implies \ \phi\left(\sum_{i = 1}^n \alpha_i v_i\right) = 0
+\]
+where we have used the lienarity of the isomorphism. But notice, since $\phi(0) = 0$, and $\phi$ is injective, we must have that:
+\[
+\sum_{i = 1}^n \alpha_i v_i = 0
+\]
+But since $A$ is a basis, the above is true only with $\alpha_i = 0, \forall i \in [1,n]$. In other words, the set $B$ is linearly independent.
+
+\smallskip
+
+$B$ also generates $H$. Pick any $h \in H$. Since $\phi$ is surjective, $\exists g \in G$ such that:
+\[
+\phi(g) = h
+\]
+Since $g \in G$, we can express it as a linear combination of elements in $A$:
+\[
+g = \sum_{i = 1}^n \alpha_i v_i, \qquad \alpha_i \in F, i \in [1,n]
+\]
+Applying $\phi$ to the above, and exploiting its linearity:
+\[
+\phi(g) = \phi\left(\sum_{i = 1}^n \alpha_i v_1\right) \ \implies \ h = \sum_{i = 1}^n \alpha_i \phi(v_i)
+\]
+In other words, $B$ is also generating. Hence, $B$ must be a basis of $H$. Since $|A| = |B|$ it follows that $dim G = dim H$, as required.
+
+\bigskip
+
+Now recall Theorem 2.3.1 of the notes, which states that exists an isomorphism of the form:
+\[
+Hom_F(G,H) \to Mat(n \times m; F)
+\]
+where $dim G = m$ and $dim H = n$. Applying this to the question, it follows that we must have an isomorphism:
+\[
+W \to Mat(r \times 1; F)
+\]
+where we are using the fact that the dimension of $F$ over itself is 1 (since the multiplicative identity of $F$ can be used as the only element of its basis). By the Theorem we just proved, it thus follows that $dim W = dim Mat(r \times 1; F)$. But notice a basis for $Mat(r \times 1; F)$ can be constructed by using $r$ matrices, where each matrix in the basis $A_i$ is 0 in all entries except the $i$th entry (since elements in $Mat(r \times 1; F)$ have a single column, they can be thought of as a column vector - in fact, this basis corresponds to the standard basis for $F^r$). Hence, it follows that:
+\[
+dim Mat(r \times 1; F) = r \ \implies \ dim W = r
+\]
+as required.
+
+\bigskip
+
+\question \textbf{Show that $U := Hom_F(W,F)$ is also a vector space over $F$, of dimension $r$.}
+
+\bigskip
+
+Since in question 1 we described $V$ as a generic vector space of dimension $r$, it follows that the results obtained in parts 1 and 2 apply to $U$ aswell, since it is a vector space of all homomorphism from a vector space of dimension $r$, and the field over which the vector space is defined.
+
+By question 1, defining operation in $U$ identically to how they were defined for $W$ (but with $f,g \in U,$ and $f : W \to F, g : W \to F$), it follows that $U$ must be a vector space over $F$.
+
+By question 2, it must be the case that $dim U = r$ (since we can construct an isomorphism from $U$ to $Mat(r \times 1; F)$, and $dim Mat(r \times 1; F) = r$ so $dim U = r$).
+
+\bigskip
+
+\question \textbf{Finally, construct an isomorphism $\phi : V \to U$ without choosing a basis of $V$.}
+
+\bigskip
+
+By example 1.7.4 of the notes, we know that there exists an isomorphism:
+\[
+\Phi : F^r \to X 
+\]
+where $X$ is a vector space over the field $F$, and $dim_F(X) = r$.
+
+Applying them to $V,U$, define isomorphisms:
+\[
+\phi_V : F^r \to V \qquad \phi_U : F^r \to U
+\]
+Notice, $\phi_V^{-1} : V \to F^r$ is the inverse of $\phi_V$, and it is also an isomorphism. Then define:
+\[
+\phi := \phi_U \circ \phi_V^{-1} \qquad \phi : V \to U
+\]
+$\phi$ is defined as a composition of isomorphisms, and so it is an isomorphism (since composition of bijections produces a bijection, and composition of homomorphisms produces a homomorphism).
+
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,1325 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mynotes}
+
+\title{Honours Algebra - Week 1 - Vector Spaces}
+\author{Antonio León Villares}
+\date{January 2022}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\textit{Based on the notes by Iain Gordon, Sections 1.1 - 1.6}
+
+\section{Fields}
+
+\subsection{Defining Fields}
+
+\begin{itemize}
+    \item \textbf{What is a field?}
+    \begin{itemize}
+        \item a \textbf{field} $\F$ is a set of elements equipped with 2 functions:
+        \begin{itemize}
+            \item \textbf{addition}: an operation $+: \F \times \F \to \F$, such that:
+            \[
+            (\lambda, \mu) \to \lambda + \mu
+            \]
+            (where the meaning of $\lambda + \mu$ is defined by the specific field)
+            \item \textbf{multiplication}: an operation $\cdot: \F \times \F \to \F$, such that:
+            \[
+            (\lambda, \mu) \to \lambda\mu
+            \]
+            (where the meaning of $\lambda\mu$ is defined by the specific field)
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Are fields groups?}
+    \begin{itemize}
+        \item a \textbf{field} is an \textbf{abelian group}\footnote{Recall, an abelian group is a group such that its elements commute under the group operation, so if $a,b \in G$, then $a *_G b = b *_G a$.} under both \textbf{addition} [$(\F, +)$] and \textbf{multiplication} [$(\F, \cdot)$]
+    \end{itemize}
+    \item \textbf{What are the properties of elements in a field?}
+    \begin{itemize}
+        \item \textit{Distributive Property}
+        \[
+        \lambda(\mu + \nu) = \lambda\mu + \lambda\nu, \qquad \lambda, \mu, \nu \in \F
+        \]
+        (notice, $\lambda(\mu + \nu)$ is just $\lambda \cdot (\mu + \nu)$)
+        \item \textit{Commutative Property}
+        \[
+        \lambda + \mu = \mu + \lambda
+        \]
+        \[
+        \lambda\mu = \mu\lambda
+        \]
+        \item \textit{Existence of Neutral Elements}: a field $\F$ is equipped with $0_\F$ (neutral element for addition) and $1_\F$ (neutral element for multiplication):
+        \[
+        \lambda + 0_\F = \lambda
+        \]
+        \[
+        \lambda \cdot 1_\F = \lambda
+        \]
+        \item \textit{Existence of Inverse Elements}: a field $\F$ is equipped with inverse elements for both addition and multiplication, which when applied result in the neutral elements:
+        \[
+        \lambda + (-\lambda) = 0_\F
+        \]
+        \[
+        \lambda \cdot (\lambda^{-1}) = 1_\F
+        \]
+        (the inverse multiplicative element exists provided that $\lambda \neq 0$)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Examples of Fields}
+
+\begin{itemize}
+    \item $\mathbb{R}, \mathbb{C}, \mathbb{Q}$.
+    \item the set ${0,1}$ is a field (also known as $\mathbb{Z}_2$). In particular, $\mathbb{Z}_p$ with $p$ prime forms the field $\F_p$.
+    \item however, $\mathbb{Z}$ is not a field, since for example 2 does \textbf{not} have a multiplicative inverse (since $0.5 \not\in \mathbb{Z}$)
+\end{itemize}
+
+\section{Solutions of Simultaneous Linear Equations}
+
+\subsection{Systems of Linear Equations}
+
+\newcommand{\hsep}{0.27cm}
+
+\begin{itemize}
+    \item \textbf{What is a system of linear equations?}
+    \begin{itemize}
+        \item a group of $n$ equations in $m$ variables:
+        \begin{align*}
+            a_{11}x_{1} + a_{12}x_2 + \ldots + a_{1m}x_m &= b_1 \\
+            \vdots \hspace{\hsep} + \hspace{\hsep} \vdots  \hspace{\hsep} + \hspace{\hsep} \ldots \hspace{\hsep} + \hspace{\hsep} \vdots \hspace{\hsep} &=  \hspace{\hsep} \vdots \\ 
+            a_{n1}x_1 + a_{n2}x_2 + \ldots + a_{nm}x_m &= b_n
+        \end{align*}
+        \item we typically consider systems in which $a_{ij}, x_{k}$ are part of a \textbf{field} 
+        \item we solve the system by finding the \textbf{m-tuple}:
+        \[
+        (x_1, x_2, \ldots, x_m)
+        \]
+        (with all elements in $\F$) which satisfies the $n$ equations
+    \end{itemize}
+    \item \textbf{When is a system of linear equations homogeneous?}
+    \begin{itemize}
+        \item when each of the $b_1, b_2, \ldots, b_n$ are 0
+    \end{itemize}
+    \item \textbf{What is the solution set of a system?}
+    \begin{itemize}
+        \item the subset $L \subseteq \F^m$ of all \textbf{m-tuples} which satisfy the system
+    \end{itemize}
+\end{itemize}
+
+\subsection{Defining a Matrix}
+
+\begin{itemize}
+    \item \textbf{What is a matrix?}
+    \begin{itemize}
+        \item we can think of a \textbf{matrix} as a mapping of the form:
+        \[
+        \{1, \ldots, n\} \times \{1, \ldots, m\} \to Z
+        \]
+        where $Z$ is just a set. Succintly:
+        \[
+        Mat(n \times m: Z) := Maps( \{1, \ldots, n\} \times \{1, \ldots, m\}, Z)
+        \]
+        \item this is known as an $\boldsymbol{n \times m}$\textbf{-matrix with coefficients in \textit{Z}}
+        \item this is just an overextended way of saying that a \textbf{matrix} is a collection of elements organised at certain indices $(i,j)$ in a table like structure
+    \end{itemize}
+    \item \textbf{What is an element of a matrix?}
+    \begin{itemize}
+        \item a matrix element can be described using $a_{ij}$. where:
+        \begin{itemize}
+            \item \textbf{i} is the \textbf{row-index}
+            \item \textbf{j} is the \textbf{column-index}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Gaussian Elimination}
+
+\begin{itemize}
+    \item \textbf{What is a coefficient matrix?}
+    \begin{itemize}
+        \item a matrix in which we display the coefficients of a system
+        \item $a_{ij}$ corresponds to the $i$th coefficient in the $j$th equation
+        \item for example, if we have the system:
+        \begin{align*}
+            x + 3y &= 0 \\
+            2x + 2y + z &= 2 \\
+            4x + 6y = z &= 8
+        \end{align*}
+        its corresponding coefficient matrix is:
+        \[
+        \begin{pmatrix}
+        1 & 3 & 0 \\
+        2 & 2 & 1 \\
+        4 & 6 & 1
+        \end{pmatrix}
+        \]
+    \end{itemize}
+    \item \textbf{What is an extended coefficient matrix?}
+     \begin{itemize}
+        \item a coefficient matrix, but with an added column, containing the values of the RHS terms ($b_1, b_2. \ldots$)
+    \end{itemize}
+    \item \textbf{What is Gaussian Elimination?}
+     \begin{itemize}
+        \item \textbf{Gaussian Elimination} is the use of 3 operations which simplify the system, without changing its solution set
+        \item the operations are:
+        \begin{itemize}
+            \item \textit{row addition}: adding a row of the matrix to another row
+            \item \textit{scalar multiplication}: multiplying the row of a matrix by a scalar
+            \item \textit{row swap}: swap 2 rows
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{What is echelon form?}
+     \begin{itemize}
+        \item a special form of an \textbf{extended coefficient matrix}, such that it allows for the system to be solved trivially
+        \item a matrix is in echelon form if:
+        \begin{itemize}
+            \item any row consisting entirely of zeros occurs at the bottom of the matrix
+            \item for two successive (non-zero) rows, the leading non-zero entry in the higher row is further left than the leading non-zero entry in the lower row
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Theorem: Solution Sets of Inhomogeneous Systems of Linear Equations}
+
+\textbox{If the \textbf{solution
+set} of a linear system of equations is \textbf{non-empty}, then we obtain \textbf{all} solutions by adding \textbf{componentwise} an
+\textbf{arbitrary solution} of the associated homogenised system to a \textbf{fixed solution} of the system. [Theorem 1.1.4]}
+
+\begin{proof}
+
+Consider 2 particular solutions:
+\[
+a = (a_1, \ldots, a_m) 
+\]
+\[
+b = (b_1, \ldots, b_m) 
+\]
+These solutions satisfy a possibly inhomogeneous system. If we subtract pairwise:
+\[
+h = (b_1 - a_1, \ldots, b_m - a_m) 
+\]
+By construction, $h$ solves the homogeneous system. But then it follows that the particular solution $b$ (and since $b$ was arbitrary, any other particular solution) can be found via the pairwise addition:
+\[
+b = a + h
+\]
+as required.
+
+\end{proof}
+
+\section{Vector Spaces}
+
+\subsection{Defining Vector Spaces}
+
+\begin{itemize}
+    \item \textbf{What is a vector space?}
+    \begin{itemize}
+        \item for this, forget any notion of what a vector is, it makes it easier to understand the abstract definition
+        \item we define a \textbf{vector space over a field}, as a pair consisting of an \textbf{abelian group} $(V,\dot{+})$ and a mapping:
+        \[
+        \F \times V \to V \quad : \quad (\lambda, \vec{v})\to \lambda \vec{v}
+        \]
+        where $\F$ is a \textbf{field}, $\lambda \in \F$ and $\vec{v} \in V$.
+        \item we use $\dot{+}$ as a way to distinguish from the ``addition operator" (+) for fields (however, I might be inconsistent, but hopefully whether I use it to add elements of the vector space or from a field will be clear from context)
+    \end{itemize}
+    \item \textbf{What is an F-Vector Space?}
+    \begin{itemize}
+        \item saying an F-Vector Space is the same as saying a vector space defined over the field F
+    \end{itemize}
+    \item \textbf{What is a vector?}
+    \begin{itemize}
+        \item an element of a \textbf{vector space}
+        \item this need not be a vector as we know it. For example, matrices and functions can be elements of a vector space.
+    \end{itemize}
+    \item \textbf{What is a ground field?}
+    \begin{itemize}
+        \item the naming convention we use to refer to the field $\F$ defining a vector space
+    \end{itemize}
+    \item \textbf{What is multiplication by scalars?}
+    \begin{itemize}
+        \item the mapping defining the vector space:
+        \[
+        (\lambda, \vec{v})\to \lambda \vec{v}
+        \]
+        \item this is also known as the \textbf{action of the field $\F$ on $V$}
+    \end{itemize}
+    \item \textbf{What identities define a vector space?}
+    \begin{itemize}
+        \item \textit{Distributive Law}: we can distribute a scalar across vectors
+        \[
+        \lambda(\vec{v} \dot{+} \vec{w}) = \lambda \vec{v} \dot{+} \lambda \vec{w}, \qquad \vec{v},\vec{w} \in V, \lambda \in \F
+        \]
+        or a vector across scalars:
+        \[
+        (\lambda + \mu)\vec{v} = \lambda \vec{v} \dot{+} \mu \vec{v}, \qquad \vec{v} \in V, \lambda, \mu \in \F
+        \]
+        \item \textit{Associative Law}:
+        \[
+        \lambda(\mu \vec{v}) = \mu (\lambda \vec{v}), \qquad \vec{v} \in V, \lambda, \mu \in \F
+        \]
+        \item \textit{Applying the Multiplicative Identity}:
+        \[
+        1_\F \vec{v} = \vec{v}, \qquad \vec{v} \in V, 1_\F \in \F
+        \]
+    \end{itemize}
+    \item \textbf{What is the trivial vector space?}
+    \begin{itemize}
+        \item the one element abelian group $V = \{0\}$
+        \item in particular, this is a vector space over \textbf{any} field
+    \end{itemize}
+\end{itemize}
+
+\subsection{Properties of Vector Spaces}
+
+\subsubsection{Lemma: Product With 0 Scalar}
+
+\textbox{If $V$ is a vector space and $\vec{v} \in V$, then $0_\F v = \vec{0}$, where $\vec{0} \in V$ is the 0-vector. [Lemma 1.2.2]}
+
+\begin{proof}
+\begin{align*}
+    0_\F \vec{v} &= 0_\F \vec{v} \\
+    &= (0_\F + 0_\F) \vec{v} \\
+    &= 0_\F \vec{v} + 0_\F \vec{v} \\ 
+    \implies 0_\F \vec{v} - 0_\F \vec{v} &= 0_\F v \\
+    \implies \vec{0} &= 0_\F \vec{v} \\
+\end{align*}
+\end{proof}
+
+\subsubsection{Lemma: Product With -1 Scalar}
+
+\textbox{If $V$ is a vector space and $\vec{v} \in V$, then $(-1)\vec{v} = -\vec{v}$, where $-\vec{v} \in V$ is the additive inverse of $\vec{v}$. [Lemma 1.2.3]}
+
+\begin{proof}
+\begin{align*}
+    &\vec{v} \dot{+} (-1)\vec{v} \\
+    =& 1\vec{v} \dot{+} (-1)\vec{v} \\
+    =& (1 + (-1))\vec{v}  \\
+    =& 0_\F \vec{v}  \\
+    =& \vec{0} \\
+\end{align*}
+So it follows that $(-1)\vec{v}$ must be the additive inverse of $\vec{v}$, as required.
+\end{proof}
+
+\subsubsection{Lemma: Product With The Zero Vector}\label{l124}
+
+\textbox{If $V$ is a vector space and $\vec{v} \in V$, then: \begin{itemize}
+    \item $\lambda \vec{0} = \vec{v}, \qquad \vec{0}, \vec{v} \in V, \forall \lambda \in \F$
+    \item $\lambda \vec{v} = \vec{0} \ \implies \ \lambda = 0_\F \ or \ \vec{v} = \vec{0}$
+\end{itemize} [Lemma 1.2.4]}
+
+\begin{proof}
+(This is independently developed by me, without checking with professors or online, so take with a grain of salt)
+
+\begin{align*}
+    \lambda 0 &= \lambda(0 \dot{+} 0) \\
+    \implies \lambda 0 &= \lambda 0 \dot{+} \lambda0 \\
+    \implies \lambda 0 \dot{+} (-\lambda 0) &= \lambda 0 \\
+    \implies 0 &= \lambda 0 \\
+\end{align*}
+
+For the second part, notice that we have:
+\begin{itemize}
+    \item $\vec{0} = \lambda \vec{0}$
+    \item $\vec{0} = 0_\F \vec{v}$
+\end{itemize}
+
+Hence, if $\lambda \vec{v} = \vec{0}$, it must be so either because:
+\begin{itemize}
+    \item $\lambda \vec{v} = \vec{0} \ \implies \ \lambda \vec{v} = \lambda \vec{0} \ \implies \ \vec{v} = \vec{0}$
+    \item $\lambda \vec{v} = \vec{0} \ \implies \ \lambda \vec{v} = 0_\F \vec{v} \ \implies \lambda = 0_\F$
+\end{itemize}
+
+\end{proof}
+
+\subsection{Examples}
+
+\begin{itemize}
+    \item the set $V = \F^n$, where:
+    \[
+    \F^n = \{(a_1, a_2, \ldots, a_n) | a_i \in \F)\}
+    \]
+    also forms a vector space over the field $\F$, where scalar multiplication is defined elementwise:
+    \[
+    \lambda (a_1, a_2, \ldots, a_n) = (\lambda a_1, \lambda a_2, \ldots, \lambda a_n)
+    \]
+    \item for $n = 1$, we can see that this is true, since fields are abelian groups, and scalar multiplication is defined as multiplication in $\F$, so $V = \F$ constitutes a valid F-vector space
+    \item a matrix with each $a_{ij} \in \F$ is also a vector space over $\F$, with addition and scalar multiplication defined componentwise. In fact, the set $V$ of all such $m \times n$ matrices is \textbf{isomorphic} to $\F^{mn}$.
+\end{itemize}
+
+\subsection{Exercises}
+
+\begin{questions}
+
+\question \textbf{Given a set $X$ and a vector space $V$ over $\F$, show that the set $Maps(X; V)$ of all mappings
+$X \to V$ is an F-vector space, if we define addition by $(f + g)(x) = f(x) + g(x)$ and multiplication by scalars by
+$(\lambda f)(x) = \lambda(f(x))$.}
+
+\bigskip
+
+To prove that this is a F-vector space, we can check the properties. For example, for the dsitributive law, we want to show that:
+\[
+(\lambda(f + g))(x) = (\lambda f + \lambda g)(x)
+\]
+Indeed:
+\begin{align*}
+    &(\lambda(f + g))(x) \\
+    =& \lambda \cdot (f + g)(x) \\
+    =& \lambda \cdot (f(x) + g(x)) \\
+    =& \lambda \cdot (f(x)) + \lambda \cdot (g(x)) \\
+    =& (\lambda f)(x) + (\lambda g)(x) \\
+    =& (\lambda f + \lambda g)(x) \\
+\end{align*}
+
+The second distributive property:
+\[
+((\lambda + \mu)f)(x) = (\lambda f + \mu f)(x)
+\]
+Indeed:
+\begin{align*}
+    &((\lambda + \mu)f)(x) \\
+    = &(\lambda + \mu)f(x) \\
+    = &\lambda (f(x)) + \mu(f(x)) \\
+    = &(\lambda f)(x) + (\mu f)(x) \\
+    = &(\lambda f + \mu f)(x) \\
+\end{align*}
+
+Associativity:
+\[
+(\lambda(\mu f))(x) = (\mu(\lambda f))(x)
+\]
+Indeed:
+\begin{align*}
+    &(\lambda(\mu f))(x) \\
+    =& ((\lambda \mu)f)(x) \\
+    =& ((\mu \lambda)f)(x) \\
+    =& (\mu(\lambda f))(x)
+\end{align*}
+where we have used the associativity of $\lambda, \mu \in \F$.
+
+Finally, the multiplicative identity is just the identity of the field.
+
+\end{questions}
+
+\section{The Cartesian Product}
+
+\subsection{Defining the Cartesian Product}
+
+\begin{itemize}
+    \item \textbf{What is the cartesian product?}
+    \begin{itemize}
+        \item an \textbf{operator} which produces new sets from a set of other sets
+        \item given $n$ sets $X_1, X_2, \ldots, X_n$, the cartesian product of these sets is a set of \textbf{n-tuples}:
+        \[
+        X_1 \times X_2 \times \ldots \times X_n = \{(x_1, x_2, \ldots, x_n) | x_i \in X_i, i \in [1,n]\}
+        \]
+    \end{itemize}
+    \item \textbf{What is a component of an $n$-tuple?}
+    \begin{itemize}
+        \item an individual entry $x_i$ in the n-tuple $(x_1, x_2, \ldots, x_n)$
+    \end{itemize}
+    \item \textbf{What does the notation $X^n$ mean?}
+    \begin{itemize}
+        \item we have taken the cartesian product of the set $X$ with itself n times
+    \end{itemize}
+    \item \textbf{Can we take cartesian products of cartesian products?}
+    \begin{itemize}
+        \item since cartesian products operate on sets, we can apply the cartesian product to sets produced by the cartesian product
+        \item for example:
+        \[
+        X^n \times X^m = \{((x_{n1}, x_{n2}, \ldots, x_{nn}), (x_{m1}, x_{m2}, \ldots, x_{mm}))\}
+        \]
+        \item in fact, there exists a bijection $X^n \times X^m \to X^{n+m}$, such that:
+        \[
+        ((x_{n1}, x_{n2}, \ldots, x_{nn}), (x_{m1}, x_{m2}, \ldots, x_{mm})) \to (x_{n1}, x_{n2}, \ldots, x_{nn}, x_{m1}, x_{m2}, \ldots, x_{mm})
+        \]
+    \end{itemize}
+    \item \textbf{What is a projection of a cartesian product?}
+    \begin{itemize}
+        \item a way of extracting a component of an n-tuple:
+        \[
+        pr_i : X_1 \times X_2 \times \ldots \times X_n \to X_i 
+        \]
+        such that:
+        \[
+        pr_i : (x_1, x_2, \ldots, x_n) \to x_i
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsection{Exercises}
+
+\begin{questions}
+
+\question \textbf{Consider a field $\F$, and a number of F-vector spaces $V_1, V_2, \ldots, V_n$. Show that the cartesian product $V_1 \times V_2 \times \ldots \times V_n$ is an F-vector space, with addition and multiplication defined componentwise. This new vector space is written using special notation:}
+\[
+V_1 \oplus V_2 \oplus \ldots \oplus V_n
+\]
+\textbf{This is known as the \textit{external direct sum} (or \textit{direct sum} or \textit{product}). Notice that technically, $\F^n$ is the external direct sum of the 1 dimensional F-vector space $\F$.}
+
+\bigskip
+
+For this, the external direct product is a set of $n$-tuples, in which each entry is a vector $\vec{v}_i \in V_i$, with addition defined as:
+\[
+(\vec{v}_1, \ldots, \vec{v}_n) + (\vec{w}_1, \ldots, \vec{w}_n) = (\vec{v}_1 + \vec{w}_1, \ldots, \vec{v}_n + \vec{w}_n)
+\]
+and scalar multiplication:
+\[
+\lambda \cdot (\vec{v}_1, \ldots, \vec{v}_n) = (\lambda\vec{v}_1, \ldots, \lambda\vec{v}_n) 
+\]
+These definition ensure closure under addition and multiplication. We consider the remaining properties for only 2 vector spaces, $V,W$. For example, for \textit{Distributivity of a Scalar}: we want to show that
+    \[
+    \lambda((\vec{v}_1 , \vec{w}_1 ) + (\vec{v}_2, \vec{w}_2)) = \lambda(\vec{v}_1 ,\vec{w}_1 ) + \lambda(\vec{v}_2, \vec{w}_2)
+    \]
+    Indeed:
+    \begin{align*}
+        &\lambda((\vec{v}_1 , \vec{w}_1 ) + (\vec{v}_2, \vec{w}_2)) \\
+        =&\lambda(\vec{v}_1  + \vec{v}_2, \vec{w}_1  + \vec{w}_2) \\
+        =&(\lambda(\vec{v}_1  + \vec{v}_2), \lambda(\vec{w}_1  + \vec{w}_2)) \\
+        =&(\lambda \vec{v}_1  + \lambda \vec{v}_2, \lambda \vec{w}_1  + \lambda  \vec{w}_2) \\
+        =&(\lambda \vec{v}_1 , \lambda \vec{w}_1 ) + (\lambda \vec{v}_2, \lambda  \vec{w}_2) \\
+        =&\lambda (\vec{v}_1 , \vec{w}_1 ) + \lambda (\vec{v}_2, \vec{w}_2) \\
+    \end{align*}
+
+
+\end{questions}
+
+\section{Vector Subspaces}
+
+\subsection{Defining Subspaces}
+
+\begin{itemize}
+    \item \textbf{What is a vector subspace?}
+    \begin{itemize}
+        \item consider a vector space $V$, and a subset $U \subseteq V$
+        \item $U$ is a \textbf{vector subspace} if and only if:
+        \begin{itemize}
+            \item $\vec{0} \in U$
+            \item $\vec{a}, \vec{b} \in U \ \implies \ \vec{a} + \vec{b} \in U$
+            \item $\vec{a} \in U, \lambda \in \F \ \implies \ \lambda \vec{a} \in U$
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item the trivial space, $\{\vec{0}\}$ is a subspace
+    \item the whole vector space itself is a subspace
+    \item if we have a homogeneous system, and $L$ is the solution set, then $L \subseteq \F^m$ is a vector subspace, since:
+    \begin{itemize}
+        \item $(0,0,\ldots,0)$ is clearly a solution
+        \item adding 2 homogeneous solutions leads to another homogeneous solution
+        \item scaling a homogeneous solution by a constant factor is still a solution
+    \end{itemize}
+    \item any straight line or plane passing through the origin (since scaling or adding vectors in a line/plane just results in another element of the line/plane)
+    \item however, a line which doesn't go through the origin is not a subspace. For example, $y = 1$ in the vector space $\mathbb{R}^2$ over $\F = \mathbb{R}$:
+    \begin{itemize}
+        \item it doesn't contain $\vec{0}$
+        \item take 2 elements, they have the form $(a,1)$ and $(b,1)$. Clearly,
+        \[
+        (a,1) + (b,1) = (a+b, 2)
+        \]
+        which is not in the line $y = 1$
+        \item scaling doesn't work either:
+        \[
+        \lambda(a,1) = (\lambda a, \lambda)
+        \]
+        which is not in the line $y = 1$
+    \end{itemize}
+    \item similarly, a (filled) sphere in $\mathbb{R}^3$ is not a vector subspace. A sphere of radius $r$ is defined by:
+    \[
+    S = \{(x,y,z) | x^2 + y^2 + z^2 \leq r^2\}
+    \]
+    Whilst $S \subseteq \mathbb{R}^3$ contains $(0,0,0)$, it doesn't satisfy closure under addition:
+    \[
+    (r,0,0), (0,r,0) \in S, \qquad (r,r,0) \not\in S
+    \]
+    or scalar multiplication:
+    \[
+    (r,0,0) \in S, \lambda > 1, \qquad (\lambda r, 0, 0) \not\in S
+    \]
+\end{itemize}
+
+\subsection{Linear Combinations}
+
+\begin{itemize}
+    \item \textbf{What is a linear combination?}
+    \begin{itemize}
+        \item a linear combination is \textbf{finite} sum of vectors, each of which can be multiplied by a \textbf{scalar}:
+        \[
+        a_1\vec{v}_1 + a_2\vec{v}_2 + \ldots + a_n\vec{v}_n
+        \]
+        where $a_i \in \F, v_i \in V$
+    \end{itemize}
+    \item \textbf{What is span?}
+    \begin{itemize}
+        \item given a set of vectors $S$, we define the span $span(S)$ as the \textbf{set of all linear combinations} of vectors in $S$
+        \item for example, $span\left(\{(0,1), (1,0)\}\right)$ is the set of all vectors of the form $(\alpha, \beta)$ (in fact, notice that $span\left(\{(0,1), (1,0)\}\right) = \mathbb{R}^2$)
+        \item notice, the span always contains the 0 vector
+    \end{itemize}
+\end{itemize}
+
+\subsection{Proposition: Generating a Vector Subspace From a Subset}
+
+\textbox{Let $T \subseteq V$, where $V$ is a vector space over a field. Amongst all subspaces containing $T$, define the smallest such subspace as $\langle T \rangle$. Then, $\langle T \rangle$ is the span of $T$ (where the span of the empty set is just the zero vector). We call $\langle T \rangle$ the \textbf{vector subspace generated by $T$}. [Proposition 1.4.5]}
+
+\begin{proof}
+Since $\langle T \rangle$ contains all possible linear combinations of vectors in $T$, then addition or scalar multiplication of any element in $\langle T \rangle$ must still be a member of $\langle T \rangle$, so it is a subspace.
+
+Moreover, any subspace containing $T$ must be such that it contains all possible linear combinations of $T$.
+
+\end{proof}
+
+\subsection{Generating Sets}
+
+\begin{itemize}
+    \item \textbf{What is a generating set of a vector space?}
+    \begin{itemize}
+        \item let $T \subseteq V$, where $V$ is a vector space
+        \item $T$ is a \textbf{generating set} of $V$ if $span(T) = V$ (so the span  of $T$ is the whole vector space)
+    \end{itemize}
+    \item \textbf{What is a finitely generated vector space?}
+    \begin{itemize}
+        \item a vector space that can be generated by a \textbf{finite} subset $T$
+        \item for example, when discussing span, we noticed that $\mathbb{R}^2$ is finitely generated by:
+        \[
+        T = \{(0,1), (1,0)\}
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item this example illustrates the importance of a field to define a vector space. For example, consider $V = \mathbb{R}$ and $\F = \mathbb{Q}$. Consider the set $U = \{1\}$. Then, 
+    \[
+    span(U) = \{\lambda \cdot 1 | \lambda \in \mathbb{Q}\} = \mathbb{Q} \neq \mathbb{R}
+    \]
+    In fact, the span of any finite set $U$ over the field $\mathbb{Q}$ will be countable, so in particular, $\mathbb{R}$ can never be finitely generated over $\mathbb{Q}$.
+\end{itemize}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{A subset of a vector space is called a \textbf{linear hyperplane} if it is a (proper) subspace of the vector space, and such that the hyperplane, alongside some other vector (not belonging to the hyperplane), generates the whole vector space. Prove that a hyperplane and a vector not contained in the hyperplane are sufficient to generate the original space.}
+
+\end{questions}
+
+\subsection{Example: Span Unchanged After Adding One of its Elements}
+
+\textbox{If $\vec{v} \in span(T) = \langle T \rangle$, then $span(T \cup \{\vec{v}\}) = span(T)$. [Example 1.4.6]}
+
+\begin{proof}
+It is clear that $span(T) \subseteq span(T \cup \{\vec{v}\})$, since the latter is the span of a (potentially) larger set, so all elements of $span(T)$ must be contained in it.
+
+Similarly, pick $\vec{w} \in span(T \cup \{\vec{v}\})$. Then we can write:
+\[
+\vec{w} = \sum a_i \vec{v}_i + b\vec{v}
+\]
+But since $\vec{v} \in  span(T)$,
+\[
+\vec{v} = \sum c_i\vec{v}_i
+\]
+So:
+\[
+\vec{w} = \sum a_i \vec{v}_i + \sum (bc_i)\vec{v}_i = \sum (a_i + bc_i)\vec{v}_i
+\]
+Hence, $span(T \cup \{\vec{v}\}) \subseteq span(T)$. Overall, both sets must be equal, as required.
+\end{proof}
+
+\subsection{Union and Intersection}
+
+\begin{itemize}
+    \item \textbf{What is a power set?}
+    \begin{itemize}
+        \item consider a set $X$
+        \item the \textbf{power set} of $X$, denoted by $\mathcal{P}(X)$, is the set obtained from all the subsets of $X$
+        \item we shall call a subset of the power set a \textbf{system of sets} (to avoid saying a set of sets)
+    \end{itemize}
+    \item \textbf{How can we create subsets from the pwoer set (I still understand what the point of this was)?}
+    \begin{itemize}
+        \item consider a system $\mathcal{U} \subseteq \mathbb{P}(X)$
+        \item define the \textbf{union} and \textbf{intersection} of sets in $\mathcal{U}$ via:
+        \[
+        \bigcup_{U \in \mathcal{U}}U = \{x \in X | \text{\textit{there is $U \in \mathcal{U}$ with $x \in U$}}\}
+        \]
+        \[
+        \bigcap_{U \in \mathcal{U}}U = \{x \in X | \text{\textit{if $x \in U$ for all $U \in \mathcal{U}$}}\}
+        \]
+        \item what is ``interesting" about this is that if we take $\mathcal{U}$ to be an empty system of subsets of $X$:
+        \begin{itemize}
+            \item the union of $U$ is just the empty set (easy to see, since the empty set contains no element, so no $x$ will be part of the union)
+            \item the intersection of $U$ is all of $X$ (this due to a \textbf{vacuous truth}, by which, since there are no $U$, the requirement is always true, so all $x$ get added)
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Show that: each intersection of vector subspaces of a vector space is again a vector subspace. Note that
+this has the following consequence: for a subset $T$ of a vector space $V$ over $\F$ the intersection of all vector subspaces of
+$V$ that contain $T$ is obviously the smallest vector subspace of $V$ that contains $T$. This provides us with a new proof of
+Proposition 1.4.5 on the existence of such a smallest subspace. This proof has the advantage that it is easier to generalise.}
+
+\end{questions}
+
+\section{Linear Independence}
+
+\subsection{Defining Linear Independence and Dependence}
+
+\begin{itemize}
+    \item \textbf{What is linear independence of vectors?}
+    \begin{itemize}
+        \item consider a subset $L \subseteq V$ of a vector space $V$
+        \item we say $L$ is \textbf{linearly independent} if the only way for a linear combination of all pairwise distinct vectors in $L$ to be 0 is if each scalar coefficient is 0:
+        \[
+        \sum_{i = 1}^r a_i\vec{v}_i = \vec{0} \ \implies \ a_1 = a_2 = \ldots = a_r = 0
+        \]
+    \end{itemize}
+    \item \textbf{What is linear dependence of vectors?}
+    \begin{itemize}
+        \item a subset $L \subseteq V$ is \textbf{linearly dependent} if it isn't linearly independent
+        \item in other words, there exist non-zero scalars such that:
+        \[
+        \sum_{i = 1}^r a_i\vec{v}_i = \vec{0}
+        \]
+    \end{itemize}
+    \item \textbf{What does it mean if a generating set is linearly dependent?}
+    \begin{itemize}
+        \item that there are terms in the generating set that are \textbf{redundant}
+        \item for example, if $L$ is a generating set, we can reduce its number of elements, since:
+        \[
+        \sum_{i = 1}^r a_i\vec{v}_i = \vec{0} \ \implies \ \vec{v}_1 = a_1^{-1}\left(-\sum_{i = 2}^r a_i\vec{v}_i\right)
+        \]
+        Hence, with $r - 1$ terms, we can generate everything that the previous $r$ terms could generate
+        \item this illustrates that a set is linearly dependent if at least one of its vectors can be written as a linear combination of the remaining vectors
+    \end{itemize}
+\end{itemize}
+
+\subsection{Examples}
+
+\begin{itemize}
+    \item the empty set is \textbf{linearly independent} in every vector space
+    \begin{itemize}
+        \item think about it: the empty set is a valid subset of any vector space
+        \item consider any linear combination of elements in $\emptyset$
+        \item since there are no elements, no coefficients can be used to make the linear combination 0
+        \item hence, the empty set must be a linearly independent set
+    \end{itemize}
+    \item the singleton set $\{\vec{0}\}$ is always \textbf{linearly dependent}, since for any $\lambda \in \F, \lambda \neq 0_\F$ we have:
+    \[
+    \lambda \vec{0} = \vec{0}
+    \]
+    \item however, any singleton set containing a non-zero vector is always \textbf{linearly independent} (this follows by \eqref{l124}, since a scalar applied to a non-zero vector is 0 if and only if the scalar itself is 0)
+    \item a two-element subset of a vector space is \textbf{linearly independent} if neither of its vectors is a multiple of the other
+    \item 
+\end{itemize}
+
+\section{Bases}
+
+\subsection{Defining a Basis of a Vector Space}
+
+\begin{itemize}
+    \item \textbf{What is a basis of a vector space?}
+    \begin{itemize}
+        \item given a vector space $V$, a \textbf{basis} of $V$ is a \textbf{linearly independent} generating set of $V$
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Exercises}
+
+\begin{questions}
+
+\question \textbf{Consider the vector space $V = \mathbb{R}^2$ over the field $\F = \mathbb{R}$. Is the subset:}
+\[
+T = \{(4,2), (1,2)\}
+\]
+\textbf{a basis for $V$?}
+
+\bigskip
+
+Consider $(a,b) \in V$. Since the elements of $T$ are not multiples of each other, $T$ forms a basis if there exists some linear combination of its elements that can generate $(a,b)$. In other words, we want:
+\[
+\lambda(4,2) + \mu(1,2) = (a,b)
+\]
+In other words, we have a linear system, which we can solve for $\lambda, \mu$:
+\begin{align*}
+    &\begin{amatrix}{2}
+        4 & 1 & a \\
+        2 & 2 & b
+    \end{amatrix} \\
+    \iff &
+    \begin{amatrix}{2}
+        4 & 1 & a \\
+        0 & 3 & 2b - a
+    \end{amatrix} \\
+    \iff &
+    \begin{amatrix}{2}
+        4 & 1 & a \\
+        0 & 1 & \frac{2b - a}{3}
+    \end{amatrix} \\
+    \iff &
+    \begin{amatrix}{2}
+        4 & 0 & a - \frac{2b - a}{3} \\
+        0 & 1 & \frac{2b - a}{3}
+    \end{amatrix} \\
+    \iff &
+    \begin{amatrix}{2}
+        1 & 0 & \frac{a}{4} - \frac{2b - a}{12} \\
+        0 & 1 & \frac{2b - a}{3}
+    \end{amatrix} 
+\end{align*}
+In other words, given $(a,b)$, we can use:
+\[
+\lambda = \frac{a}{4} - \frac{2b - a}{12}
+\]
+\[
+\mu = \frac{2b - a}{3}
+\]
+and $T$ can generate it. In other words, $T$ must be a basis for $V$.
+
+(To check linear independence, we can do the same thing, but using $a = b = 0$, and check whether $\lambda = \mu = 0$ is the only solution)
+
+\end{questions}
+
+\subsection{Defining a Family of Elements}
+
+\begin{itemize}
+    \item \textbf{What is a family of elements?}
+    \begin{itemize}
+        \item consider two sets $I$ (for indices) and $A$ (a set of elements)
+        \item the mapping $I \to A$ is known as the \textbf{family of elements of $A$ indexed by $I$}
+        \item such a family is succinctly described by:
+        \[
+        (a_i)_{i \in I}
+        \]
+    \end{itemize}
+    \item \textbf{How do subsets an families of elements differ?}
+    \begin{itemize}
+        \item (apparently) a family allows for the same vector to be described by 2 different indices
+    \end{itemize}
+    \item \textbf{How does terminology for sets transfer to families?}
+    \begin{itemize}
+        \item if the set $\{\vec{v}_i | i \in I\}$ is generating, then the family $(\vec{v}_i)_{i \in I}$ is also \textbf{generating}
+        \item a \textbf{linearly independent family} is one such that for pairwise distinct indices ($i(1), i(2), \ldots, i(r)$) we have:
+        \[
+        \sum_{j = 1}^r a_j\vec{v}_{i(j)} = 0
+        \]
+        only if each $a_j = 0$. Notice, if two indices refer to the same vector, the family won't be linearly independent
+        \item a \textbf{linearly dependent family} is one which isn't linearly independent
+        \item a linearly independent, generating family of vectors is a \textbf{basis} (or \textbf{basis indexed by $i \in I$})
+    \end{itemize}
+        \item \textbf{What is an ordered basis?}
+    \begin{itemize}
+        \item if we index a basis, we obtain an \textbf{ordered basis}
+        \item this can be useful, for example when defining the basis vectors in $\mathbb{R}^n$, where $\vec{e}_1, \ldots, \vec{e}_n$ defined by having a 1 at index i, and 0 otherwise, is the \textbf{standard basis}, which is an \textbf{ordered basis}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Theorem: Linear Combination of Basis Elements}
+
+This theorem gives us a condition to check whether a family is a valid basis for a vector space.
+
+\textbox{Let $\F$ be a field, $V$ a vector space over
+$\F$ and consider the vectors $\vec{v}_1, \vec{v}_2, \ldots, \vec{v}_r \in V$. The family $(\vec{v}_i)_{1 \leq i \leq r}$ is a basis of $V$ \textbf{if and only if} the following “evaluation”
+mapping is a bijection:
+\[
+\Phi : \F^r \to V 
+\]
+\[
+(\alpha_1, \alpha_2, \ldots, \alpha_r) \to \sum_{i = 1}^r \alpha_i \vec{v}_i
+\]
+Hence, a family is a basis if each element in $V$ is \textbf{uniquely} constructed by using a single r-tuple of coefficients. \\If such a mapping is done with ordered family $\mathcal{A} = (\vec{v}_1, \ldots, \vec{v}_r)$, the mapping can be written as $\Phi_{\mathcal{A}} : \F^r \to V $ [Theorem 1.5.11]}
+
+\begin{proof}
+
+We first claim that the family $(\vec{v}_i)_{1 \leq i \leq r}$ is a generating set \textbf{if and only if} $\Phi$ is a surjection:
+\begin{itemize}
+    \item ($\Longrightarrow$): if the family is a generating set, $\Phi$ will clearly be surjective, since this is the definition of a generating set: all elements in $V$ are mapped to using linear combinations of elements in the generating set
+    \item ($\Longleftarrow$): similarly, if $\Phi$ is surjective, then every element in $V$ must be mapped to under its application, so by definition, the family must constitute a basis
+\end{itemize}
+
+Secondly, we claim that the family $(\vec{v}_i)_{1 \leq i \leq r}$ is linearly independent \textbf{if and only if} $\Phi$ is injective:
+\begin{itemize}
+    \item ($\Longrightarrow$): consider that the family is linearly independent. We proceed by contradiction: assume that $\Phi$ is not injective. In this case, then there must exist 2 distinct r-tuples which map to the same element in $V$. In other words:
+    \[
+    \sum_{i = 1}^r\alpha_i\vec{v}_i = \sum_{j = 1}^r\beta_j\vec{v}_j \ \implies \ \sum_{i = 1}^r(\alpha_i - \beta_i) \vec{v}_i = \vec{0}
+    \]
+    Since the 2 r-tuples are distinct, at least one of the $(\alpha_i - \beta_i)$ must be non-zero, which then implies that the family is linearly dependent, a contradiction. Hence, it follows that if the family is linearly independent, $\Phi$ must be injective.
+    \item ($\Longleftarrow$): now assume that $\Phi$ is injective. Notice, $\Phi$ maps the r-tuple containing only 0's to $\vec{0}$. Injectivity means that this is the only r-tuple which achieves this; in other words, the family must be linearly independent.
+\end{itemize}
+
+From the equivalences above, we can see that a family $(\vec{v}_i)_{1 \leq i \leq r}$ is a generating set \textbf{and} linearly independent \textbf{if and only if} the mapping $\Phi$ is surjective \textbf{and} injective. In other words, the family $(\vec{v}_i)_{1 \leq i \leq r}$ is a basis \textbf{if and only if} the mapping $\Phi$ is bijective, as required.
+
+\end{proof}
+
+\subsection{Theorem: Characterisation of Bases}
+
+This theorem provides us with equivalences that can be used to verify whether a subset is indeed a basis.
+
+\textbox{The following are equivalent for a subset $E$ of a vector
+space $V$:
+\begin{enumerate}
+    \item The subset $E$ is a \textbf{basis} (linearly independent, generating set)
+    \item $E$ is \textbf{minimal amongst all generating sets} (if we remove any element of $E$ (i.e $V \setminus \{\vec{v}\}$), it will no longer generate $V$)
+    \item $E$ is \textbf{maximal amongst all linearly independent subsets} (if we add any element to $E$ (i.e $E \cup \{\vec{v}\}$) it will no longer be linearly independent)
+\end{enumerate}
+In other words, when looking for a basis, we look for the smallest generating subset with the largest number of linearly independent vectors.
+[Theorem 1.5.12]}
+
+\begin{proof} 
+
+We show the equivalence of 1 and 2, and of 1 and 3.
+
+\begin{itemize}
+    \item $1 \iff 2$
+    \begin{itemize}
+        \item ($\Longrightarrow$): assume $E$ is a basis. We proceed by contradiction: say $E$ is not minimal, such that $span(E \setminus \{\vec{v}\}) = V$, $\vec{v} \in V$. Then, using $\vec{v}_i \in E \setminus \{\vec{v}\}$, we can write:
+        \[
+        \vec{v} = \sum_{i = 1}^r a_i\vec{v}_i \ \implies \ \sum_{i = 1}^r a_i\vec{v}_i - \vec{v} = \vec{0}
+        \]
+        This then means that $E$ is a linearly dependent subset, which contradicts the fact that it is a basis. Hence, if $E$ is a basis, $E$ must be minimal.
+        \item ($\Longleftarrow$): assume $E$ is minimal. We again proceed by contradiction, assuming that $E$ is a generating set which is linearly dependent. In other words, there are some $a_i \neq 0$ such:
+        \[
+        \sum_{i = 1}^r a_i\vec{v}_i = \vec{0}
+        \]
+        (again vectors are pairwise distinct, and $r \geq 1$). Without loss of generality, lets assume that, in particular, $a_1 \neq 0$. Then, we can rearrange, to see that:
+        \[
+        \vec{v}_1 = a_1^{-1}\left(-\sum_{i = 2}^r a_i\vec{v}_i\right)
+        \]
+        In other words, $E \setminus \{\vec{v}_1\}$ would be a generating set too, which contradicts the fact that $E$ was minimal. Hence, if $E$ is minimal, $E$ must be a basis.
+    \end{itemize}
+    \item $1 \iff 3$
+    \begin{itemize}
+        \item ($\Longrightarrow$): since $E$ is a basis, consider $\vec{v} \in V \setminus E$. There exists some non-zero scalars, such that:
+        \[
+        \vec{v} = \sum_{i = 1}^r a_i\vec{v}_i \ \implies \ \sum_{i = 1}^r a_i\vec{v}_i - \vec{v} = 0
+        \]
+        In other words, the set defined by $E \cup \{\vec{v}\}$ is linearly dependent, as required.
+        \item ($\Longleftarrow$): we now assume that $E$ is maximal, and proceed by contradiction: assume that $E$ is a linearly independent set, but it doesn't generate $V$. Then, $\exists \vec{v} \in V$ such that $\vec{v} \not \in span(E)$. But now consider $E \cup \{\vec{v}\}$. Assume there are scalars, such that a linear combination of this set is equal to $\vec{0}$:
+        \[
+        \sum_{i = 1}^r a_i\vec{v}_i + b\vec{v} = \vec{0}
+        \]
+        Since $E$ doesn't generate $\vec{v}$, this is only possible if $b = 0$. And if this is the case, by linear independence of the $\vec{v}_i$, the $a_i$ must be 0 too. Hence, it implies that $E \cup \{\vec{v}\}$ is linearly independent, contradicting the fact that $E$ is maximal.
+    \end{itemize}
+\end{itemize}
+
+\end{proof}
+
+\subsection{Corollary: The Existence of a Basis}\label{c1513}
+
+\textbox{Let $V$ be a finitely generated vector space over a field
+$\F$. Then $V$ has a finite basis. [Corollary 1.5.13]}
+
+\begin{proof}
+
+The proof is simple. Say $E$ is a generating set of some vector space $V$. While $E$ is not linearly independent, we remove vector, so long as $E$ remains a generating set. For example, at the second step, we redefine $E = E \setminus \{\vec{e}_{i(1)}\}$. If we continue this until we reach linear independence, we will have produced a linearly independent, generating set - a basis!
+
+\end{proof}
+
+\subsection{Theorem: Variant of the Characterisation of Bases}
+
+\textbox{Let $V$ be a vector space. Then:
+\begin{enumerate}
+    \item If:
+    \begin{itemize}
+        \item $L \subset V$ is a \textbf{linearly independent} subset
+        \item $E$ is \textbf{minimal} amongst all \textbf{generating} sets with the property that $L \subseteq E$
+    \end{itemize}
+    Then, $E$ is a \textbf{basis}.
+    \item If:
+    \begin{itemize}
+        \item $E \subseteq V$ is a \textbf{generating} set
+        \item $L$ is \textbf{maximal} amongst all \textbf{linearly independent} subsets with the property that $L \subseteq E$
+    \end{itemize}
+    Then, $L$ is a \textbf{basis}.
+\end{enumerate}
+This says that a minimal generating set which contains all linearly independent subsets is a basis. Alternatively, a linearly independent subset which is maximal and contained within any generating set is a basis. [Theorem 1.15.14]}
+
+\subsection{The Free Vector Space}
+
+\begin{itemize}
+    \item \textbf{What is the set of mappings?}
+    \begin{itemize}
+        \item define the set $Maps(X, \F)$, where $X$ is a set, and $\F$ is a field
+        \item this is the set of all functions $f : X \to \F$
+        \item under pointwise addition and scalar multiplication, this is a vector space
+    \end{itemize}
+    \item \textbf{What is a free vector space?}
+    \begin{itemize}
+        \item the \textbf{free vector space over $\F$ on the set $X$} is the subset of all mappings in $Maps(X, \F)$ which send almost all elements to 0
+        \item we denote the free vector space via $\F\langle X \rangle$
+        \item $\F\langle X \rangle$ is a vector subspace
+    \end{itemize}
+    \item \textbf{What does ``almost all" mean in this context?}
+    \begin{itemize}
+        \item only finitely many inputs are mapped to non-zero outputs
+        \item for example, if $X=\mathbb{Z}$ and $\F=\mathbb{R}$, then $f : X \to \F$ defined by $f(x)=x+1$ is not an element in $\F\langle X\rangle$. However, $f(x)=2$ if $|x|<10$ and 0 otherwise is an element in $\F\langle X\rangle$.
+    \end{itemize}
+    \item \textbf{How can we concisely write an element in $\F\langle X \rangle$?}
+    \begin{itemize}
+        \item whilst we could simply list the elements in $\F\langle X \rangle$, they are oftentimes represented as a linear combination, known as a \textbf{formal linear combination of elements in $X$}
+        \item for a function $a \in \F\langle X \rangle$, we can write it as:
+        \[
+        \sum_{x \in X}a(x) x
+        \]
+        \item for example, if $f \in \mathbb{Q}\langle X \rangle$, and $X = \{\text{\emoji{face-with-tears-of-joy}, \emoji{money-mouth-face}, \emoji{cold-face}}\}$, such that:
+        \begin{itemize}
+            \item $f(\text{\emoji{face-with-tears-of-joy}}) = \frac{17}{3}$
+            \item $f(\text{\emoji{money-mouth-face}}) = -4$
+            \item $f(\text{\emoji{cold-face}}) = \frac{22}{7}$
+        \end{itemize}
+        we could summarise this using the linear combination:
+        \[
+        \frac{17}{3}\text{\emoji{face-with-tears-of-joy}} -4\text{\emoji{money-mouth-face}} + \frac{22}{7}\text{\emoji{cold-face}}
+        \]
+        \item notice, whilst we might not be able to explicitly sum elements in $X$, adding elements in $\F\langle X \rangle$ is possible, since these are just elements of a field
+    \end{itemize}
+\end{itemize}
+
+\subsection{Theorem: Variant of the Linear Combination of Basis Elements}
+
+\textbox{Let $\F$ be a field,
+$V$ an F-vector space and $(\vec{v}_i)_{i \in I}$ a family of vectors from the vector space $V$ . The following are equivalent:
+\begin{enumerate}
+    \item The family $(\vec{v}_i)_{i \in I}$ is a \textbf{basis} for $V$
+    \item For each vector $\vec{v} \in V$ there is precisely \textbf{one} family $(a_i)_{i \in I}$ of elements of our field $\F$, almost all of
+which are zero and such that:
+\[
+\vec{v} = \sum_{i \in I} a_i\vec{v}_i
+\]
+\end{enumerate}
+We require almost all to be zero to avoid an infinite sum. [Theorem 1.5.16]}
+
+\section{Dimension of a Vector Space}
+
+\subsection{Theorem: The Fundamental Estimate of Linear Algebra}
+
+\textbox{No \textbf{linearly independent subset} of a
+given vector space has \textbf{more elements }than a \textbf{generating set}. \\
+If $V$ is a \textbf{vector space}, $L \subset V$ is a linearly independent subset, and $E \subseteq V$ is a generating set, then:
+\[
+|L| \leq |E|
+\]
+We use the convention that an infinite set has $|X| = \infty$, so this is generally useful only for finitely generated sets.\\
+The idea is the ``smallest" generating sets will be linearly independent, so any linearly independent set will be of the same size or smaller than any generating set. [Theorem 1.6.1]}
+
+\begin{proof}
+I don't really understand, so check notes
+\end{proof}
+
+\pagebreak
+
+\subsection{Exchange Lemma}
+
+The Exchange Lemma is used to prove the \textbf{Steinitz Exchange Theorem}.
+
+\textbox{Let:
+\begin{itemize}
+    \item $V$ be a vector space
+    \item $M \subset V$ a linearly independent subset
+    \item $E \subseteq V$ a generating set
+\end{itemize}
+By the Fundamental Estimate, $M \subseteq E$. If $\vec{w} \in V \setminus M$ and $M \cup \{\vec{w}\}$ is linearly independent, then $\exists \vec{e} \in E \setminus M$ such that:
+\[
+(E \setminus \{\vec{e}\}) \cup \{\vec{w}\}
+\]
+is a \textbf{generating set} of $V$.\\
+What this says is that we can change an element in a generating set for another element in a linearly independent set, and still keep the ``generativeness" of a set. [Lemma 1.6.3]}
+
+\begin{proof}
+
+Consider $\vec{w} \in V \setminus M$ such that $M \cup \{\vec{w}\}$ is linearly independent. Since $E$ is a generating set, pick $\vec{e}_1, \vec{e}_2, \ldots, \vec{e}_n$ with $\forall i \in [1,n], \lambda_i \neq 0$ such that:
+\[
+\vec{w} = \sum_{i = 1}^n \lambda_i \vec{e}_i
+\]
+Notice, since $M \cup \{\vec{w}\}$ is linearly independent, at least one of the $\vec{e}_i$ must be such that $\vec{e}_i \in E \setminus M$. If all the $\vec{e}_i$ were part of $M$, since $\vec{w}$ wasn't originally in $M$, adding $\vec{w}$ to $M$ would make the set $M \cup \{\vec{w}\}$ linearly dependent (since elements in $M$ would be able to generate $\vec{w}$).
+
+\bigskip
+
+Without loss of generality, assume $\vec{e}_1 \in E\setminus M$. Then we can write:
+\[
+\vec{e}_1 = \lambda_1^{-1}\left(\vec{w} - \sum_{i = 2}^n \lambda_i \vec{e}_i\right)
+\]
+In other words, the set $(E \setminus \{\vec{e}_1\}) \cup \{\vec{w}\}$ is also generating (anything generated using $\vec{e}_1$ can be generated using $\vec{w}$ and $\{\vec{e}_i\}_{i \in [2,n]}$).
+
+\end{proof}
+
+\subsection{Theorem: Steinitz Exchange Theorem}
+
+\textbox{Let:
+\begin{itemize}
+    \item $V$ be a vector space
+    \item $L \subset V$ a finite, linearly independent subset
+    \item $E \subseteq V$ a generating set
+\end{itemize}
+Then, there exists an \textbf{injection} $\phi : L \to E$, such that:
+\[
+(E \setminus \phi(L)) \cup L
+\]
+is also a \textbf{generating set} of $V$.\\
+What this says is that we can \textbf{swap} elements from a generating set using elements of a linearly independent set, and still maintain a generating set.[Theorem 1.6.2]}
+
+\begin{proof}
+Repeatedly (inductively) apply the Exchange Lemma, swapping elements on by one.
+\end{proof}
+
+\subsection{Corollary: Cardinality of Bases}
+
+\textbox{Let $V$ be a finitely generated vector space. Then:
+\begin{enumerate}
+    \item $V$ has a \textbf{finite} basis
+    \item $V$ cannot have an infinite basis
+    \item Any 2 bases of $V$ have the same \textbf{cardinality} (number of elements)
+\end{enumerate} [Corollary 1.6.4]}
+
+\begin{proof}
+
+We prove each one sequentially:
+
+\begin{enumerate}
+    \item This is just \eqref{c1513} (the existence of a finite basis)
+    \item Say $V$ has an infinite basis $E$. It also has a finite basis, say of size $r$. Pick a subset of $E$ with $r+1$ elements. Then, this subset must be linearly independent. However, this violates the Fundamental Estimate of Linear Algebra, since we are saying that a linearly independent subset exists which has a greater cardinality than a basis.
+    \item Consider 2 bases, $B_1, B_2$. By the FELA, since $B_2$ is a generating set and $B_1$ is linearly independent, then $|B_2| \geq |B_1|$. By the FELA, since $B_1$ is a generating set and $B_2$ is linearly independent, then $|B_2| \leq |B_1|$. In other words:
+    \[
+    |B_2| = |B_1|
+    \]
+\end{enumerate}
+\end{proof}
+
+\subsection{Defining the Dimension of a Vector Space}
+
+\begin{itemize}
+    \item \textbf{What is the dimension of a vector space?}
+    \begin{itemize}
+        \item the dimension of a vector space $V$ (called $dim V$) is the \textbf{cardinality} of any of its bases
+        \item use $dim_\F V$ to denote the dimension of an F-vector space
+    \end{itemize}
+    \item \textbf{What is an infinitely dimensional vector space?}
+    \begin{itemize}
+        \item a vector space which is not finitely generated
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item the empty set is the basis for the 0-vector space, so its dimension is 0
+    \item the dimension of $\F^n$ is $n$, since the standard basis (using $\vec{e}_1, \ldots, \vec{e}_n$) is composed of $n$ vectors
+\end{itemize}
+
+\subsection{Corollary: Cardinality Criterion for Bases}\label{c167}
+
+\textbox{Let $V$ be a \textbf{finitely generated} vector space. Then:
+\begin{enumerate}
+    \item \begin{itemize}
+        \item each \textbf{linearly independent} subset $L \subset V$ has \textbf{at most} $dim V$ elements
+        \item if $|L| = dim V$, then $L$ is a \textbf{basis}
+    \end{itemize}
+    \item \begin{itemize}
+        \item each \textbf{generating set} $E \subseteq V$ has \textbf{at least} $dim V$ elements
+        \item if $|E| = dim V$, then $E$ is a \textbf{basis}
+    \end{itemize}
+\end{enumerate}
+[Corollary 1.6.7]}
+
+\begin{proof}
+
+We know, using the Fundamental Estimate, that if:
+\begin{itemize}
+    \item $L$ is a linearly independent subset
+    \item $B$ is a basis
+    \item $E$ is a generating set
+\end{itemize}
+then:
+\[
+|L| \leq |B| \leq |E|
+\]
+If $|L| = |B|$, then $L$ must be a maximal linearly independent subset (since no other linearly independent subset has a greater cardinality than it), and so, a basis.
+
+If $|E| = |B|$, then $E$ must be a minimal generating set (since no other generating set has a smaller cardinality than it), and so, a basis.
+
+\end{proof}
+
+\subsection{Corollary: Dimension Estimate for Vector Subspaces}
+
+\textbox{A \textbf{proper vector subspace} of a finite
+dimensional vector space has itself a strictly smaller dimension. [Corollary 1.6.8]}
+
+\subsection{Remark: Dimension of Subspace vs Dimension of Space}
+
+\textbox{If $U \subseteq V$ is a subspace of the vector space $V$, then $dim U \leq dim V$. Moreover, if $dim U = dim V < \infty$, we must have $U = V$. [Remark 1.6.9]}
+
+\begin{proof}
+
+Proof (I think) has mistakes/worded weirdly, so check notes.
+
+\end{proof}
+
+\subsubsection{Exercises}
+
+\begin{questions}
+
+\question \textbf{Show that each one dimensional vector space has exactly two vector subspaces.}
+
+\bigskip
+
+Let $V$ be a one dimensional vector space. Without loss of generality, say it is $\{1\}$. By Remark 1.6.9, if $U$ is a subspaces, we must have $dim U \leq 1$. Since $V$ only has 2 subsets ($\emptyset$ and $V$), these must be the only possible subspaces.
+
+\end{questions}
+
+\subsection{Joining Vector Subspaces}
+
+\begin{itemize}
+    \item \textbf{In what sense can we join vector subspaces?}
+    \begin{itemize}
+        \item if $V$ is a vector space with subspaces $U,W$, we can define the new subspace $U+W$ given by:
+        \[
+        span(U \cup W) = \{\vec{v} | \exists \vec{u} \in U, \vec{w} \in W, \vec{v} = \vec{u} + \vec{w}\}
+        \]
+        \item for example, if $V = \mathbb{R}^2$, $U$ and $W$ can be the subspaces generated by two lines; $U + W$ is the set of all linear combinations of elements produced by combining lines in $U$ and $W$
+    \end{itemize}
+\end{itemize}
+
+\subsection{Theorem: The Dimension Theorem}
+
+\textbox{Let $V$ be a vector space with subspaces $U,W \subseteq V$. Then:
+\[
+dim(U + W) + dim(U \cap W) = dim U + dim W
+\]
+[Theorem 1.6.10]}
+
+\begin{proof}
+
+Let $E$ be a basis for $U \cap W$:
+\[
+E = \{\vec{e}_1, \ldots, \vec{e}_r\}
+\]
+Notice, $E$ will be a linearly independent subset of both $U$ and $W$ by construction, so in particular, we can add elements to it from both sets to generate bases:
+\[
+E_U = \{\vec{e}_1, \ldots, \vec{e}_r\} \cup \{\vec{u}_1, \ldots, \vec{u}_s\}
+\]
+\[
+E_W = \{\vec{e}_1, \ldots, \vec{e}_r\} \cup \{\vec{w}_1, \ldots, \vec{w}_k\}
+\]
+Hence, we have that:
+\begin{itemize}
+    \item $dim(U \cap W) = r$
+    \item $dim U = r+s$
+    \item $dim W = r + k$
+\end{itemize}
+
+We want to show that:
+\[
+dim(U + W) = dim U + dim W - dim (U \cap W) = r + s + k
+\]
+
+To do this, we claim that $E_U \cup E_W$ is a basis for $U + W$. We need to check 2 things: whether this set generates all elements in $U+W$, and whether it is linearly independent.
+
+\bigskip
+
+Let $\vec{v} \in U + W$. By definition, it follows that $\exists \vec{u} \in U, \exists \vec{w} \in W : \vec{v} = \vec{u} + \vec{w}$. But then it trivially follows that $\vec{v} \in span(E_U \cup E_W)$, as required.
+
+\bigskip
+
+Now, consider $a_i, b_i, c_i \in \F$, and consider:
+\[
+\sum_{i = 1}^r a_i\vec{e}_i + \sum_{i = 1}^s b_i\vec{u}_i + \sum_{i = 1}^k c_i\vec{w}_i = \vec{0}
+\]
+If we rearrange:
+\[
+\sum_{i = 1}^r a_i\vec{e}_i + \sum_{i = 1}^s b_i\vec{u}_i = -\sum_{i = 1}^k c_i\vec{w}_i
+\]
+Notice, $-\sum_{i = 1}^k c_i\vec{w}_i \in W$ (since each $\vec{w}_i \in W$, and $W$ is a subspace). Moreover, $\sum_{i = 1}^r a_i\vec{e}_i + \sum_{i = 1}^s b_i\vec{u}_i \in U$, since the $E_U =  \{\vec{e}_1, \ldots, \vec{e}_r\} \cup \{\vec{u}_1, \ldots, \vec{u}_s\}$.
+
+\bigskip
+
+This then implies that $-\sum_{i = 1}^k c_i\vec{w}_i \in U \cap W$. But notice, since all the $\vec{w}_i$ lie entirely in $W$, and outside of $E$ (which is the basis generating $U \cap W$), this is not possible, unless each $c_i = 0$. But then this means that:
+\[
+\sum_{i = 1}^r a_i\vec{e}_i + \sum_{i = 1}^s b_i\vec{u}_i = \vec{0}
+\]
+But recall, this is a linear combination of elements in the basis $E_U$. Since they are linearly independent, this is only possible if $a_i = b_i = 0$. Hence, if
+\[
+\sum_{i = 1}^r a_i\vec{e}_i + \sum_{i = 1}^s b_i\vec{u}_i + \sum_{i = 1}^k c_i\vec{w}_i = \vec{0}
+\]
+then $a_i = b_i = c_i = 0$, and so, the set $E_U \cup E_W$ must be linearly independent. Hence, $E_U \cup E_W$ is a basis for $U + W$. Moreover, it is easy to check that:
+\[
+|E_U \cup E_W| = r + s + k
+\]
+so $dim (U + W) = r + s+ k$, as required.
+
+\end{proof}
+
+\subsubsection{Examples}
+
+We can verify this theorem. For example, consider $V = \mathbb{R}^3$, and lets $U, W$ be two non-parallel planes. These intersect in a line, so:
+\begin{itemize}
+    \item $dim U = 2$
+    \item $dim W = 2$
+    \item $dim (U + W) = 3$ (their combination spans the whole space)
+    \item $dim (U \cap W) = 1$ (a line is 1 dimensional)
+\end{itemize}
+and indeed:
+\[
+dim U + dim W = 2 + 2 = 4
+\]
+\[
+dim(U + W) + dim(U \cap W) = 3 + 1 = 4
+\]
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Given F-Vector Spaces $V_1, V_2, \ldots, V_n$, show that:
+\[
+dim(V_1 \oplus V_2 \oplus \ldots \oplus V_n) = dim V_1 + \ldots + dim V_n
+\]}
+
+\bigskip
+
+\question \textbf{Show that for some vector space $V$:
+\[
+dim_{\mathbb{R}}V = 2 dim_{\mathbb{C}}V
+\]}
+
+Let $A$ be a basis for $\mathbb{C}$:
+\[
+A = \{\vec{v}_1, \ldots, \vec{v}_n\}
+\]
+Now consider a set:
+\[
+B = \{\vec{v}_1, i\vec{v}_1, \ldots, \vec{v}_n, i\vec{v}_n\}
+\]
+We claim that $B$ is a basis for $\mathbb{R}$. To see why, $B$ is linearly independent, since:
+\[
+\sum_{j = 1}^n \alpha_j(\vec{v}_j + i\vec{v}_j) = 0 \ \implies \ (1+i)\sum_{j = 1}^n \alpha_j\vec{v}_j = 0
+\]
+Since $i+1 \neq 0$, this is only possible if:
+\[
+\sum_{j = 1}^n \alpha_j\vec{v}_j = 0
+\]
+But $A$ is a basis, so this is true only if $\alpha_j = 0$, so it follows that the set $B$ is linearly independent.
+
+Moreover, $A$ generates $\mathbb{R}$. To see why, if $v \in V$, then we can write:
+\[
+v = \sum_{j = 1}\alpha_j\vec{v}_j
+\]
+But then $A$ is just a subset of $B$, so $B$ must trivially generate anything that $A$ can generate. Hence:
+\[
+dim_{\mathbb{R}}V = 2 dim_{\mathbb{C}}V
+\]
+
+\end{questions}
+
+\end{document}

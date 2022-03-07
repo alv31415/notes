@@ -1,0 +1,1790 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mynotes}
+
+\title{Honours Algebra - Week 4 - Rings}
+\author{Antonio León Villares}
+\date{February 2022}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\textit{Based on the notes by Iain Gordon, Sections 3.1 - 3.4}
+
+\section{Recap: Groups}
+
+A group is a set satisfying 4 conditions under a given operation $\ast$. The \textbf{group axioms} are:
+\begin{enumerate}
+    \item \textbf{Closure}:
+    \[
+    g,h \in G \ \implies \ g \ast h \in G
+    \]
+    \item \textbf{Associativity}:
+    \[
+    g,h,k \in G \ \implies \ g \ast (h \ast k) = (g \ast h) \ast k
+    \]
+    \item \textbf{Identity}:
+    \[
+    \exists e_G \in G : \forall g \in G, e_G \ast g = g \ast e_G = g 
+    \]
+    \item \textbf{Existence of Inverse}:
+    \[
+    g \in G \ \implies \ g^{-1} \in G : gg^{-1} = g^{-1}g = e_G
+    \]
+\end{enumerate}
+
+A group is called \textbf{abelian} if $\ast$ defines a commutative operation:
+\[
+g \ast h = h \ast g
+\]
+
+\section{Rings}
+
+\subsection{Defining Rings}
+
+\begin{itemize}
+    \item \textbf{What is a ring?}
+    \begin{itemize}
+        \item a special \textbf{set} armed with \textbf{2 operations}: addition and multiplication
+        \[
+        (R, +, \cdot)
+        \]
+        \item \textbf{rings} have the following properties:
+        \begin{enumerate}
+            \item $(R,+)$ is an \textbf{abelian group}, with identity $0_R$
+            \item $(R, \cdot)$ is a \textbf{monoid}:
+            \begin{itemize}
+                \item multiplication is \textbf{associative}
+                \item $R$ contains an identity element $1_R$ satisfying:
+                \[
+                \forall a \in R \ : \ a \cdot 1_R = 1_R \cdot a = a
+                \]
+            \end{itemize}
+            \item the \textbf{distributive law} holds in $R$:
+            \[
+            a \cdot (b + c) = (a \cdot b) + (a \cdot c)
+            \]
+            \[
+            (a + b) \cdot c = (a \cdot c) + (b \cdot c)
+            \]
+        \end{enumerate}
+    \end{itemize}
+    \item \textbf{What is a commutative ring?}
+    \begin{itemize}
+        \item a \textbf{ring} for which \textbf{multiplication} is also \textbf{commutative}:
+        \[
+        a \cdot b = b \cdot a
+        \]
+    \end{itemize}
+    \item \textbf{What is the zero ring?}
+    \begin{itemize}
+        \item the \textbf{ring}:
+        \[
+        R = \{0\}
+        \]
+        \item any ring that is not a zero ring is a \textbf{non-zero ring}
+    \end{itemize}
+    \item \textbf{How do rings differ from vector spaces?}
+    \begin{itemize}
+        \item the key difference is that \textbf{rings} are defined with a \textbf{set multiplication operation}
+        \item on the other hand, vector spaces define \textbf{scalar multiplication over a field}
+    \end{itemize}
+    \item \textbf{Do elements in rings have inverses?}
+    \begin{itemize}
+        \item additively, rings are a group, so there is always an \textbf{additive inverse}
+        \item however, multiplicatively, we only require $R$ to be a monoid, so a \textbf{multiplicative inverse} might not exist
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples: Rings}
+
+\begin{itemize}
+    \item $\mathbb{Z}$ is a prime example of a ring, with addition and multiplication defined in the standard way.
+    \begin{itemize}
+        \item indeed, $\mathbb{Z}$ is an example of a \textbf{commutative ring}
+        \item it also exemplifies how rings don't require a multiplicative inverse (since for example 2 has no such inverse, as $\frac{1}{2} \not\in \mathbb{Z})$
+    \end{itemize}
+    \item standard sets like $\mathbb{R}, \mathbb{C}, \mathbb{Q}$ are all \textbf{commutative rings}, and in fact, have multiplicative inverses
+    \item the set $Mat(n; R)$ of $n \times n$ matrices with entries in the ring $R$ is also a ring (with operations as matrix addition and multiplication)
+    \begin{itemize}
+        \item if $n \geq 2$, $Mat(n; R)$ is \textbf{not} commutative
+    \end{itemize}
+    
+\end{itemize}
+
+\subsubsection{Examples: Non-Rings}
+
+\begin{itemize}
+    \item $\mathbb{N}$ under standard addition and multiplication is not a ring
+    \begin{itemize}
+        \item addition doesn't define an abelian group (for example, 2 has no additive inverse, since $-2 \not \in \mathbb{N}$)
+    \end{itemize} 
+    \item $\mathbb{R}^2$ is not a ring under vector addition and the dot product, since the dot product is a mapping $\mathbb{R}^2 \to \mathbb{R}$
+    \item $\mathbb{R}^3$ is not a ring under vector addition and the cross product, since the cross product doesn't satisfy \textbf{associativity}:
+    \[
+    \left(
+    \begin{pmatrix}
+    1 \\
+    0 \\
+    0
+    \end{pmatrix}
+    \times 
+    \begin{pmatrix}
+    0 \\
+    1 \\
+    0
+    \end{pmatrix}
+    \right)
+    \times
+    \begin{pmatrix}
+    0 \\
+    1 \\
+    0
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    -1 \\
+    0 \\
+    0
+    \end{pmatrix}
+    \neq 
+    \begin{pmatrix}
+    0 \\
+    0 \\
+    0
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    1 \\
+    0 \\
+    0
+    \end{pmatrix}
+    \times 
+    \left(
+    \begin{pmatrix}
+    0 \\
+    1 \\
+    0
+    \end{pmatrix}
+    \times
+    \begin{pmatrix}
+    0 \\
+    1 \\
+    0
+    \end{pmatrix}
+    \right)
+    \]
+\end{itemize}
+
+\subsection{The Integers Modulo $m$}
+
+\textit{Most of the following is taken from here: \href{https://math.okstate.edu/people/binegar/3613/3613-l11.pdf}{Lecture 11 - Congruence and Congruence Classes}}
+
+\begin{itemize}
+    \item \textbf{When are integers said to be ``congruent modulo $m$"?}
+    \begin{itemize}
+        \item let $a,b,m \in \mathbb{Z}$
+        \item we say that $a$ and $b$ are \textbf{congruent modulo $m$} if $m$ divides $b - a$
+        \item we write this using:
+        \[
+        a \equiv b \ (mod \ m)
+        \]
+        \item this indicates that $a,b$ have the same \textbf{reminder} when divided by $m$
+    \end{itemize}
+    \item \textbf{What are the rules of congruences?}
+    \begin{enumerate}
+        \item 
+        \[
+        a \equiv a \ (mod \ m)
+        \]
+        \item 
+        \[
+        m \equiv 0 \ (mod \ m)
+        \]
+        \item 
+        \[
+        a \equiv b \ (mod \ m) \ \implies \ b \equiv a \ (mod \ m)
+        \]
+        \item 
+        \[
+        a \equiv b \ (mod \ m) \ \& \ b \equiv c \ (mod \ m) \ \implies \ a \equiv c \ (mod \ m)
+        \]
+        \item
+        \[
+        a \equiv b \ (mod \ m) \ \& \ c \equiv d \ (mod \ m) \ \implies \ a + c \equiv b + d \ (mod \ m)
+        \]
+        \item
+        \[
+        a \equiv b \ (mod \ m) \ \& \ c \equiv d \ (mod \ m) \ \implies \ ac \equiv bd \ (mod \ m)
+        \]
+    \end{enumerate}
+    \item \textbf{What is a congruence class?}
+    \begin{itemize}
+        \item the set of all integers which are congruent to $a \in \mathbb{Z}$ modulo $m \in \mathbb{Z}$. In other words, the set:
+        \[
+        \bar{a} = \{b \ | \ a \equiv b \ (mod \ m) \iff a - b = kn, k \in \mathbb{Z}\}
+        \]
+        \item for example, if $m = 2$, then $\bar{0}$ is the set of all \textbf{even} numbers; $\bar{1}$ is the set of all \textbf{odd} numbers
+        \item if $\bar{a} = \bar{b}$, then $a \equiv b \ (mod \ m)$
+        \item using the above rules of congruences, it is easy to see that:
+        \[
+        \bar{a} + \bar{b} = \overline{a + b}
+        \]
+        \[
+        \bar{a}\bar{b} = \overline{ab}
+        \]
+    \end{itemize}
+        \item \textbf{What are the integers modulo $m$?}
+    \begin{itemize}
+        \item a \textbf{ring} written as:
+        \[
+        \mathbb{Z}/m\mathbb{Z}
+        \]
+        \item $\mathbb{Z}/m\mathbb{Z}$ is the set containing the $m$ congruence classes modulo $m$:
+        \[
+        \mathbb{Z}/m\mathbb{Z} = \{\bar{0}, \bar{1}, \ldots, \overline{m-1}\}
+        \]
+        \item this is a ring, since it inherits the properties of the integers
+        \item notice, the following are equivalent notations:
+        \[
+        \mathbb{Z}/m\mathbb{Z} = \mathbb{Z}_m
+        \]
+    \end{itemize}
+    \item \textbf{How can we work in this ring?}
+    \begin{itemize}
+        \item an example is the \textbf{ring of time}:
+        \[
+        \mathbb{Z}_{12}
+        \]
+        \item we know that ``4 hours after 10 0'clock is 2 o'clock" because:
+        \[
+        \bar{10} + \bar{4} = \overline{14} = \bar{2}
+        \]
+        \item similarly ``3 periods 8 hours long make up a day" because:
+        \[
+        \bar{3}\bar{8} = \overline{24} = 0
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsection{Proposition: Divisibility by Sum}
+
+\textbox{
+A natural number is divisible by 3 precisely when the sum of its digits is divisible by 3. The same applies when using 9.
+[Proposition 3.1.7]
+}
+
+\begin{proof}
+
+Let $n \in \mathbb{N}$. If $n$ is a $k$ digit number with digits $a_0, a_1, \ldots, a_{k-1}$, it can be written as:
+\[
+n = \sum_{i = 0}^{k-1} a_i \times 10^i
+\]
+Notice:
+\[
+\overline{10^i} \equiv 1 \ (mod \ 3)
+\]
+(and 
+\[
+\overline{10^i} \equiv 1 \ (mod \ 9)
+\]
+)
+
+\bigskip
+
+Hence:
+\[
+n \equiv \sum_{i = 0}^{k-1} a_i  \ (mod \ 3)
+\]
+It follows that $n$ is divisible by 3 (or 9) precisely when the sum of its digits $\sum_{i = 0}^{k-1} a_i$ is also divisible by 3 (or 9).
+
+\end{proof}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Show that a natural number is divisible by 11 if and only if the alternating sum o fits digits is divisible by 11.}
+
+\question \textbf{Show that an integer of the form \textit{abcabc} (such as 123123) is always divisible by 7.}
+
+\question \textbf{Show that an integer congruent to 3 modulo 4 is never the sum of two squares. Show also that an integer congruent to 7 modulo 8 is nver the sum of three squares.}
+
+\end{questions}
+
+\subsection{(Re)Defining Fields}
+
+\begin{itemize}
+    \item \textbf{What is a field?}
+    \begin{itemize}
+        \item a \textbf{field} is a \textbf{non-zero} commutative \textbf{ring}
+        \item every non-zero element in a field has a \textbf{multiplicative inverse}:
+        \[
+        a \in F \ \implies \ a^{-1} \in F \ : \ aa^{-1} = a^{-1}a = 1_F
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item the ring $\mathbb{Z}_3$ is a field (which we have been calling $\F_3$), since:
+    \[
+    1 \cdot 1 = 1
+    \]
+    \[
+    2 \cdot 2 = 1
+    \]
+    \item the ring $\mathbb{Z}_{12}$ is \textbf{not} a field, since neither $\bar{3}$ nor $\bar{8}$ have inverses. The proof of this is pretty cool:
+    \begin{itemize}
+        \item notice that $\bar{3} \cdot \bar{8} = \overline{24} = \bar{0}$
+        \item assume $\exists \bar{a} \in \mathbb{Z}_12$ such that:
+        \[
+        \bar{a} \cdot \bar{3} = \bar{1}
+        \]
+        \item but then we must have:
+        \[
+        (\bar{a} \cdot \bar{3}) \cdot \bar{8} = \bar{8}
+        \]
+        \item applying associativity of ring multiplication:
+        \[
+        (\bar{a} \cdot \bar{3}) \cdot \bar{8} = \bar{a} \cdot (\bar{3} \cdot \bar{8}) = 0
+        \]
+        \item hence, no such $a$ can exist
+        \item we can use similar arguments for the right inverse
+    \end{itemize}
+\end{itemize}
+
+\subsection{Proposition: Integers Modulo as Fields}\label{p3111}
+
+\textbox{
+Let $m \in \mathbb{Z}^+$. The \textbf{commutative ring} $\mathbb{Z}_m$ is a field \textbf{if and only if} $m$ is \textbf{prime}. [Proposition 3.1.11]
+}
+
+\begin{proof}
+
+Suppose that $\mathbb{Z}_m$ is a field, and consider $a \in \mathbb{Z} : 1 < a < m$. Since $a \neq 0$, it follows that $\bar{a} \in \mathbb{Z}_m$ has an inverse $\bar{a}^{-1}$. Define:
+\[
+\bar{b} = \bar{a}^{-1}
+\]
+Then:
+\[
+\overline{ab} = \bar{a} \cdot \bar{b} = 1
+\]
+In other words, by properties of congruences:
+\[
+ab - 1 = km \ \implies \ ab = km + 1
+\]
+Notice, the LHS and RHS must both be divisible by $a$. Since $a$ can't divide 1, the RHS can only be divisible by $a$ if $a$ doesn't divide $km$ (if $a$ divided $km$, $km + 1$ wouldn't be divisible by $a$). Hence, it must mean that, in particular, $a$ doesn't divide $m$. Thus, $m$ must be prime, since $a$ was an arbitrary number between 1 and $m$.
+
+\bigskip
+
+Alternatively, assume that $m$ is prime. Then, for $a \in \mathbb{Z}, 1 < a < m$, we know that:
+\[
+hcf(a,m) = 1
+\]
+By the Euclidean Algorithm (this will be displayed in the exercise below), it follows that $\exists b,c \in \mathbb{Z}$ such that:
+\[
+ab + mc = 1
+\]
+In other words, $ab - 1$ divides $m$, so:
+\[
+ab \equiv 1 \ (mod \ m) \ \implies \ \overline{ab} = \bar{1} \ \implies \ \bar{a} \cdot \bar{b} = 1
+\]
+So $\bar{a}$ has an inverse in $\mathbb{Z}_m$.
+
+\end{proof}
+
+\subsubsection{Exercises}
+
+\begin{questions}
+
+\question \textbf{Find the inverse of 24 in the field $\F_{37}$}
+
+Notice, 24 and 37 are coprime, so $hcf(24,37) = 1$. By the Euclidean Algorithm, we can find $a,b \in \mathbb{Z}$ such that:
+\[
+37a + 24b = 1
+\]
+We thus apply the Euclidean Algorithm:
+\begin{align*}
+    37 &= 24 \times 1 + 13 \\
+    24 &= 13 \times 1 + 11 \\
+    13 &= 11 \times 1 + 2 \\
+    11 &= 2 \times 5 + 1
+\end{align*}
+We then backtrack:
+\begin{align*}
+    11 &= 2 \times 5 + 1 \ \implies \ 1 = 11 - 2 \times 5 \\
+    13 &= 11 \times 1 + 2 \ \implies \ 1 = 11 - (13 - 11) \times 5 = 11 \times 6 - 13 \times 5\\
+    24 &= 13 \times 1 + 11 \ \implies \ 1 = (24 - 13) \times 6 - 13 \times 5 = 24 \times 6 - 13 \times 11 \\
+    37 &= 24 \times 1 + 13 \ \implies \ 1 = 24 \times 6 - (37 - 24) \times 11 = 24 \times 17 - 37 \times 11
+\end{align*}
+Hence, we have that:
+\[
+24 \times 17 - 37 \times 11 = 1
+\]
+Working in $\mathbb{Z}_{37}$ we get that:
+\[
+\bar{24} \cdot \bar{17} = \bar{1}
+\]
+So 17 is the inverse of 24 in $\mathbb{Z}_{37}$.
+
+\end{questions}
+
+\section{Properties of Rings}
+
+\textit{This section focuses on deriving the basic properties of rings. Most of the things are common sense, and tedious to prove, so I won't include many of these proofs.}
+
+\subsection{Lemma: Multiplying by Zero and Negatives}
+
+\textbox{Let $R$ be a \textbf{ring} and let $a,b \in \mathbb{R}$. Then:
+\begin{enumerate}
+    \item $0a = 0 = a0$
+    \item $(-a)b = -(ab) = a(-b)$
+    \item $(-a)(-b) = ab$
+\end{enumerate}
+[Lemma 3.2.1]}
+
+\subsection{Remark: Consequences of the Distributive Axiom}
+
+\textbox{
+If $R$ is a ring, and $a,b,c,d \in R$ then:
+\begin{enumerate}
+    \item (a + b)(c + d) = ac + ad + bc + bd
+    \item a(b - c) = ab - ac
+\end{enumerate}
+Notice, since $R$ is a ring we \textbf{can't} assume that $ac = ca$: the order of multiplication matters! [Remark 3.2.2.1]
+}
+
+\subsection{Remark: Additive Identity Equal to Multiplicative Identity}
+
+\textbox{If $0_R = 1_R$, then $R$ is the \textbf{zero ring}. [Remark 3.2.2.2]}
+
+\begin{proof}
+\[
+a = a \cdot 1_R = a \cdot 0_R = 0_R
+\]
+So any element in $R$ must be $0_R$.
+\end{proof}
+
+\subsection{Lemma: Rules for Multiples}
+
+\textbox{Let $R$ be a ring, and $a,b \in \mathbb{R}$, with $m,n \in \mathbb{Z}$. Then:
+\begin{enumerate}
+    \item $m(a + b) = ma + mb$
+    \item $(m + n)a = ma + na$
+    \item $m(na) = (mn)a$
+    \item m(ab) = (ma)b = a(mb)
+    \item (ma)(nb) = (mn)(ab)
+\end{enumerate}
+[Lemma 3.2.4]
+}
+
+\section{Units}
+
+\subsection{Defining the Unit}
+
+\begin{itemize}
+    \item \textbf{What is a unit?}
+    \begin{itemize}
+        \item let $R$ be a ring
+        \item $a \in R$ is a unit if $a^{-1} \in R$ exists
+        \item $a$ is invertible in $R$
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item in $\mathbb{R}, \mathbb{C}, \mathbb{Q}$ all elements (except 0) are units
+    \item in $\mathbb{Z}$ only 1 and -1 are units (and they are their own inverse)
+    \item for any non-zero ring, 0 is never a unit, since:
+    \[
+    b \cdot 0 = 0 \neq 1, \quad \forall b \in R
+    \]
+\end{itemize}
+
+\subsection{Proposition: Units Form a Group}
+
+\textbox{
+Let $R^\times$ be the set containing all the units of $R$. Then, $R^\times$ is a group, called \textbf{the group of units of the ring $R$.}
+[Proposition 3.2.9]
+}
+
+\begin{proof}
+
+We check the group axioms. Let $a,b \in R^{\times}$
+
+\begin{enumerate}
+    \item \textbf{Closure}: consider $ab$. Since $R$ is a ring, it is closed under multiplication, so $ab \in R$. This is a unit in $R$ if and only if it has an inverse in $R$. Indeed, since $a,b$ are units, then $\exists a^{-1}, b^{-1} \in R$. Moreover, $b^{-1}a^{-1} \in R$ too. But then:
+    \[
+    (b^{-1}a^{-1})(ab) = b^{-1}b = 1_R
+    \]
+     \[
+    (ab)(b^{-1}a^{-1}) = aa^{-1} = 1_R
+    \]
+    So in particular, $b^{-1}a^{-1} \in R$ is the inverse of $ab \in R$, so $ab \in R^{\times}$. Hence, $R^{\times }$ is closed under multiplication.
+    \item \textbf{Associativity}: multiplication in a ring $R$ is associative; $R^{\times} \subseteq R$, so multiplication is associative in $R^{\times}$ too.
+    \item \textbf{Identity}: since $1_R$ is always its own inverse, it follows that $1_R \in R^{\times}$, and $1_R$ is the identity of $R^\times$.
+    \item \textbf{Existence of Inverse}: trivially, if $a \in R^\times$, its inverse $a^{-1}$ must also be in $R^\times$
+\end{enumerate}
+
+\end{proof}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item as discussed above, we have:
+    \begin{itemize}
+        \item $\mathbb{Z}^\times = \{1,-1\}$
+        \item $\mathbb{R}^\times = \mathbb{R}\setminus \{0\}$
+    \end{itemize}
+    \item for the ring of $n \times n$ matrices, $Mat(n; R)$ we have:
+    \[
+    Mat(n;R)^\times = GL(n;R)
+    \]
+    the general linear group, composed of the invertible $n \times n$ matrices
+    \item $\mathbb{Z}_8^\times = \{\bar{1}, \bar{3}, \bar{5}, \bar{7}\}$ - this is known as the \textbf{Klein Four Group} - a group of four elements which are their own inverse
+\end{itemize}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Let $p$ be prime. We know that the group of units of the field $\F_p$, $\F_p^\times$, is an abelian group of order $p-1$ (that is, it has $p$ elements). Prove, like Gauss did at age 21, that $\F_p^\times$ is cyclic (that is, it has a group element which generates the group).}
+
+\end{questions}
+
+\section{Integral Domains}
+
+\subsection{Zero-Divisors}
+
+\begin{itemize}
+    \item \textbf{What is a zero-divisor (or a divisor of zero)?}
+    \begin{itemize}
+        \item a \textbf{non-zero} element in a ring, which when multiplied by another \textbf{non-zero} element, is 0:
+        \[
+        a,b \in R, \quad a,b \neq 0 \ \implies \ ab = 0 \ \vee \ ba = 0
+        \]
+    \end{itemize}
+    \item \textbf{Why are zero-divisors strange?}
+    \begin{itemize}
+        \item they challenge intuitive notions (i.e a product is only zero when at least one of its elements is 0)
+    \end{itemize}
+    \item \textbf{Why are zero divisors interesting in $Mat(n;R)$?}
+    \begin{itemize}
+        \item consider $A \in Mat(n;R)$
+        \item if $rank(A) = n$, then $A$ is invertible, so $A$ is a unit
+        \item if $rank(A) < n$, by the rank-nullity theorem, $nullity(A) > 0$
+        \begin{itemize}
+            \item what this means is that $\exists \vec{v}$ such that:
+            \[
+            A\vec{v} = \vec{0}
+            \]
+            \item now, define a matrix $B$, with $n$ column vectors given by $\vec{v}$:
+            \[
+            B = \begin{pmatrix}
+            \vec{v} & \vec{v} & \ldots & \vec{v}
+            \end{pmatrix}
+            \]
+            \item then:
+            \[
+            AB = \begin{pmatrix}
+            A\vec{v} & A\vec{v} & \ldots & A\vec{v}
+            \end{pmatrix}
+            \]
+            so $AB$ is the zero matrix
+            \item this then means that $A$ is a \textbf{zero-divisor}
+        \end{itemize}
+        \item what this shows is that all the elements in $Mat(n;R)$ are either \textbf{units} or \textbf{zero-divisors}
+        \item this is truly strange: 
+        \begin{itemize}
+            \item in $\mathbb{Z}$, there are no zero-divisors, and only 2 units ($\pm 1$)
+            \item in fields, every non-zero element is a unit, and there are no zero-divisors
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+            \item $\mathbb{Z}_m$: for example, in $\mathbb{Z}_6$, $\bar{2}, \bar{3}$ are zero-divisors)
+            \item $Mat(n;R)$: for example,
+        \[
+        \begin{pmatrix}
+        -1 & 1 \\
+        -1 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+        1 & 1 \\
+        1 & 1
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        0 & 0 \\
+        0 & 0
+        \end{pmatrix}
+        \]
+        \end{itemize}
+
+\subsection{Defining Integral Domains}
+
+\begin{itemize}
+    \item \textbf{What is an integral domain?}
+    \begin{itemize}
+        \item an \textbf{integral domain} is a \textbf{non-zero commutative ring} which contains no \textbf{zero-divisors}
+        \item \textbf{integral domains} capture our intuitive notions of how \textbf{rings} ``should" behave (that is, rings which behave like integers)
+    \end{itemize}
+    \item \textbf{What intuitive properties do integral domains have?}
+    \begin{itemize}
+        \item since there are no zero-divisors, then:
+        \begin{enumerate}
+            \item $ab = 0 \ \implies \ a = 0 || b = 0$
+            \item $a, b \neq 0 \ \implies \ ab \neq 0$
+        \end{enumerate}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item $\mathbb{Z}$ is an integral domain
+    \item $\mathbb{R}, \mathbb{C}, \mathbb{Q}$ are integral domains
+    \item any field is an integral domain, since every element is a unit, so they all have inverses
+    \begin{itemize}
+        \item if $\exists a \in F$ then $\exists a^{-1}$
+        \item if $\exists b \in F \ : \ ab = 0$ then:
+        \[
+        (a^{-1}a)b = b
+        \]
+        but
+        \[
+        a^{-1}(ab) = 0
+        \]
+        \item hence, $b$ must be 0 (since otherwise associativity wouldn't be satisfied), so $a$ can't be a zero-divisor
+    \end{itemize}
+    \item as discussed above, $\mathbb{Z}_6$ and $Mat(2;R)$ are \textbf{not} integral domains
+    \item $\mathbb{Z}_6$ is also not an integral domain, since $\bar{3} \cdot \bar{8} = \bar{0}$
+\end{itemize}
+
+\subsection{Proposition: Cancellation Law for Integral Domains}
+
+\textbox{
+Let $R$ be an integral domain with $a,b,c \in R$. Then:
+\[
+ab = ac \wedge a \neq 0 \ \implies \ b = c
+\]
+This is intuitive if we assume that every element in $R$ has an inverse; however, the cancellation law holds even when $a$ has no inverse in $R$!
+[Proposition 3.2.15]
+}
+
+\begin{proof}
+
+If $ab = ac$ then $a(b - c) = 0$ by the distributivity of a ring. By the properties of an integral domain, this is true if and only if:
+\begin{itemize}
+    \item $a = 0$
+    \item and/or $b = c$
+\end{itemize}
+Hence, if $a \neq 0$, we must have that $b = c$.
+
+\end{proof}
+
+If $R$ isn't an integral domain, this won't hold, since, for example, in $\mathbb{Z}_6$:
+\[
+\bar{3} \cdot \bar{1} = \bar{3}
+\]
+\[
+\bar{3} \cdot \bar{5} = \overline{15} = \bar{9} = \bar{3}
+\]
+
+\subsection{Proposition: Integers Modulo $m$ as Integral Domains}
+
+Recall, a \textbf{field} is a non-zero \textbf{commutative} ring in which \textbf{multiplicative inverses} are defined for every element, so in particular \textbf{fields} contain no \textbf{zero-divisors}.
+
+\bigskip
+
+\textbf{Integral domains} are non-zero \textbf{commutative} rings with no \textbf{zero-divisors}
+
+\bigskip
+
+Hence, every \textbf{field} is an \textbf{integral domain}. 
+
+\bigskip
+
+We saw in \eqref{p3111} that $\mathbb{Z}_m$ is a field if and only if $m$ is prime. This is a special case of the following proposition:
+
+\textbox{
+$\mathbb{Z}_m$ is an integral domain \textbf{if and only if} $m$ is prime.
+[Proposition 3.2.16]
+}
+
+\begin{proof}
+
+Let $m$ be prime. $\mathbb{Z}_m$ is a commutative ring, since $\mathbb{Z}$ is commutative. 
+
+Assume that $\bar{k} \in \mathbb{Z}_m$ is a zero-divisor. By definition:
+\begin{itemize}
+    \item $\bar{k} \neq 0$
+    \item $\exists \bar{l} \neq \bar{0} \in \mathbb{Z}_m \ : \ \bar{k}\bar{l} = \bar{0}$
+\end{itemize}
+In terms of congruences, we have:
+\[
+kl \equiv 0 \ (mod \ m)
+\]
+Hence, $m$ divides $kl$. Since $m$ is prime, $m$ must divide either $k$ or $l$ (or both). This then means that:
+\[
+k \equiv 0 \ (mod \ m) \ \implies \ \bar{k} = \bar{0}
+\]
+or
+\[
+l \equiv 0 \ (mod \ m) \ \implies \ \bar{l} = \bar{0}
+\]
+However, this contradicts the fact that $\bar{k}, \bar{l} \neq 0$, so no zero-divisors must exist in $\mathbb{Z}_m$, so it must be an integral domain.
+
+\bigskip
+
+Alternatively, assume that $m$ is not prime. Then, we can write:
+\[
+m = ab, \qquad 1 < a,b < m
+\]
+In particular, $a,b$ are \textbf{not} divisible by $m$, so:
+\[
+\bar{a}, \bar{b} \neq \bar{0}
+\]
+However, clearly:
+\[
+\bar{a}\bar{b} = \bar{0}
+\]
+So $\bar{a}, \bar{b}$ must be zero divisors. Hence, if $m$ is prime, $\mathbb{Z}_m$ can't be an integral domain.
+
+\end{proof}
+
+\subsection{Theorem: Integral Domains as Fields}
+
+According to Iain (and I completely agree), this is one of the coolest, sleekest theorems in this topic.
+
+\textbox{Every \textbf{finite} integral domain is a \textbf{field}. [Theorem 3.2.17}
+
+Notice, we saw before that every field is an integral domain. This tells us that every (finite) integral domain must be a field!
+
+\begin{proof}
+
+Let $R$ be a finite integral domain. For $R$ to be a field, we must show that every element $a \in \mathbb{R}$ has a multiplicative inverse (since $R$ by definition is already commutative).
+
+For the first condition, we need to show that if $a \in R$ i non-zero, then $\exists b \in R$ such that:
+\[
+ab = 1
+\]
+To do this, lets define a mapping:
+\[
+\lambda_a : R \to R
+\]
+where:
+\[
+\lambda_a(b) = ab
+\]
+If we can show that $\lambda_a$ maps to 1, then since $a$ was an arbitrary element of $R$, every element of $R$ will have an inverse.
+
+The key insight here is that $R$ is finite. Moreover, $\lambda_a$ is a mapping between sets of equal cardinality. Hence, if $\lambda_a$ is shown to be injective, it must mean that every element in $R$ is mapped to a unique element in $R$, so in particular, the mapping will be surjective. In other words, we will have found $b \in R \ : \ \lambda_a(b) = 1$, as required.
+
+\bigskip
+
+To see that $\lambda_a$ is injective, notice that:
+\[
+\lambda_a(b_1) = \lambda_a(b_2) \ \implies \ ab_1 = ab_2
+\]
+Since $R$ is an integral domain, by the \textbf{Cancellation Law}, it must be the case that:
+\[
+b_1 = b_2
+\]
+Hence, $\lambda_a$ is injective, so it is surjective, and so, we can find $b \in R$ such that $ab = 1$. Moreover, by commutativity of $R$, we also have that $ba = 1$, so clearly, every $a \in R$ has an inverse in $R$.
+
+\end{proof}
+
+\section{Polynomials}
+
+\subsection{Defining Polynomials}
+
+\begin{itemize}
+    \item \textbf{What is a polynomial?}
+    \begin{itemize}
+        \item we define polynomials over a \textbf{ring} $R$ as expressions like:
+        \[
+        P = a_0 + a_1X + a_2X^2 + \ldots + a_nX^n
+        \]
+        where $n \in \mathbb{N}$ and $a_i \in R$
+        \item the set of all such polynomials is denoted by:
+        \[
+        R[X]
+        \]
+    \end{itemize}
+    \item \textbf{What is the degree of a polynomial?}
+    \begin{itemize}
+        \item the largest power of $X$ appearing in $P$
+        \item denoted $deg(P)$
+    \end{itemize}
+    \item \textbf{What is the leading coefficient of a polynomial?}
+    \begin{itemize}
+        \item the coefficient $a_n$ of $X^n$, where $n = deg(P)$
+    \end{itemize}
+    \item \textbf{When is a polynomial monic?}
+    \begin{itemize}
+        \item when the leading coefficient is 1
+    \end{itemize}
+    \item \textbf{Are polynomials rings?}
+    \begin{itemize}
+        \item define addition as:
+        \[
+        (a_0 + a_1X + a_2X^2 + \ldots + a_nX^n) + (b_0 + b_1X + b_2X^2 + \ldots + b_nX^m) = (a_0 + b_0) + (a_1 + b_1)X + \ldots 
+        \]
+        and multiplication as:
+        \[
+        (a_0 + a_1X + a_2X^2 + \ldots + a_nX^n) \cdot (b_0 + b_1X + b_2X^2 + \ldots + b_nX^m) = a_0b_0 + (a_1b_0 + a_0b_1)X + \ldots + a_nb_mX^{n+m}
+        \]
+        \item then $R[X]$ defines the \textbf{ring of polynomials over $R$}
+        \item the zero and identity of $R[X]$ are the zero and identity of $R$
+    \end{itemize}
+    \item \textbf{What is a constant polynomial?}
+    \begin{itemize}
+        \item the polynomial which are $R$ (in other words, polynomials with degree 0)
+    \end{itemize}
+    \item \textbf{When is $R[X]$ commutative?}
+    \begin{itemize}
+        \item by the definition of polynomial multiplication, $R[X]$ is commutative precisely when $R$ is commutative
+    \end{itemize}
+    \item \textbf{Are polynomials functions?}
+    \begin{itemize}
+        \item \textbf{no} - it is important that we think of them as rings as of now
+        \item later on we will see that each polynomial can be associated with a function
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item we can define $X^3 - X \in \mathbb{Z}_3[X]$. Notice, this polynomial is equivalent to $4X^3 - 7X$ in $\mathbb{Z}_3[X]$
+    \item the coefficients of polynomials can also be matrices:
+    \[
+    (AX)(BX) = (AB)X^2
+    \]
+    where $A,B \in Mat(2;\mathbb{Q})$
+\end{itemize}
+
+\subsection{Lemma: Inheriting Properties from Rings}
+
+\textbox{
+Let $R$ be a ring, and let $R[X]$ be a ring of polynomials over $R$. Then:
+\begin{enumerate}
+    \item if $R$ has no \textbf{zero-divisors} then $R[X]$ has no \textbf{zero-divisors}, and:
+    \[
+    deg(PQ) = deg(P) + deg(Q), \qquad P,Q \neq 0 \in R[X]
+    \]
+    \item if $R$ is an \textbf{integral domain}, so is $R[X]$
+\end{enumerate}
+[Lemma 3.3.3]
+}
+
+\sep 
+
+For the first part, we provide 2 illustrative examples. Consider the polynomials:
+\[
+P = 2X + 4 \qquad \qquad Q = 3X + 1
+\]
+In $\mathbb{R}[X]$, we get that:
+\[
+PQ = 6X^2 + 14X + 4
+\]
+In $\mathbb{Z}_6[X]$, we get that:
+\[
+PQ = \bar{6}X^2 + \bar{14}X + \bar{4} = \bar{2}X + \bar{4}
+\]
+As we can see, in the first example, $\mathbb{R}$ has no zero-divisors and:
+\[
+deg(PQ) = 2 = deg(P) + deg(Q)
+\]
+However, in the second example, $\mathbb{Z}_6$ has zero-divisors (namely $\bar{2}, \bar{3}$ and:
+\[
+deg(PQ) = 1 \neq deg(P) + deg(Q)
+\]
+
+\sep
+
+\begin{proof}
+
+For the first claim, and as illustrated by the example above, if $R$ has no zero-divisors, then the leading coefficient of $PQ$ is the product of the leading coefficients of $P$ and $Q$. From this it is easy to see that we will indeed have $deg(PQ) = deg(P) + deg(Q)$. Moreover, it is clear that $PQ \neq 0$ if and only if $P \neq 0 \wedge Q \neq 0$ (since no possible multiplication of coefficients can be 0).
+
+\bigskip
+
+For the second claim, we note that if $R$ is commutative, $R[X]$ is commutative. From the claim above, if $R$ has no zero-divisors, $R[X]$ doesn't either. An integral domain is a commutative ring with no zero-divisors, so if $R$ is an integral domain, so is $R[X]$.
+
+\end{proof}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Show that if $R$ is an integral domain, then:
+\[
+R[X]^\times = R^\times
+\]
+Show by counterexample, that this is not the case if $R$ is \textit{not} an integral domain.}
+
+\end{questions}
+
+\subsection{Theorem: Division and Remainder of Polynomials}
+
+The following theorem describes how a polynomial can be decomposed into smaller polynomials. It also gives us an understanding of how \textbf{polynomial division} can be carried out.
+
+\textbox{
+Let $R$ be an integral domain, and let $P,Q \in R[X]$
+where $Q$ is monic (so its leading coefficient is 1).
+\\
+Then, there exists unique $A,B \in R[X]$ such that:
+\[
+P = AQ + B
+\]
+and:
+\[
+deg(B) < deg(Q)
+\]
+or:
+\[
+B = 0
+\]
+[Theorem 3.34]}
+
+\begin{proof}
+
+Pick $A$ to minimise $deg(P - AQ)$. This is always possible, since the degree of any polynomial is always non-negative.
+
+\bigskip
+
+Assume that after this:
+\[
+deg(P - AQ) \geq deg(Q)
+\]
+That is, we have:
+\[
+P - AQ = \sum_{i = 0}^r a_iX^i
+\]
+and $r \geq d = deg(Q)$.
+
+\bigskip
+
+Now consider:
+\[
+P - (A + a_rX^{r - d})Q = P - AQ - a_rX^r + \ldots
+\]
+As we can see $deg(P - (A + a_rX^{r - d})Q) = deg(P - AQ) - 1$. This contradicts the fact that our choice of $A$ lead to $deg(P - AQ) \geq deg(Q)$, meaning that we must have $deg(P - AQ) < deg(Q)$.
+
+\bigskip
+
+Thus, we have found $A$ and $B = P - AQ$, with $deg(B) < deg(Q)$ such that:
+\[
+B = P - AQ \ \implies \ p = AQ + B
+\]
+as required.
+
+\bigskip
+
+We now show that these choices are indeed unique. Suppose that $A', B'$ also satisfy the conclusions (so $P = A'Q + B'$ and $deg(B') < deg(Q)$. Then:
+\[
+0 = P - P = (A - A')Q + (B - B')
+\]
+Notice:
+\begin{itemize}
+    \item $(A - A')Q$ will have degree greater than (or equal to) $Q$
+    \item $B - B'$ has degree less than $Q$
+\end{itemize}
+But the polynomial should have degree 0. This is only possible if $A - A' = 0 \ \implies \ A = A'$ (since $B$ could have degree 0).
+
+\bigskip
+
+But then notice that:
+\[
+B = P - AQ = P - A'Q = B'
+\]
+Thus, the choice of $A,B$ is unique.
+
+\end{proof}
+
+\subsection{Examples}
+
+We illustrate polynomial long division given:
+\[
+P = X^5 - 7X^4 - 16X^3 - 17X + 2
+\]
+\[
+Q = X^3 - 5X + 4
+\]
+The following was produced using the package \texttt{polynom}. The documentation can be found \href{http://cs.brown.edu/about/system/managed/latex/doc/polynom.pdf}{here}.
+
+\bigskip
+
+Applying the division:
+
+\begin{figure}[H]
+    \centering
+    \polylongdiv{X^5 - 7X^4 - 16X^3 - 17X + 2}{X^3 - 5X + 4}
+\end{figure}
+
+
+
+In other words, we have:
+\[
+A = X^2 - 7X - 11
+\]
+\[
+B = -39X^2 - 44X + 46
+\]
+As we can see, $deg(B) = 2 < 3 = deg(Q)$.
+
+\subsection{Evaluating Polynomials}
+
+\begin{itemize}
+    \item \textbf{Why do we think of polynomials as functions?}
+    \begin{itemize}
+        \item because there exists a mapping:
+        \[
+        R[X] \to Maps(R,R)
+        \]
+        \item this mapping is given by \textbf{evaluating} a polynomial $P \in R[X]$ at $\lambda \in R$ to produce:
+        \[
+        P(\lambda)
+        \]
+        \item $P(\lambda)$ is obtained by replacing all $X$ in $P$ by $\lambda$
+    \end{itemize}
+    \item \textbf{What is a root of a polynomial?}
+    \begin{itemize}
+        \item $\lambda \in R$ such that $P(\lambda) = 0$
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item recall our polynomial $P = X^3 - X \in \mathbb{Z}_3[X]$. Then:
+    \[
+    P(\bar{0}) = \bar{0}^3 - \bar{0} = \bar{0}
+    \]
+    \[
+    P(\bar{1}) = \bar{1}^3 - \bar{1} = \bar{0}
+    \]
+    \[
+    P(\bar{2}) = \bar{2}^3 - \bar{2} = \bar{2} - \bar{2} = \bar{0}
+    \]
+    In other words, $P$ can be mapped to the zero function
+    \item the polynomial $P = X^3 + 1 \in \mathbb{C}[X]$ has a roots:
+    \[
+    \lambda = -1, e^{i\frac{\pi}{3}}, e^{-i\frac{\pi}{3}}
+    \]
+\end{itemize}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Show that the mapping $R[X] \to Maps(R,R)$ as described above is not injective when $R = \mathbb{Z}_p$, with $p$ prime. Hint: Fermat's Little Theorem:
+\[
+a^p \equiv a \ (mod \ p)
+\]
+If $a$ is not divisible by $p$ this becomes:
+\[
+a^{p-1} \equiv 1 \ (mod \ p)
+\]}
+
+\end{questions}
+
+\subsection{Proposition: Roots of Polynomials}
+
+\textbox{Let $R$ be a \textbf{commutative ring}, with $\lambda ºin R$ and $P(X) \in R[X]$. 
+\\
+$\lambda$ is a \textbf{root} of $P(X)$ \textbf{if and only if} $(X - \lambda)$ divides $P(X)$.}
+
+\begin{proof}
+
+If $X - \lambda$ divides $P$, we can write:
+\[
+P = (X - \lambda)Q(X)
+\]
+so:
+\[
+P(\lambda) = 0 \cdot Q(\lambda) = 0
+\]
+so $\lambda$ is a root.
+
+\bigskip
+
+Alternatively, if $\lambda$ is a root, we know that:
+\[
+P(X) = \sum_{k = 0}^n a_kX^k \in RˆX], \qquad P(\lambda) = 0
+\]
+We can factorise a difference of 2 powers (\href{https://proofwiki.org/wiki/Difference_of_Two_Powers}{see here for the proof}) via:
+\[
+X^k - \lambda^k
+=
+\begin{cases}
+(X - \lambda)\sum_{j = 0}^{k - 1} \lambda^j X^{k - j -1}, \qquad k \geq 1 \\
+0, \qquad k = 0
+\end{cases}
+\]
+Then,
+\begin{align*}
+    P(X) &= P(X) - P(\lambda) \\
+         &= \sum_{k = 0}^n a_kX^k - \sum_{k = 0}^n a_k\lambda ^k \\
+         &= \sum_{k = 0}^n a_k(X^k - \lambda ^k) \\
+         &= \sum_{k = 0}^n a_k((X - \lambda)\sum_{j = 0}^{k - 1} \lambda^j X^{k - j -1}) \\
+         &= (X - \lambda)\sum_{k = 0}^n a_k\left(\sum_{j = 0}^{k - 1} \lambda^j X^{k - j -1}\right) \\
+\end{align*}
+Thus, $(X - \lambda)$ divides $P(X)$.
+
+\end{proof}
+
+\subsection{Theorem: Number of Roots of Polynomials}
+
+A consequence of the above theorem is the following:
+
+\textbox{Let $R$ be an \textbf{integral domain}. A non-zero polynomial:
+\[
+P \in R[X] \setminus \{0\}
+\]
+has at most $deg(P)$ roots in $R$. [Theorem 3.3.10]}
+
+\begin{proof}
+
+Consider $m$ distinct roots $\lambda_1, \ldots, \lambda_m$ of a polynomial $P$. We know that $X - \lambda_1$ must divide $P$, such that:
+\[
+P = (X - \lambda_1)A
+\]
+where $A \in R[X], deg(A) = deg(P) - 1$.
+
+\bigskip
+
+This equality holds for $\lambda_i, i \in [2,m]$:
+\[
+P(\lambda_i) = (\lambda_i - \lambda_1)A(\lambda_i)
+\]
+Since $\lambda_i$ is a root of $P$, we must have:
+\[
+(\lambda_i - \lambda_1)A(\lambda_i) = 0
+\]
+The roots are distinct, so $(\lambda_i - \lambda_1) \neq 0$. Hence, it follows that $\lambda_2, \ldots, \lambda_m$ must be $m - 1$ distinct roots of $A$. Applying induction, the theorem is proven.
+
+\end{proof}
+
+\subsection{Theorem: Fundamental Theorem of Algebra}
+
+\begin{itemize}
+    \item \textbf{What is an algebraically closed field?}
+    \begin{itemize}
+        \item consider a field $F$ and a \textbf{non-constant} polynomial:
+        \[
+        P \in F[X] \setminus F
+        \]
+        \item if $P$ has a root in $F$, then $F$ is \textbf{algebraically closed}
+    \end{itemize}
+\end{itemize}
+
+\sep
+
+\textbox{The field of complex numbers $\mathbb{C}$ is algebraically closed. [Theorem 3.3.13]}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item $\mathbb{R}$ is \textbf{not} algebraically closed, since $X^2 + 1$ has no root in $\mathbb{R}$
+    \item $\mathbb{Z}_2$ is \textbf{not} algebraically closed, since $X^2 + X + 1$ has no root in the binary numbers
+    \item any finite field is not algebraically closed. If $F = \{a_1, \ldots, a_n\}$ then the polynomial:
+    \[
+    1 + \prod_{i = 1}^n (X - a_i)
+    \]
+    has no roots in $F$
+\end{itemize}
+
+\subsection{Theorem: Decomposing a Polynomial Into Linear Factors}
+
+\textbox{If $F$ is an \textbf{algebraically closed} field, then every \textbf{non-zero} polynomial:
+\[
+P \in F[X] \ \{0\}
+\]
+\textbf{decomposes into linear factors}:
+\[
+P = c(X - \lambda_1)(X - \lambda_2) \ldots (X - \lambda_n)
+\]
+where $c \in F^\times, n \geq 0, \lambda_i \in F$. This decomposition is \textit{unique}. [Theorem 3.3.14]}
+
+\begin{proof}
+
+If $P$ is constant, nothing to do.
+
+\bigskip
+
+$F$ is algebraically closed, so $P$ has a root $\lambda \in F$, so in particular we can write:
+\[
+P = (X - \lambda)A
+\]
+We then apply an inductive argument on $A$.
+
+\end{proof}
+
+\section{Ring Homomorphisms}
+
+\subsection{Defining Ring Homomorphisms}
+
+\begin{itemize}
+    \item \textbf{What is a ring homomorphism?}
+    \begin{itemize}
+        \item a mapping between rings $R,S$ satisfying:
+        \[
+        f(x + y) = f(x) + f(y)
+        \]
+        \[
+        f(xy) = f(x)f(y)
+        \]
+    \end{itemize}
+    \item \textbf{Do ring homormophisms preserve the identity?}
+    \begin{itemize}
+        \item in general, if $f : R \to S$ is a ring homomorphism, it is not the case that:
+        \[
+        f(1_R) = 1_S
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item the \textbf{inclusion} (i.e a mapping $f(x) = x$ where $x \in A$ and $f(x) \in B$ and $A \subseteq B$) given by:
+    \[
+    \mathbb{Z} \to \mathbb{Q}
+    \]
+    is a ring homomorphism
+    \item the mapping:
+    \[
+    f : \mathbb{Z} \to \mathbb{Z}_m
+    \]
+    defined by:
+    \[
+    f(a) = \bar{a}
+    \]
+    is a ring homomorphism
+    \item the mapping:
+    \[
+    f : \mathbb{R} \to Mat(2;\mathbb{R})
+    \]
+    defined by:
+    \[
+    f(x) = \begin{pmatrix}
+    x & 0 \\
+    0 & 0
+    \end{pmatrix}
+    \]
+    is a ring homomorphism (just check the properties). This is a prime example of how $f(1_R) \neq 1_S$.
+    \item the mapping:
+    \[
+    f : \mathbb{R} \to Mat(2;\mathbb{R})
+    \]
+    defined by:
+    \[
+    f(x) = \begin{pmatrix}
+    0 & x \\
+    0 & 0
+    \end{pmatrix}
+    \]
+    is \textbf{not} a ring homomorphism (just check the properties - it satisfies additive linearity, but not multiplicative)
+    \item the mapping:
+    \[
+    f : \mathbb{R} \to Mat(2;\mathbb{R})
+    \]
+    defined by:
+    \[
+    f(x) = \begin{pmatrix}
+    x^2 & 0 \\
+    0 & 0
+    \end{pmatrix}
+    \]
+    is \textbf{not} a ring homomorphism (it doesn't satisfy additive linearity)
+\end{itemize}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Let $R$ be a commutative ring, and $\lambda \in R$. The mapping $f : R[X] \to R$ defined by $f(P) = P(\lambda), \quad \forall P \in R[X]$ is a ring homomorphism.}
+
+\question \textbf{Let $R$ be a commutative ring, $n$ a positive integer, and $M \in Mat(n; R)$. The mapping $f : R[X] \to Mat(n;R)$ defined by:
+\[
+f\left(\sum_{i = 0}^t a_iX^i\right) = \sum_{i = 0}^t a_iM^i
+\]
+is a ring homomorphism.}
+
+\end{questions}
+
+\subsection{Lemma: Properties of Ring Homomorphisms}
+
+The following are properties that follow from the fact that a ring is a group under addition, so any property of group homomorphisms must apply to ring homomorphisms under addition:
+
+\textbox{
+\begin{enumerate}
+    \item $f(0_R) = 0_S$ (preservation of additive identity)
+    \item $f(-x) = -f(x)$ (preservation of additive inverse)
+    \item $f(x - y) = f(x) - f(y)$
+    \item $f(mx) = mf(x)$
+    \item $f(x^n) = f(x \cdot x \cdot \ldots \cdot x) = (f(x))^n$
+\end{enumerate}
+[Lemma 3.4.5 \& Remark 3.4.6]}
+
+\section{Ideals and Kernels}
+
+\textbf{Ideals} are the generalisation of \textbf{kernels} for rings. To develop an idea for \textbf{ideals}, we first note some properties of kernels for \textbf{ring homomorphisms}.
+
+\textbox{
+Consider the ring homomorphism:
+\[
+f : R \to S
+\]
+Then, the \textbf{kernel} of the homomorphism is:
+\[
+ker(f) = \{r \ | \ r \in R \ : \ f(r) = 0_S\}
+\]
+Notice that:
+\begin{enumerate}
+    \item the \textbf{kernel} is \textbf{non-empty} since:
+    \[
+    f(0_R) = 0_S
+    \]
+    \item if $x,y \in ker(f)$:
+    \[
+    f(x - y) = f(x) - f(y) = 0_S - 0_S = 0_S
+    \]
+    so:
+    \[
+    x - y \in ker(f)
+    \]
+    \item the \textbf{kernel} is \textbf{closed under multiplication}:
+    \[
+    f(xy) = f(x)f(y) = 0_S \cdot 0_S = 0_S
+    \]
+    \item more than that, if $x \in ker(f)$ and $r \in R$:
+    \[
+    f(xr) = f(x)f(r) = 0_S \cdot f(r) = 0_S
+    \]
+    \[
+    f(rx) = f(r)f(x) = f(r) \cdot 0_S  = 0_S
+    \]
+    hence, $xr, rx \in ker(f)$
+\end{enumerate}
+All these properties are used to define a special subset of a ring, called an \textbf{ideal}. Kernels are just a special type of ideal.
+}
+
+\subsection{Defining Ideals}
+
+\begin{itemize}
+    \item \textbf{What is an ideal?}
+    \begin{itemize}
+        \item a subset $I$ of a ring $R$
+        \item satisfies:
+        \begin{enumerate}
+            \item $I \neq \emptyset$
+            \item $I$ is closed under substraction
+            \item $\forall i \in I, \forall r \in R, ri, ir \in I$
+        \end{enumerate}
+        \item an \textbf{ideal} is denoted with:
+        \[
+        I \trianglelefteq R
+        \]
+    \end{itemize}
+    
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item if $R$ is a ring, $\{0\}, R$ are ideals
+    \item $m\mathbb{Z}$ (set of multiples of $m$) is an ideal of $\mathbb{Z}$: $ma \in m\mathbb{Z}, b \in \mathbb{Z}$ then:
+    \[
+    b(ma) = m(ba)
+    \]
+    and commutativity of integers gives us $(ma)b = m(ba)$
+    \item 
+    \[
+    I = \left\{\begin{pmatrix}
+    0 & b \\
+    0 & d
+    \end{pmatrix}\right\} \subset Mat(2; \mathbb{R}
+    \]
+    is \textbf{not} an ideal, since it fails closure under multiplication by elements in $Mat(2; \mathbb{R}$.
+    \begin{itemize}
+        \item $ri \in I, \forall i \in I$:
+        \[
+        \begin{pmatrix}
+        k & l \\
+        m & n
+        \end{pmatrix}
+        \begin{pmatrix}
+        0 & b \\
+        0 & d
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        0 & kb + ld \\
+        0 & mk + nd
+        \end{pmatrix}
+        \in I
+        \]
+        \item however, $ir \not\in I$, since for example:
+        \[
+        \begin{pmatrix}
+        0 & 1 \\
+        0 & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+        0 & 0 \\
+        1 & 0
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        1 & 0 \\
+        0 & 0
+        \end{pmatrix}
+        \not\in I
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsection{Proposition: Generating Ideals}
+
+\textbox{
+Let $R$ be a \textbf{commutative ring}, and let $T \subseteq R$. Then:
+\[
+{}_R\langle T \rangle 
+\]
+is the \textbf{smallest} ideal of $R$ containing $T$.
+\\
+Here ${}_R\langle T \rangle $ is the \textbf{ideal of $R$ generated by $T$}, defined as:
+\[
+{}_R\langle T \rangle  = span(T) = \left\{\sum_{i = 1}^m r_it_i \ | \ r_i \in R, t_i \in T\right\}
+\]
+[Proposition 3.4.14]
+}
+
+\begin{proof}
+
+The first step is to show that ${}_R\langle T \rangle $ is an ideal:
+\begin{enumerate}
+    \item $0 \in {}_R\langle T \rangle$, so it is non-empty
+    \item if $t,t' \in {}_R\langle T \rangle$, then subtracting them is equivalent to doing componentwise subtraction, so the result will be in ${}_R\langle T \rangle$ too:
+    \[
+    \sum_{i = 1}^m r_it_i - \sum_{i = 1}^m r_i't_i = \sum_{i = 1}^m (r_i - r_i')t_i \in {}_R\langle T \rangle
+    \]
+    \item clearly, and using distributivity and commutativity:
+    \[
+    r\sum_{i = 1}^m r_it_i = \sum_{i = 1}^m (rr_i)t_i \in {}_R\langle T \rangle
+    \]
+    \[
+    \left(\sum_{i = 1}^m r_it_i\right)r = \sum_{i = 1}^m r_it_ir = \sum_{i = 1}^m (r_ir)t_i \in {}_R\langle T \rangle
+    \]
+\end{enumerate}
+
+The second step is showing that it is the smallest ideal containing $T$. This follows from the fact that any ideal $I$ containing $t_1, \ldots, t_m \in I$ must contain $\sum_{i = 1}^m r_it_i$, as otherwise closure (both under subtraction and over elements of $R$) would be violated.
+
+\end{proof}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item if $m \in \mathbb{Z}$, then ${}_\mathbb{Z}\langle m \rangle = m\mathbb{Z}$
+    \item if $P \in \mathbb{R}[X]$, then:
+    \[
+    {}_{\mathbb{R}[X]}\langle P \rangle = \{AP \ | \ A \in \mathbb{R}[X]\}
+    \]
+    Thinking about this, this is the set of all polynomials in $\mathbb{R}[X]$ which are \textbf{divisible} by $P$.
+\end{itemize}
+
+\subsection{The Principal Ideal}
+
+\begin{itemize}
+    \item \textbf{What is a principal ideal?}
+    \begin{itemize}
+        \item an \textbf{ideal} generated by a single element in the ring:
+        \[
+        I = \langle t \rangle, \qquad t \in R
+        \]
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item ${0}$ is a principal ideal, generated by $0_R$
+    \item $R$ is a principal ideal, generated by $1_R$
+\end{itemize}
+
+\subsection{The Kernel of a Ring homomorphism}
+
+\begin{itemize}
+    \item \textbf{What is the kernel of a ring homomorphism?}
+    \begin{itemize}
+        \item let $f : R \to S$ be a ring homomorphism
+        \item the \textbf{kernel} is an \textbf{ideal} of $R$ given by:
+        \[
+        ker(f) = \{r \ | \ r \in R, f(r) = 0_S\}
+        \]
+    \end{itemize}
+    \item for example, if $f : \mathbb{Z} \to \mathbb{Z}_m$ is the homomorphim $f(a) = \bar{a}$ then:
+    \[
+    ker(f) = \{a \ | \ a \in \mathbb{Z}, f(a) = \bar{0}\}
+    \]
+    which is nothing but the set of all $a$ divisble by $m$. In other words:
+    \[
+    ker(f) = m\mathbb{Z}
+    \]
+\end{itemize}
+
+\sep 
+
+We now introduce lemmas derived in a similar way to those derived for the kernel in groups/vector spaces.
+
+\sep 
+
+\subsection{Lemma: Injectivity and Kernels}
+
+\textbox{$f$ is injective \textbf{if and only if} $ker(f) = \{0\}$. [lemma 3.4.20}
+
+\subsection{Lemma: Intersection of Ideals}
+
+\textbox{The \textbf{interesection} of an collection of \textbf{ideals} of a ring $R$ is an \textbf{ideal} of $R$. [Lemma 3.4.21]}
+
+\subsection{Lemma: Addition of Ideals}
+
+\textbox{Let $I,J$ be \textbf{ideals} of a ring $R$. Then another \textbf{ideal} of $R$ is:
+\[
+I + J = \{a + b \ | \ a \in I, b \in J\}
+\]}
+
+\section{Subrings and Images}
+
+Similarly to how \textbf{kernels} are a special type of \textbf{ideal}, \textbf{images} of ring homomorphisms are a special type of \textbf{subring}. We outline properties of subrings by outlining properties of images.
+
+\textbox{
+Consider the ring homomorphism:
+\[
+f : R \to S
+\]
+Then, the \textbf{image} of the homomorphism is:
+\[
+im(f) = \{f(r) \ | \ r \in R \}
+\]
+Notice that:
+\begin{enumerate}
+    \item the \textbf{image} is \textbf{non-empty} since:
+    \[
+    f(0_R) = 0_S
+    \]
+    \item if $x,y \in im(f)$ then $\exists s,t \in R$ such that:
+    \[
+    f(s) = x \qquad f(t) = y
+    \]
+    So:
+    \[
+    x - y = f(x) - f(t) = f(s - t)
+    \]
+    Hence:
+    \[
+    x - y \in im(f)
+    \]
+    \item the \textbf{kernel} is \textbf{closed under multiplication}:
+    \[
+    xy = f(s)f(t) = f(st)
+    \]
+    so $xy \in im(f)$
+    \item unlike with ideals, the image isn't closed under multiplication by elements in $R$. If $s = f(x) \in im(f)$ and $t \in R$, we ask whether $f(x)t$ or $tf(x)$ are in $im(f)$. This is only the case if $\exists y \in R : f(y) = t$. This is exemplified by:
+    \[
+    f : \mathbb{R} \to Mat(2; \mathbb{R})
+    \]
+    \[
+    f(x) = \begin{pmatrix}
+    x & 0 \\
+    0 & 0
+    \end{pmatrix}
+    \]
+    Then:
+    \[
+    \begin{pmatrix}
+    1 & 0 \\
+    0 & 0
+    \end{pmatrix} \in im(f)
+    \qquad 
+    \begin{pmatrix}
+    0 & 1 \\
+    0 & 0
+    \end{pmatrix} \in R
+    \]
+    but:
+    \[
+    \begin{pmatrix}
+    1 & 0 \\
+    0 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+    0 & 1 \\
+    0 & 0
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    0 & 1 \\
+    0 & 0
+    \end{pmatrix}
+    \not\in im(f)
+    \]
+\end{enumerate}
+}
+
+\subsection{Defining Subrings}
+
+\begin{itemize}
+    \item \textbf{What is a subring?}
+    \begin{itemize}
+        \item a subset $R'$ of a ring $R$
+        \item $R'$ itself is a ring under addition and multiplication (as defined in $R$)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item ${0}, R$ are subrings of any ring $R$
+    \item $Mat(m;F)$ is a subring of $Mat(n;F)$, provided that $m \leq n$ and $F$ is a field. We can think of $Mat(m;F)$ as a zero-padded subset of $$Mat(n;F)$$
+\end{itemize}
+
+\subsection{Proposition: Test for a Subring}
+
+\textbox{A subset $R'$ of a ring $R$ is a subring \textbf{if and only if}
+\begin{enumerate}
+    \item $R'$ has a multiplicative identity
+    \item $R'$ is closed under substraction
+    \item $R'$ is closed under multiplication
+\end{enumerate}
+[proposition 3.4.26]}
+
+\sep 
+
+The above test thus shows that $im(f)$ is a \textbf{subring}.
+
+\sep 
+
+\begin{proof}
+
+If $R'$ is a subring, the properties hold by properties of a ring.
+
+\bigskip
+
+Assume the 3 conditions hold. The first 2, along the subgroup test tell us that $R'$ is a subgroup of $R$ under addition. Hence, $R'$ is abelian (since subgroups of abelian groups are abelian). Associativity also holds in $R'$, so alongside with (1) and (3), we see that $R'$ is a monoid under multiplication. Distributivity holds in $R'$, since it holds in $R$. Thus, $R'$ is a ring, and so, a subring.
+
+\end{proof}
+
+\subsubsection{Examples}
+
+\begin{itemize}
+    \item ideals are not typically subrings: they tend to fail property (1) (existence of multiplicative identity).
+    \begin{itemize}
+        \item as an example, $m\mathbb{Z}$ only has a multiplicative identity with $m = 0$ or $m = 1$
+    \end{itemize}
+    \item even if $R'$ is a subring, it can happen that:
+    \[
+    1_R \neq 1_{R'}
+    \]
+    This is shown in the example involving $Mat(m;F)$ and $Mat(n;F)$
+\end{itemize}
+
+\subsubsection{Exercises (TODO)}
+
+\begin{questions}
+
+\question \textbf{Show that:
+\[
+\mathbb{Z}[i] = \{a + ib \ | \ a,b \in \mathbb{Z}\}
+\]
+is a subring of $\mathbb{C}$. This subring is known as the \textit{Gaussian Integers}.}
+
+\end{questions}
+
+\subsection{Proposition: Properties of Subrings}
+
+\textbox{
+Let $R,S$ be rings, with:
+\[
+f: R \to S
+\]
+a \textbf{ring homomorphism}. Then:
+\begin{enumerate}
+    \item if $R'$ is a subring of $R$, $f(R')$ is a subring of $S$
+    \item if
+    \begin{itemize}
+        \item $f(1_R) = f(1_S)$
+        \item $x$ is a unit in $R$
+    \end{itemize} 
+    then:
+    \begin{itemize}
+        \item $f(x)$ is a unit in $S$
+        \item $(f(x))^{-1} = f(x^{-1})$
+        \item $f$ is restricted to a group homomorphism:
+        \[
+        f : R^\times \to S^\times
+        \]
+    \end{itemize}
+\end{enumerate}
+[Proposition 3.4.28]
+}
+
+\begin{proof}
+
+The first part follows by using the properties of a ring homomorphism, alongside the test for a subring.
+
+\bigskip
+
+For the second part, if $x \in R^\times$, by definition $x$ is a unit, so $x^{-1}$ exists. Hence:
+\[
+f(x)f(x^{-1}) = f(1_R) = 1_S
+\]
+Similarly,
+\[
+f(x^{-1})f(x) = f(1_R) = 1_S
+\]
+In other words, $f(x)$ must be a unit, with inverse $f(x^{-1})$, and so, $f(x) \in S^\times$
+
+\end{proof}
+
+\subsection{Remark: Intersection of Subrings}
+
+\textbox{Unlike with ideals, the \textbf{intersection} of \textbf{subrings} doesn't result in a \textbf{subring}. [Remark 3.4.29]}
+
+\begin{proof}
+
+We can show by counterexample. Let:
+\[
+R' = \left\{ \begin{pmatrix}
+a & b & 0 \\
+0 & a & 0 \\
+0 & 0 & 0
+\end{pmatrix} \right\}
+\]
+\[
+R' = \left\{ \begin{pmatrix}
+c & d & d \\
+0 & c & f \\
+0 & 0 & c
+\end{pmatrix} \right\}
+\]
+with $a,b,c,d,e,f \in \mathbb{Q}$. Clearly, $R',R''$ are subrings of $Mat(3; \mathbb{Q})$, but their intersection can't be a subring, since it doesn't contain the identity.
+
+\end{proof}
+
+
+\end{document}
