@@ -25,7 +25,7 @@ These are my notes for some of my University courses. Currently include:
     - [Chapter 8: Introduction to Sturm Liouville Theory](https://alv31415.github.io/notes/HDEQ/W8-SLT.pdf)
     - [Chapter 9: The Laplace Transform (Incomplete)](https://alv31415.github.io/notes/HDEQ/W9-Laplace.pdf)
 - [Foundations of Natural Language Processing (Y3, SEM2)](https://github.com/alv31415/notes/tree/master/FNLP)
-    - [Chapter 1: Intro to NLP, Ambiguity and Working with Corpora](https://github.com/alv31415/notes/blob/master/FNLP/W1-AmbiguityCorpora.pdf)
+    - [Chapter 1: Intro to NLP, Ambiguity and Working with Corpora](https://github.com/alv31415/notes/FNLP/W1-AmbiguityCorpora.pdf)
     - [Chapter 2: N-Gram Models and Smoothing Techniques](https://github.com/alv31415/notes/blob/master/FNLP/W2-NGramSmooth.pdf)
     - [Chapter 3: Further Smoothing, Noisy Channel Model and Naive Bayes for Text Classification](https://github.com/alv31415/notes/blob/master/FNLP/W3-ML4NLP.pdf)
     - [Chapter 4: Logistic Regression for Text Classification, Morphological Parsing and POS Tagging](https://github.com/alv31415/notes/blob/master/FNLP/W4-LRPOSTag.pdf)
