@@ -23,7 +23,7 @@ These are my notes for some of my University courses. Currently include:
     - [Chapter 6: Introduction to Fourier Series](https://alv31415.github.io/notes/HDEQ/W6-Fourier.pdf)
     - [Chapter 7: Solving PDEs](https://alv31415.github.io/notes/HDEQ/W7-PDEs.pdf)
     - [Chapter 8: Introduction to Sturm Liouville Theory](https://alv31415.github.io/notes/HDEQ/W8-SLT.pdf)
-    - [Chapter 9: The Laplace Transform (Incomplete)](https://alv31415.github.io/notes/HDEQ/W9-Laplace.pdf)+
+    - [Chapter 9: The Laplace Transform (Incomplete)](https://alv31415.github.io/notes/HDEQ/W9-Laplace.pdf)
 
 Currently in Development:
 
