@@ -24,6 +24,18 @@ These are my notes for some of my University courses. Currently include:
     - [Chapter 7: Solving PDEs](https://alv31415.github.io/notes/HDEQ/W7-PDEs.pdf)
     - [Chapter 8: Introduction to Sturm Liouville Theory](https://alv31415.github.io/notes/HDEQ/W8-SLT.pdf)
     - [Chapter 9: The Laplace Transform (Incomplete)](https://alv31415.github.io/notes/HDEQ/W9-Laplace.pdf)
+- [Honours Analysis (Y3, SEM1)](https://github.com/alv31415/notes/tree/master/Analysis)
+    - [Chapter 1: Real Numbers and Sequences](https://alv31415.github.io/notes/Analysis/W1-RealNumbers.pdf)
+    - [Chapter 2: Bolzano-Weierstrass Theorem, Cauchy Sequences and Series](https://alv31415.github.io/notes/Analysis/W2-BWnSeries.pdf.pdf)
+    - [Chapter 3: Continuity and Uniform Convergence of Sequences](https://alv31415.github.io/notes/Analysis/W3-ContUniConv.pdf)
+    - [Chapter 4: Uniform Convergence of Series](https://alv31415.github.io/notes/Analysis/W4-UniConvSeries.pdf)
+    - [Chapter 5: Power Series](https://alv31415.github.io/notes/Analysis/W5-PowerSeries.pdf)
+    - [Chapter 6: Lebesgue Integrable Functions](https://alv31415.github.io/notes/Analysis/W6-Lebesgue.pdf)
+    - [Chapter 7: Lebesgue Integrability of Series and the Riemann INtegral](https://alv31415.github.io/notes/Analysis/W6-Lebesgue2.pdf)
+    - [Chapter 8: Lebesgue Integrability Over Intervals and the Fundamental Theorem of Calculus](https://alv31415.github.io/notes/Analysis/W8-FTC.pdf)
+    - [Chapter 9: Fatoux Lemma and the Dominated Convergence THeorem](https://alv31415.github.io/notes/Analysis/W9-FatouxDCT.pdf)
+    - [Chapter 10: The Space of L^2 Functions](https://alv31415.github.io/notes/Analysis/W10-L2Space.pdf)
+    - [Chapter 11: Fourier Series](https://alv31415.github.io/notes/Analysis/W11-Fourier.pdf) 
 - [Foundations of Natural Language Processing (Y3, SEM2)](https://github.com/alv31415/notes/tree/master/FNLP)
     - [Chapter 1: Intro to NLP, Ambiguity and Working with Corpora](https://alv31415.github.io/notes/FNLP/W1-AmbiguityCorpora.pdf)
     - [Chapter 2: N-Gram Models and Smoothing Techniques](https://alv31415.github.io/notes/FNLP/W2-NGramSmooth.pdf)
@@ -36,5 +48,4 @@ These are my notes for some of my University courses. Currently include:
 
 Currently in Development:
 
-- Honours Analysis
 - Honours Algebra
