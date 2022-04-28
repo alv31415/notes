@@ -25,14 +25,14 @@ These are my notes for some of my University courses. Currently include:
     - [Chapter 8: Introduction to Sturm Liouville Theory](https://alv31415.github.io/notes/HDEQ/W8-SLT.pdf)
     - [Chapter 9: The Laplace Transform (Incomplete)](https://alv31415.github.io/notes/HDEQ/W9-Laplace.pdf)
 - [Foundations of Natural Language Processing (Y3, SEM2)](https://github.com/alv31415/notes/tree/master/FNLP)
-    - [Chapter 1: Intro to NLP, Ambiguity and Working with Corpora](https://github.com/alv31415/notes/blob/master/FNLP/W1-AmbiguityCorpora.pdf)
-    - [Chapter 2: N-Gram Models and Smoothing Techniques](https://github.com/alv31415/notes/blob/master/FNLP/W2-NGramSmooth.pdf)
-    - [Chapter 3: Further Smoothing, Noisy Channel Model and Naive Bayes for Text Classification](https://github.com/alv31415/notes/blob/master/FNLP/W3-ML4NLP.pdf)
-    - [Chapter 4: Logistic Regression for Text Classification, Morphological Parsing and POS Tagging](https://github.com/alv31415/notes/blob/master/FNLP/W4-LRPOSTag.pdf)
-    - [Chapter 5: Syntactic Parsing, CKY and PCFGs](https://github.com/alv31415/notes/blob/master/FNLP/W6-CYKParse.pdf)
-    - [Chapter 6: Evaluating Parsing, Improving Vanilla PCFGs, Dependency Parsing and Semantics from Syntax](https://github.com/alv31415/notes/blob/master/FNLP/W7-DepParse.pdf)
-    - [Chapter 7: Semantic Role Labelling, Word Sense Disambiguation and Distributional Semantics](https://github.com/alv31415/notes/blob/master/FNLP/W8-LexSemSRL.pdf)
-    - [Chapter 8: Word2Vec, ANNs for NLP and Discourse Coherence](https://github.com/alv31415/notes/blob/master/FNLP/W9-ANNs4NLP.pdf)
+    - [Chapter 1: Intro to NLP, Ambiguity and Working with Corpora](https://alv31415.github.io/notes/FNLP/W1-AmbiguityCorpora.pdf)
+    - [Chapter 2: N-Gram Models and Smoothing Techniques](https://alv31415.github.io/notes/FNLP/W2-NGramSmooth.pdf)
+    - [Chapter 3: Further Smoothing, Noisy Channel Model and Naive Bayes for Text Classification](https://alv31415.github.io/notes/FNLP/W3-ML4NLP.pdf)
+    - [Chapter 4: Logistic Regression for Text Classification, Morphological Parsing and POS Tagging](https://alv31415.github.io/notes/FNLP/W4-LRPOSTag.pdf)
+    - [Chapter 5: Syntactic Parsing, CKY and PCFGs](https://alv31415.github.io/notes/FNLP/W6-CYKParse.pdf)
+    - [Chapter 6: Evaluating Parsing, Improving Vanilla PCFGs, Dependency Parsing and Semantics from Syntax](https://alv31415.github.io/notes/FNLP/W7-DepParse.pdf)
+    - [Chapter 7: Semantic Role Labelling, Word Sense Disambiguation and Distributional Semantics](https://alv31415.github.io/notes/FNLP/W8-LexSemSRL.pdf)
+    - [Chapter 8: Word2Vec, ANNs for NLP and Discourse Coherence](https://alv31415.github.io/notes/FNLP/W9-ANNs4NLP.pdf)
 
 Currently in Development:
 
