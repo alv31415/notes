@@ -24,6 +24,8 @@ These are my notes for some of my University courses. Currently include:
     - [Chapter 7: Solving PDEs](https://alv31415.github.io/notes/HDEQ/W7-PDEs.pdf)
     - [Chapter 8: Introduction to Sturm Liouville Theory](https://alv31415.github.io/notes/HDEQ/W8-SLT.pdf)
     - [Chapter 9: The Laplace Transform (Incomplete)](https://alv31415.github.io/notes/HDEQ/W9-Laplace.pdf)
+- [Foundations of Natural Language Processing (Y3)](https://github.com/alv31415/notes/tree/master/FNLP)
+    - [Chapter 1: Intro to NLP, Ambiguity and Working with Corpora](https://github.com/alv31415/notes/blob/master/FNLP/W1-AmbiguityCorpora.pdf)
 
 Currently in Development:
 
