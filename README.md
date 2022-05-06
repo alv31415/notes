@@ -26,7 +26,7 @@ These are my notes for some of my University courses. Currently include:
     - [Chapter 9: The Laplace Transform (Incomplete)](https://alv31415.github.io/notes/HDEQ/W9-Laplace.pdf)
 - [Honours Analysis (Y3, SEM1)](https://github.com/alv31415/notes/tree/master/Analysis)
     - [Chapter 1: Real Numbers and Sequences](https://alv31415.github.io/notes/Analysis/W1-RealNumbers.pdf)
-    - [Chapter 2: Bolzano-Weierstrass Theorem, Cauchy Sequences and Series](https://alv31415.github.io/notes/Analysis/W2-BWnSeries.pdf.pdf)
+    - [Chapter 2: Bolzano-Weierstrass Theorem, Cauchy Sequences and Series](https://alv31415.github.io/notes/Analysis/W2-BWnSeries.pdf)
     - [Chapter 3: Continuity and Uniform Convergence of Sequences](https://alv31415.github.io/notes/Analysis/W3-ContUniConv.pdf)
     - [Chapter 4: Uniform Convergence of Series](https://alv31415.github.io/notes/Analysis/W4-UniConvSeries.pdf)
     - [Chapter 5: Power Series](https://alv31415.github.io/notes/Analysis/W5-PowerSeries.pdf)
