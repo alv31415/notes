@@ -45,7 +45,14 @@ These are my notes for some of my University courses. Currently include:
     - [Chapter 6: Evaluating Parsing, Improving Vanilla PCFGs, Dependency Parsing and Semantics from Syntax](https://alv31415.github.io/notes/FNLP/W7-DepParse.pdf)
     - [Chapter 7: Semantic Role Labelling, Word Sense Disambiguation and Distributional Semantics](https://alv31415.github.io/notes/FNLP/W8-LexSemSRL.pdf)
     - [Chapter 8: Word2Vec, ANNs for NLP and Discourse Coherence](https://alv31415.github.io/notes/FNLP/W9-ANNs4NLP.pdf)
-
-Currently in Development:
-
-- Honours Algebra
+- [Honours Algebra (Y3, SEM2)](https://github.com/alv31415/notes/tree/master/Algebra)
+    - [Chapter 1: Fields and Vector Spaces](https://alv31415.github.io/notes/Algebra/W1-VecSpa.pdf)
+    - [Chapter 2: The "Morphisms" and Representing Matrices](https://alv31415.github.io/notes/Algebra/W2-MorphismsMatrices.pdf)
+    - [Chapter 3: Abstract Linear Mappings and Change of Basis Matrices](https://alv31415.github.io/notes/Algebra/W3-AbsLinearMaps.pdf)
+    - [Chapter 4: Rings, Ideals and Subrings](https://alv31415.github.io/notes/Algebra/W4-Rings.pdf)
+    - [Chapter 5: Factor Rings, The First Isomorphism Theorem and Modules](https://alv31415.github.io/notes/Algebra/W5-Modules.pdf)
+    - [Chapter 6: Determinants and Multilinear Forms](https://alv31415.github.io/notes/Algebra/W6-Determinants.pdf)
+    - [Chapter 7: Eigenvalues, Triangularisation and Diagonalisation](https://alv31415.github.io/notes/Algebra/W7-EigenTriDiag.pdf)
+    - [Chapter 8: Inner Product Spaces and Orthogonal Projections](https://alv31415.github.io/notes/Algebra/W8-InnerProds.pdf)
+    - [Chapter 9: Adjoint Endomorphisms and The Spectral Theorem](https://alv31415.github.io/notes/Algebra/W9-Adjoints.pdf)
+    - [Chapter 10: The Jordan Normal Form](https://alv31415.github.io/notes/Algebra/W10-Jordan.pdf)
