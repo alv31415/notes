@@ -1,8 +1,8 @@
 <h1> My Notes</h1>
 
-These are my notes for some of my University courses. Currently include:
+These are my notes for some of my courses at the University of Edinburgh.
 
-<h2> Year 2 </h2>
+<h3> Year 2 </h3>
 
 <details markdown = "1">
 
@@ -19,7 +19,7 @@ These are my notes for some of my University courses. Currently include:
 
 </details>
 
-<h2> Year 3 </h2>
+<h3> Year 3 </h3>
 
 <details markdown = "1">
 
@@ -102,7 +102,7 @@ These are my notes for some of my University courses. Currently include:
 
 </details>
 
-<h2> Year 4 </h2>
+<h3> Year 4 </h3>
 
 <details markdown = "1">
 
