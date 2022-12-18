@@ -6,13 +6,13 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://alv31415.github.io/notes/FPM/FPM.pdf"> Fundamentals of Pure Mathematics </a> </summary>
+<summary> <a href = "https://alv31415.github.io/notes/FPM/FPM.pdf"> Fundamentals of Pure Mathematics :busts_in_silhouette: </a> </summary>
 
 </details>
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/IADS"> Introduction to Algorithms and Data Structures</a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/IADS"> Introduction to Algorithms and Data Structures :chart_with_upwards_trend: </a> </summary>
 
 - [Asymptotics, Sorting, Core Data Structures and Graphs](https://alv31415.github.io/notes/IADS/IADS-Sem1.pdf)
 - [Dynamic Programming, Parsing and NP-Completeness](https://alv31415.github.io/notes/IADS/IADS-Sem2.pdf)
@@ -23,7 +23,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/Algebra"> Honours Algebra </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/Algebra"> Honours Algebra :ring: </a> </summary>
 
 - [Chapter 1: Fields and Vector Spaces](https://alv31415.github.io/notes/Algebra/W1-VecSpa.pdf)
 - [Chapter 2: The "Morphisms" and Representing Matrices](https://alv31415.github.io/notes/Algebra/W2-MorphismsMatrices.pdf)
@@ -40,7 +40,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/Analysis"> Honours Analysis </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/Analysis"> Honours Analysis :infinity: </a> </summary>
     
 - [Chapter 1: Real Numbers and Sequences](https://alv31415.github.io/notes/Analysis/W1-RealNumbers.pdf)
 - [Chapter 2: Bolzano-Weierstrass Theorem, Cauchy Sequences and Series](https://alv31415.github.io/notes/Analysis/W2-BWnSeries.pdf)
@@ -58,7 +58,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/HDEQ"> Honours Differential Equations </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/HDEQ"> Honours Differential Equations :cyclone: </a> </summary>
 
 - [Chapter 1: Solving Linear Systems](https://alv31415.github.io/notes/HDEQ/W1-SolvingSystems.pdf)
 - [Chapter 2: Fundamental Matrices](https://alv31415.github.io/notes/HDEQ/W2-FundamentalMatrices.pdf)
@@ -74,7 +74,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/FNLP"> Foundations of Natural Language Processing </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/FNLP"> Foundations of Natural Language Processing :left_speech_bubble: </a> </summary>
 
 - [Chapter 1: Intro to NLP, Ambiguity and Working with Corpora](https://alv31415.github.io/notes/FNLP/W1-AmbiguityCorpora.pdf)
 - [Chapter 2: N-Gram Models and Smoothing Techniques](https://alv31415.github.io/notes/FNLP/W2-NGramSmooth.pdf)
@@ -89,7 +89,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/IAML"> Introductory Applied Machine Learning </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/IAML"> Introductory Applied Machine Learning :desktop_computer: </a> </summary>
 
 - [Chapter 1: Basic Math and Naive Bayes](https://alv31415.github.io/notes/IAML/W1-2-MathNB.pdf)
 - [Chapter 2: Decision Trees](https://alv31415.github.io/notes/IAML/W3-DecisionTrees.pdf)
@@ -106,7 +106,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/IPDEs"> Introduction to Partial Differential Equations </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/IPDEs"> Introduction to Partial Differential Equations :ocean: </a> </summary>
 
 - [Chapter 1: Partial Differential Equations and the Transport Equation](https://alv31415.github.io/notes/IPDEs/W1-IntroPDEs.pdf)
 - [Chapter 2: The Heat Equation: Solution via Fourier Series](https://alv31415.github.io/notes/IPDEs/W2n3-HeatEq.pdf)
@@ -119,7 +119,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/VARCALC"> Variational Calculus </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/VARCALC"> Variational Calculus :ringed_planet: </a> </summary>
 
 - [Chapter 0: Prequel: Several Variable Calculus and Analysis](https://alv31415.github.io/notes/VARCALC/W0-Prequel.pdf)
 - [Chapter 1: Geodesics: Extremals of the Arclength Functional](https://alv31415.github.io/notes/VARCALC/W1-Geodesic.pdf)
@@ -137,7 +137,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Machine Learning and Pattern Recognition </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Machine Learning and Pattern Recognition :robot: </a> </summary>
     
 - [Chapter 1: Linear Regression and Regularisation](https://alv31415.github.io/notes/MLPR/W1-LinearRegression.pdf)
 - [Chapter 2: Evaluating Models and Multivariate Gaussians](https://alv31415.github.io/notes/MLPR/W2-EvaluationGaussian.pdf)
