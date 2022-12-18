@@ -81,7 +81,7 @@ These are my notes for some of my University courses. Currently include:
     - [Chapter 3: Classification: Linear Regression, Bayesian Models and Logistic Regression](https://alv31415.github.io/notes/MLPR/W3-ClassificationLogRes.pdf)
     - [Chapter 4: Bayesian Linear Regression](https://alv31415.github.io/notes/MLPR/W4-BayesReg.pdf)
     - [Chapter 5: Gaussian Processes](https://alv31415.github.io/notes/MLPR/W5-GPs.pdf)
-    - [Chapter 6: Kernels for Gaussian Processes and Softmax Classification](https://alv31415.github.io/notes/MLPR/W6-NoetherHamilton.pdf)
+    - [Chapter 6: Kernels for Gaussian Processes and Softmax Classification](https://alv31415.github.io/notes/MLPR/W6-KernelSoftmax.pdf)
     - [Chapter 7: Neural Networks](https://alv31415.github.io/notes/MLPR/W7-IntroNNs.pdf)
     - [Chapter 8: Autoencoders, PCA and SVD](https://alv31415.github.io/notes/MLPR/W8-Autoencode.pdf)
     - [Chapter 9: Bayesian Logistic Regression and the Laplace Approximation](https://alv31415.github.io/notes/MLPR/W9-BayesianLogRes.pdf)
