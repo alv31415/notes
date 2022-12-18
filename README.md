@@ -106,6 +106,18 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Galois Theory 📐 </a> </summary>
+
+</details>
+
+<details markdown = "1">
+
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Group Theory 🌗 </a> </summary>
+
+</details>
+
+<details markdown = "1">
+
 <summary> <a href = "https://github.com/alv31415/notes/tree/master/IPDEs"> Introduction to Partial Differential Equations 🌊 </a> </summary>
 
 - [Chapter 1: Partial Differential Equations and the Transport Equation](https://alv31415.github.io/notes/IPDEs/W1-IntroPDEs.pdf)
@@ -149,5 +161,11 @@ These are my notes for some of my courses at the University of Edinburgh.
 - [Chapter 8: Autoencoders, PCA and SVD](https://alv31415.github.io/notes/MLPR/W8-Autoencode.pdf)
 - [Chapter 9: Bayesian Logistic Regression and the Laplace Approximation](https://alv31415.github.io/notes/MLPR/W9-BayesianLogRes.pdf)
 - [Chapter 10: Importance Sampling and Variational Inference with KL-Divergence](https://alv31415.github.io/notes/MLPR/W10-VariationalInference.pdf)
+
+</details>
+
+<details markdown = "1">
+
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Natural Language Understanding and Machine Translation 🗯️ </a> </summary>
 
 </details>
