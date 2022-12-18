@@ -6,7 +6,7 @@ These are my notes for some of my University courses. Currently include:
 - [Introduction to Algorithms and Data Structures (Y2, SEM1)](https://alv31415.github.io/notes/IADS/IADS-Sem1.pdf)
 - [Introduction to Algorithms and Data Structures (Y2, SEM2)](https://alv31415.github.io/notes/IADS/IADS-Sem2.pdf)
 
-<details open>
+<details markdown = "1">
 
 <summary> <a href = "https://github.com/alv31415/notes/tree/master/IAML"> Introductory Applied Machine Learning (Y3, SEM1) </a> </summary>
 <br>
@@ -22,7 +22,7 @@ These are my notes for some of my University courses. Currently include:
     
 </details>
 
-<details open>
+<details markdown = "1">
 
 <summary> <a href = "https://github.com/alv31415/notes/tree/master/HDEQ"> Honours Differential Equations (Y3, SEM1) </a> </summary>
 <br>
