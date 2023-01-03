@@ -2,6 +2,10 @@
 
 These are my notes for some of my courses at the University of Edinburgh.
 
+Clicking on the course name takes you to the GitHub repository on which **all** the notes for the corresponding course can be found.
+
+Clicking on the arrow (▸) next to the course name will provide links to access each of the individual chapters for the course.
+
 <h3> Year 2 </h3>
 
 <details markdown = "1">
