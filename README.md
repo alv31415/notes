@@ -16,7 +16,7 @@ Clicking on the arrow (▸) next to the course name will provide links to access
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/IADS"> Introduction to Algorithms and Data Structures 📈 </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/IADS"> Introduction to Algorithms and Data Structures 🌳 </a> </summary>
 
 - [Asymptotics, Sorting, Core Data Structures and Graphs](https://alv31415.github.io/notes/IADS/IADS-Sem1.pdf)
 - [Dynamic Programming, Parsing and NP-Completeness](https://alv31415.github.io/notes/IADS/IADS-Sem2.pdf)
