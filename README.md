@@ -110,8 +110,18 @@ Clicking on the arrow (▸) next to the course name will provide links to access
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Galois Theory 📐 </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/Galois"> Galois Theory 📐 </a> </summary>
 
+- [Chapter 1: Introduction to Conjugacy](https://alv31415.github.io/notes/Galois/W1-Conjugacy.pdf)
+- [Chapter 2: Group Actions, Rings and Fields](https://alv31415.github.io/notes/Galois/W2-ActionsRingsFields.pdf)
+- [Chapter 3: Polynomials](https://alv31415.github.io/notes/Galois/W3-Polynomials.pdf)
+- [Chapter 4: Field Extensions and Homomorphisms Over Fields](https://alv31415.github.io/notes/Galois/W4-FieldExtensions.pdf)
+- [Chapter 5: Degree of Extensions, Finite Extensions and Ruler + Compass Constructions](https://alv31415.github.io/notes/Galois/W5-Degree.pdf)
+- [Chapter 6: Splitting Fields and the Galois Group](https://alv31415.github.io/notes/Galois/W6-SplittingFields.pdf)
+- [Chapter 7: Normal and Separable Extensions](https://alv31415.github.io/notes/Galois/W7-NormalitySeparabilityFix.pdf)
+- [Chapter 8: The Fundamental Theorem of Galois Theory](https://alv31415.github.io/notes/Galois/W8-FTGT.pdf)
+- [Galois Theory Cheatsheet](https://alv31415.github.io/notes/Galois/cheatsheet.pdf)
+- [Original Notes by Tom Leinster](https://www.maths.ed.ac.uk/~tl/gt/gt.pdf)
 </details>
 
 <details markdown = "1">
