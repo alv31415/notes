@@ -126,7 +126,17 @@ Clicking on the arrow (▸) next to the course name will provide links to access
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Group Theory 🌗 </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/Groups"> Group Theory 🌗 </a> </summary>
+
+- [Chapter 1: Introduction to Groups](https://alv31415.github.io/notes/Groups/W1-GroupsIntro.pdf)
+- [Chapter 2: The Isomorphism Theorems](https://alv31415.github.io/notes/Groups/W2-IsomorphismTheorems.pdf)
+- [Chapter 3: The Free Group](https://alv31415.github.io/notes/Groups/W3-GroupRepresentations.pdf)
+- [Chapter 4: Group Actions and the Sylow Theorems](https://alv31415.github.io/notes/Groups/W4n5n6-SylowActions.pdf)
+- [Chapter 5: The Fundamental Theorem of Finite Abelian Groups](https://alv31415.github.io/notes/Groups/W6-FTFAG.pdf)
+- [Chapter 6: The Fundamental Theorem of Finitely Generated Abelian Groups](https://alv31415.github.io/notes/Groups/W7-FTFGAG.pdf)
+- [Chapter 7: The Alternating Group](https://alv31415.github.io/notes/Groups/W8-Alternating.pdf)
+- [Chapter 8: Composition Series and the Jordan-Hölder Theorem](https://alv31415.github.io/notes/Groups/W9-JordanHolder.pdf)
+- [Chapter 9: Solvable Groups and the Derived Series](https://alv31415.github.io/notes/Groups/W10-Solvability.pdf)
 
 </details>
 
