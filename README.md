@@ -190,6 +190,16 @@ Clicking on the arrow (▸) next to the course name will provide links to access
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Natural Language Understanding and Machine Translation 🗯️ </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/NLU+"> Natural Language Understanding, Generation and Machine Translation 🗯️ </a> </summary>
+
+- [Chapter 1: N-Grams for Language Modelling and Translation Linear](https://alv31415.github.io/notes/NLU+/W1-NGLMMT.pdf)
+- [Chapter 2: Neural Language Models](https://alv31415.github.io/notes/NLU+/W2-NNLMs.pdf)
+- [Chapter 3: Encoder-Decoder Models: RNNs and Transformers](https://alv31415.github.io/notes/NLU+/W3-EncDecAttTransform.pdf)
+- [Chapter 4: Word Embeddings and BERT](https://alv31415.github.io/notes/NLU+/W4-EmbedBERT.pdf)
+- [Chapter 5: Prompting and Evaluating Machine Translation](https://alv31415.github.io/notes/NLU+/W5-PromptEvMT.pdf)
+- [Chapter 6: Open Vocabulary Models and Low-Resource Machine Translation](https://alv31415.github.io/notes/NLU+/W6-OVMLRMT.pdf)
+- [Chapter 7: Summarisation with Neural Models](https://alv31415.github.io/notes/NLU+/W7-Summarisation.pdf)
+- [Chapter 8: Supervised and Unsupervised Neural Parsing](https://alv31415.github.io/notes/NLU+/W8-Parsing.pdf)
+- [Chapter 9: Summarising Movies](https://alv31415.github.io/notes/NLU+/W9-Movie.pdf)
 
 </details>
