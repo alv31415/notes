@@ -2,6 +2,10 @@
 
 These are my notes for some of my courses at the University of Edinburgh.
 
+Clicking on the course name takes you to the GitHub repository folder on which **all** the notes for the corresponding course can be found.
+
+Clicking on the arrow (▸) next to the course name will provide links to access each of the individual chapters for the course.
+
 <h3> Year 2 </h3>
 
 <details markdown = "1">
@@ -12,7 +16,7 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
-<summary> <a href = "https://github.com/alv31415/notes/tree/master/IADS"> Introduction to Algorithms and Data Structures 📈 </a> </summary>
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/IADS"> Introduction to Algorithms and Data Structures 🌳 </a> </summary>
 
 - [Asymptotics, Sorting, Core Data Structures and Graphs](https://alv31415.github.io/notes/IADS/IADS-Sem1.pdf)
 - [Dynamic Programming, Parsing and NP-Completeness](https://alv31415.github.io/notes/IADS/IADS-Sem2.pdf)
@@ -106,6 +110,18 @@ These are my notes for some of my courses at the University of Edinburgh.
 
 <details markdown = "1">
 
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Galois Theory 📐 </a> </summary>
+
+</details>
+
+<details markdown = "1">
+
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Group Theory 🌗 </a> </summary>
+
+</details>
+
+<details markdown = "1">
+
 <summary> <a href = "https://github.com/alv31415/notes/tree/master/IPDEs"> Introduction to Partial Differential Equations 🌊 </a> </summary>
 
 - [Chapter 1: Partial Differential Equations and the Transport Equation](https://alv31415.github.io/notes/IPDEs/W1-IntroPDEs.pdf)
@@ -149,5 +165,11 @@ These are my notes for some of my courses at the University of Edinburgh.
 - [Chapter 8: Autoencoders, PCA and SVD](https://alv31415.github.io/notes/MLPR/W8-Autoencode.pdf)
 - [Chapter 9: Bayesian Logistic Regression and the Laplace Approximation](https://alv31415.github.io/notes/MLPR/W9-BayesianLogRes.pdf)
 - [Chapter 10: Importance Sampling and Variational Inference with KL-Divergence](https://alv31415.github.io/notes/MLPR/W10-VariationalInference.pdf)
+
+</details>
+
+<details markdown = "1">
+
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/MLPR"> Natural Language Understanding and Machine Translation 🗯️ </a> </summary>
 
 </details>
