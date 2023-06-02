@@ -120,6 +120,8 @@ Clicking on the arrow (▸) next to the course name will provide links to access
 - [Chapter 6: Splitting Fields and the Galois Group](https://alv31415.github.io/notes/Galois/W6-SplittingFields.pdf)
 - [Chapter 7: Normal and Separable Extensions](https://alv31415.github.io/notes/Galois/W7-NormalitySeparabilityFix.pdf)
 - [Chapter 8: The Fundamental Theorem of Galois Theory](https://alv31415.github.io/notes/Galois/W8-FTGT.pdf)
+- [Chapter 9: Solvability by Radicals](https://alv31415.github.io/notes/Galois/W9-Solvability.pdf)
+- [Chapter 10: Galois Correspondence for Finite Fields](https://alv31415.github.io/notes/Galois/W10-FiniteFields.pdf)
 - [Galois Theory Cheatsheet](https://alv31415.github.io/notes/Galois/cheatsheet.pdf)
 - [Original Notes by Tom Leinster](https://www.maths.ed.ac.uk/~tl/gt/gt.pdf)
 </details>
