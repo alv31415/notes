@@ -1,10 +1,12 @@
 <h1> My Notes</h1>
 
-These are my notes for some of my courses at the University of Edinburgh.
+These are my notes for some of my courses at the University of Edinburgh & the University of Oxford.
 
 Clicking on the course name takes you to the GitHub repository folder on which **all** the notes for the corresponding course can be found.
 
 Clicking on the arrow (▸) next to the course name will provide links to access each of the individual chapters for the course.
+
+<h2> University of Edinburgh </h2>
 
 <h3> Year 2 </h3>
 
@@ -203,5 +205,35 @@ Clicking on the arrow (▸) next to the course name will provide links to access
 - [Chapter 7: Summarisation with Neural Models](https://alv31415.github.io/notes/NLU+/W7-Summarisation.pdf)
 - [Chapter 8: Supervised and Unsupervised Neural Parsing](https://alv31415.github.io/notes/NLU+/W8-Parsing.pdf)
 - [Chapter 9: Summarising Movies](https://alv31415.github.io/notes/NLU+/W9-Movie.pdf)
+
+</details>
+
+<h2> University of Oxford </h2>
+
+<details markdown = "1">
+
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/REPTHEORY"> Introduction to Representation Theory 🧩 </a> </summary>
+
+- [Chapter 1: Representations of Finite Groups](https://alv31415.github.io/notes/REPTHEORY/W1-Intro.pdf)
+- [Chapter 2: Representations and Modules](https://alv31415.github.io/notes/REPTHEORY/W2-Modules.pdf)
+- [Chapter 3: Decomposing Semisimple Rings](https://alv31415.github.io/notes/REPTHEORY/W3-Semisimple.pdf)
+- [Chapter 4: Generating New Representations](https://alv31415.github.io/notes/REPTHEORY/W4-NewReps.pdf)
+- [Chapter 5: Character Theory](https://alv31415.github.io/notes/REPTHEORY/W5-Character.pdf)
+- [Chapter 6: Induced Representations](https://alv31415.github.io/notes/REPTHEORY/W6n7-InducedReps.pdf)
+- [Chapter 7: Algebraic Integers and Burnside’s Theorem](https://alv31415.github.io/notes/REPTHEORY/W8-Burnside.pdf)
+
+</details>
+
+<details markdown = "1">
+
+<summary> <a href = "https://github.com/alv31415/notes/tree/master/Networks"> Networks 🕸️ </a> </summary>
+
+- [Chapter 1: Randomness and Matrices](https://alv31415.github.io/notes/Networks/W1-Prelim.pdf)
+- [Chapter 2: Exploring Properties of Networks](https://alv31415.github.io/notes/Networks/W2-NetworkProperties.pdf)
+- [Chapter 3: Community Detection and Katz Centrality for Dynamic Networks](https://alv31415.github.io/notes/Networks/W3-ModularityKatz.pdf)
+- [Chapter 4: Non-Linear Evolving Network Models](https://alv31415.github.io/notes/Networks/W4-Markov.pdf)
+- [Chapter 5: Centrality in Continuous Time & Dynamics on Networks](https://alv31415.github.io/notes/Networks/W5-ContinuousDynamics.pdf)
+- [Chapter 6: Discrete Random Walks on Networks](https://alv31415.github.io/notes/Networks/W6-DiscreteRandomWalks.pdf)
+- [Chapter 7: Scaling Properties of Networks & Decomposing Networks](https://alv31415.github.io/notes/Networks/W7-Scaling.pdf)
 
 </details>
